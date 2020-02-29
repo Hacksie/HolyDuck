@@ -19,12 +19,17 @@ namespace HackedDesign
 
         public void DebugPrint()
         {
-            for(int y = 0; y<height;y++)
+            for (int y = 0; y < height; y++)
             {
-                string line = null;
-                for(int x=0;x<width;x++)
+                string line = "";
+                for (int x = 0; x < width; x++)
                 {
-                    line = string.Join(",", line, map[x, y].ToString());                  
+                    if (map[x, y] != null)
+                    {
+                        line += map[x, y].ToString();
+                    }
+                    else
+                    { line += "[XXXX]"; }
                 }
 
                 Logger.Log("Level", line);

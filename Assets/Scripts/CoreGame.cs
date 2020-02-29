@@ -7,6 +7,8 @@ namespace HackedDesign
 {
     public class CoreGame : MonoBehaviour
     {
+        public static CoreGame instance;
+
         private Input.IInputController inputController;
 
         [Header("Test Flags")]
@@ -20,8 +22,17 @@ namespace HackedDesign
         [SerializeField] public PlayerController player = null;
         [SerializeField] private Transform environment = null;
 
+
         [Header("State")]
-        [SerializeField] public GameState state = new GameState();
+        [SerializeField] private GameState state = new GameState();
+
+        [Header("UI")]
+        [SerializeField] private MenuPresenter menuPresenter = null; 
+
+        CoreGame()
+        {
+            instance = this;
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -37,23 +48,23 @@ namespace HackedDesign
             if (levelRenderer == null) Logger.LogError(name, "levelRenderer is null");
             if (player == null) Logger.LogError(name, "player is null");
             if (environment == null) Logger.LogError(name, "environment is null");
+            if (menuPresenter == null) Logger.LogError(name, "menuPresenter is null");
         }
 
         void Initialization()
         {
             SetPlatformInput();
-            player.Initialize(turnManager);
-
-
             InitializeLevel();
-            
+            player.Initialize(turnManager, state);
+            menuPresenter.Initialize(state);
         }
 
         void InitializeLevel()
         {
-            state.level = levelGenerator.GenerateRandomLevel(7, 7);
+            state.level = levelGenerator.GenerateRandomLevel(27, 27);
             state.level.DebugPrint();
             levelRenderer.Render(state.level, environment);
+            player.transform.position = levelRenderer.LevelToWorldCoords(new Vector2Int((state.level.width - 1) / 2, (state.level.height - 1) / 2), state.level);
         }
 
         
@@ -76,18 +87,46 @@ namespace HackedDesign
         // Update is called once per frame
         void Update()
         {
-            player.UpdateSprite();
-
-            if(turnManager.PlayerTurnCompleted())
+            switch(state.currentState)
             {
-                turnManager.ProcessTurn();
-                // Update enemy actions
+                case GameStateEnum.PLAYING:
+                    if (turnManager.PlayerTurnCompleted())
+                    {
+                        turnManager.ProcessTurn();
+                        // Update enemy actions
+                    }
+                    break;
+                case GameStateEnum.MENU:
+                    if(state.started)
+                    {
+                        // Close the menu
+                    }
+                    break;
+                case GameStateEnum.GAMEOVER:
+                    break;
+                default:
+                    break;
             }
+
+
         }
+
 
         private void LateUpdate()
         {
-            
+            player.UpdateSprite();
+            UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            menuPresenter.Repaint();
+        }
+
+        public void StartGame()
+        {
+            state.currentState = GameStateEnum.PLAYING;
+            state.started = true;
         }
 
         /*

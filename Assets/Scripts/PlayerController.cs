@@ -16,10 +16,13 @@ namespace HackedDesign
         [SerializeField] private Sprite rightWater = null;
         [SerializeField] private Sprite rightGround = null;
 
-        private TurnManager turnManager = null;
+        
 
         [SerializeField] private Vector2 direction = Vector2.right;
         [SerializeField] private bool inWater = true;
+
+        private TurnManager turnManager = null;
+        private GameState state = null;
 
 
         void Awake()
@@ -30,9 +33,10 @@ namespace HackedDesign
             if (rightGround == null) Logger.LogError(name, "right ground sprite not set");
         }
 
-        public void Initialize(TurnManager actionManager)
+        public void Initialize(TurnManager turnManager, GameState state)
         {
-            this.turnManager = actionManager;
+            this.turnManager = turnManager;
+            this.state = state;
         }
 
         private void OnEnable()
@@ -42,11 +46,13 @@ namespace HackedDesign
 
         public void MoveEvent(InputAction.CallbackContext context)
         {
-
-            if (context.phase == InputActionPhase.Performed)
+            if (state.currentState == GameStateEnum.PLAYING) // We only care about making turns if we're playing
             {
-                direction = context.ReadValue<Vector2>().normalized;
-                QueueAction(ActionTypes.Move, direction);
+                if (context.phase == InputActionPhase.Performed)
+                {
+                    direction = context.ReadValue<Vector2>().normalized;
+                    QueueAction(ActionTypes.Move, direction);
+                }
             }
         }
 
