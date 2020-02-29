@@ -11,6 +11,13 @@ namespace HackedDesign
         [SerializeField] public int gameturn = 0;
         [SerializeField] public Dictionary<int, List<Action>> actions = new Dictionary<int, List<Action>>();
 
+        private GameState state;
+
+        public void Initialize(GameState state)
+        {
+            this.state = state;
+        }
+
         public void QueueAction(Action action)
         {
             List<Action> turnActions;
@@ -37,7 +44,6 @@ namespace HackedDesign
 
         public void ProcessTurn()
         {
-            //
             if (actions.ContainsKey(gameturn))
             {
                 var turnActions = actions[gameturn];
