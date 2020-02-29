@@ -56,9 +56,12 @@ namespace HackedDesign
         void Update()
         {
             player.UpdateSprite();
-            // Process updates
-            //Logger.Log(this.name, "Game turn:", gameturn.ToString());
 
+            if(turnManager.PlayerTurnCompleted())
+            {
+                turnManager.ProcessTurn();
+                // Update enemy actions
+            }
         }
 
         private void LateUpdate()

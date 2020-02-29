@@ -8,15 +8,15 @@ namespace HackedDesign
     public class PlayerController : MonoBehaviour
     {
         [Header("GameObjects")]
-        [SerializeField] new SpriteRenderer renderer;
-        [SerializeField] public InputActions controls;
+        [SerializeField] new SpriteRenderer renderer = null;
+        [SerializeField] public InputActions controls = null;
 
-        [SerializeField] private Sprite leftWater;
-        [SerializeField] private Sprite leftGround;
-        [SerializeField] private Sprite rightWater;
-        [SerializeField] private Sprite rightGround;
+        [SerializeField] private Sprite leftWater = null;
+        [SerializeField] private Sprite leftGround = null;
+        [SerializeField] private Sprite rightWater = null;
+        [SerializeField] private Sprite rightGround = null;
 
-        private TurnManager turnManager;
+        private TurnManager turnManager = null;
 
         [SerializeField] private Vector2 direction = Vector2.right;
         [SerializeField] private bool inWater = true;
