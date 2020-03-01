@@ -25,11 +25,13 @@ namespace HackedDesign
 
         [Header("State")]
         [SerializeField] private GameState state = new GameState();
+        [SerializeField] private Inventory inventory = null;
 
         [Header("UI")]
         [SerializeField] private MenuPresenter menuPresenter = null;
         [SerializeField] private ConsolePresenter consolePresenter = null;
         [SerializeField] private CreditsPresenter creditsPresenter = null;
+        [SerializeField] private StatusPresenter statusPresenter = null;
 
         CoreGame()
         {
@@ -53,6 +55,7 @@ namespace HackedDesign
             if (menuPresenter == null) Logger.LogError(name, "menuPresenter is null");
             if (consolePresenter == null) Logger.LogError(name, "consolePresenter is null");
             if (creditsPresenter == null) Logger.LogError(name, "creditsPresenter is null");
+            if (statusPresenter == null) Logger.LogError(name, "statusPresenter is null");
         }
 
         void Initialization()
@@ -64,6 +67,7 @@ namespace HackedDesign
             menuPresenter.Initialize(state);
             consolePresenter.Initialize(state, turnManager);
             creditsPresenter.Initialize(state);
+            statusPresenter.Initialize(state, inventory);
             SetMenu();
         }
 
@@ -111,8 +115,10 @@ namespace HackedDesign
                 case GameStateEnum.PLAYING:
                     if (turnManager.PlayerTurnCompleted())
                     {
+                        state.energy--;
                         turnManager.ProcessTurn();
                         // Update enemy actions
+                        statusPresenter.RepaintText();
                     }
                     break;
                 case GameStateEnum.MENU:
@@ -148,6 +154,7 @@ namespace HackedDesign
             menuPresenter.Repaint();
             consolePresenter.Repaint();
             creditsPresenter.Repaint();
+            statusPresenter.Repaint();
         }
 
         public void SetOptions()
