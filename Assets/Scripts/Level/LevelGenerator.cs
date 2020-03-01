@@ -8,20 +8,22 @@ namespace HackedDesign
     {
         public Level GenerateRandomLevel(int levelWidth, int levelHeight)
         {
+            var startTime = Time.unscaledTime;
             var level = new Level(levelWidth, levelHeight);
 
             //Temp
 
 
             //FIXME int check
-            level.map[(levelWidth - 1) / 2, (levelHeight - 1) / 2] = GenerateStartingArea(levelWidth, levelHeight);
+            level.map[(levelWidth - 1) / 2, (levelHeight - 1)] = GenerateFinalBossArea();
+            level.map[(levelWidth - 1) / 2, (levelHeight - 1) / 2] = GenerateStartingArea();
+
             level.playerStart = new Vector2Int((levelWidth - 1) / 2, (levelHeight - 1) / 2);
 
-            bool quit = false;
-
+            // Construct the level out from the start
             for (int k = 0; k < Mathf.Max(levelWidth, levelHeight); k++)
+            //for (int k = 0; k < 1; k++)
             {
-
                 for (int j = 0; j < levelHeight; j++)
                 {
                     for (int i = 0; i < levelWidth; i++)
@@ -32,19 +34,18 @@ namespace HackedDesign
                             GenerateArea(level, new Vector2Int(i - 1, j), levelWidth, levelHeight);
                             GenerateArea(level, new Vector2Int(i, j + 1), levelWidth, levelHeight);
                             GenerateArea(level, new Vector2Int(i + 1, j), levelWidth, levelHeight);
-                            /*
-                            level.map[i, j] = GenerateArea(level, new Vector2Int(i, j), levelWidth, levelHeight);
-                            */
                         }
                     }
                 }
             }
 
+            Logger.Log(name, "Level generated in ", (Time.unscaledTime - startTime).ToString());
+
 
             return level;
         }
 
-        public Area GenerateStartingArea(int levelWidth, int levelHeight)
+        public Area GenerateStartingArea()
         {
             return new Area()
             {
@@ -53,6 +54,18 @@ namespace HackedDesign
                 right = AreaEdgeTypes.RIVER,
                 bottom = AreaEdgeTypes.RIVER,
                 isStart = true
+            };
+        }
+
+        public Area GenerateFinalBossArea()
+        {
+            return new Area()
+            {
+                top = AreaEdgeTypes.OCEAN,
+                left = AreaEdgeTypes.OCEAN,
+                right = AreaEdgeTypes.OCEAN,
+                bottom = AreaEdgeTypes.OCEAN,
+                isFinalBoss = true
             };
         }
 

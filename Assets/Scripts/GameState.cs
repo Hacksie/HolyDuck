@@ -10,6 +10,12 @@ namespace HackedDesign
         public Vector2 player;
         public Level level;
         public bool started;
+        public int turn;
+
+        public void IncrementTurn()
+        {
+            turn++;
+        }
     }
 
     public enum GameStateEnum

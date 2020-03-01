@@ -27,7 +27,9 @@ namespace HackedDesign
         [SerializeField] private GameState state = new GameState();
 
         [Header("UI")]
-        [SerializeField] private MenuPresenter menuPresenter = null; 
+        [SerializeField] private MenuPresenter menuPresenter = null;
+        [SerializeField] private ConsolePresenter consolePresenter = null;
+        [SerializeField] private CreditsPresenter creditsPresenter = null;
 
         CoreGame()
         {
@@ -49,19 +51,25 @@ namespace HackedDesign
             if (player == null) Logger.LogError(name, "player is null");
             if (environment == null) Logger.LogError(name, "environment is null");
             if (menuPresenter == null) Logger.LogError(name, "menuPresenter is null");
+            if (consolePresenter == null) Logger.LogError(name, "consolePresenter is null");
+            if (creditsPresenter == null) Logger.LogError(name, "creditsPresenter is null");
         }
 
         void Initialization()
         {
             SetPlatformInput();
             InitializeLevel();
+            turnManager.Initialize(state);
             player.Initialize(turnManager, state);
             menuPresenter.Initialize(state);
+            consolePresenter.Initialize(state, turnManager);
+            creditsPresenter.Initialize(state);
+            SetMenu();
         }
 
         void InitializeLevel()
         {
-            state.level = levelGenerator.GenerateRandomLevel(27, 27);
+            state.level = levelGenerator.GenerateRandomLevel(21, 21);
             state.level.DebugPrint();
             levelRenderer.Render(state.level, environment);
             player.transform.position = levelRenderer.LevelToWorldCoords(new Vector2Int((state.level.width - 1) / 2, (state.level.height - 1) / 2), state.level);
@@ -121,6 +129,23 @@ namespace HackedDesign
         private void UpdateUI()
         {
             menuPresenter.Repaint();
+            consolePresenter.Repaint();
+            creditsPresenter.Repaint();
+        }
+
+        public void SetOptions()
+        {
+            state.currentState = GameStateEnum.OPTIONS;
+        }
+
+        public void SetCredits()
+        {
+            state.currentState = GameStateEnum.CREDITS;
+        }
+
+        public void SetMenu()
+        {
+            state.currentState = GameStateEnum.MENU;
         }
 
         public void StartGame()

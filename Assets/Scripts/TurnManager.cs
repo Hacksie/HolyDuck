@@ -8,7 +8,7 @@ namespace HackedDesign
     public class TurnManager : MonoBehaviour
     {
         [Header("State")]
-        [SerializeField] public int gameturn = 0;
+        //[SerializeField] public int gameturn = 0;
         [SerializeField] public Dictionary<int, List<Action>> actions = new Dictionary<int, List<Action>>();
 
         private GameState state;
@@ -21,32 +21,32 @@ namespace HackedDesign
         public void QueueAction(Action action)
         {
             List<Action> turnActions;
-            if (actions.ContainsKey(gameturn))
+            if (actions.ContainsKey(state.turn))
             {
-                turnActions = actions[gameturn];
+                turnActions = actions[state.turn];
             }
             else
             {
                 turnActions = new List<Action>();
-                actions.Add(gameturn, turnActions);
+                actions.Add(state.turn, turnActions);
             }
 
-            Logger.Log(name, gameturn.ToString(), " - ", "action queued: ", action.source.name, " ", action.action.ToString(), " ", action.direction.ToString());
+            Logger.Log(name, state.turn.ToString(), " - ", "action queued: ", action.source.name, " ", action.action.ToString(), " ", action.direction.ToString());
             turnActions.Add(action);
         }
 
         public bool PlayerTurnCompleted()
         {
-            if (!actions.ContainsKey(gameturn)) return false;
+            if (!actions.ContainsKey(state.turn)) return false;
 
-            return actions[gameturn].Exists(a => a.player);
+            return actions[state.turn].Exists(a => a.player);
         }
 
         public void ProcessTurn()
         {
-            if (actions.ContainsKey(gameturn))
+            if (actions.ContainsKey(state.turn))
             {
-                var turnActions = actions[gameturn];
+                var turnActions = actions[state.turn];
 
                 foreach(var action in turnActions)
                 {
@@ -65,7 +65,7 @@ namespace HackedDesign
                 }
             }
 
-            gameturn++;
+            state.IncrementTurn();
         }
     }
 }

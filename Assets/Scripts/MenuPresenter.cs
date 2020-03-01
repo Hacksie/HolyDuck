@@ -51,11 +51,14 @@ namespace HackedDesign
         public void OptionsEvent()
         {
             Logger.Log(name, "OptionsEvent");
+            CoreGame.instance.SetOptions();
         }
 
         public void CreditsEvent()
         {
             Logger.Log(name, "CreditsEvent");
+            CoreGame.instance.SetCredits();
+            
         }
 
         public void QuitEvent()

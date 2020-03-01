@@ -8,9 +8,8 @@ using UnityEngine.UI;
 
 namespace HackedDesign
 {
-    public class ConsolePresenter : MonoBehaviour
+    public class CreditsPresenter : MonoBehaviour
     {
-        private TurnManager turnManager;
         private GameState state = null;
 
         private void Start()
@@ -18,24 +17,22 @@ namespace HackedDesign
 
         }
 
-        public void Initialize(GameState state, TurnManager turnManager)
+        public void Initialize(GameState state)
         {
             this.state = state;
-            this.turnManager = turnManager;
         }
 
         public void Repaint()
         {
-            /*
-            if (state.currentState == GameStateEnum.PLAYING && !gameObject.activeInHierarchy)
+            if(state.currentState == GameStateEnum.CREDITS && !gameObject.activeInHierarchy)
             {
                 Show(true);
-
+                
             }
-            else if (state.currentState != GameStateEnum.PLAYING && gameObject.activeInHierarchy)
+            else if(state.currentState != GameStateEnum.CREDITS && gameObject.activeInHierarchy)
             {
                 Show(false);
-            }*/
+            }
         }
 
         private void Show(bool flag)
@@ -43,7 +40,10 @@ namespace HackedDesign
             gameObject.SetActive(flag);
         }
 
-
-
+        public void ReturnEvent()
+        {
+            Logger.Log(name, "ReturnEvent");
+            CoreGame.instance.SetMenu();
+        }
     }
 }
