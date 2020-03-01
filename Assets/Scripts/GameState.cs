@@ -11,6 +11,9 @@ namespace HackedDesign
         public Level level;
         public bool started;
         public int turn;
+        public int health;
+        public int maxHealth = 10;
+        public int chicksSaved = 0;
 
         public void IncrementTurn()
         {
@@ -25,6 +28,7 @@ namespace HackedDesign
         OPTIONS,
         CREDITS,
         PLAYING,
-        GAMEOVER
+        GAMEOVER,
+        COMPLETE
     }
 }

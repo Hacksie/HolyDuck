@@ -19,6 +19,7 @@ namespace HackedDesign
         
 
         [SerializeField] private Vector2 direction = Vector2.right;
+        [SerializeField] private Vector2 facingDirection = Vector2.right;
         [SerializeField] private bool inWater = true;
 
         private TurnManager turnManager = null;
@@ -39,6 +40,12 @@ namespace HackedDesign
             this.state = state;
         }
 
+        public void SetInWater(bool flag)
+        {
+            inWater = flag;
+            UpdateSprite();
+        }
+
         private void OnEnable()
         {
 
@@ -51,6 +58,8 @@ namespace HackedDesign
                 if (context.phase == InputActionPhase.Performed)
                 {
                     direction = context.ReadValue<Vector2>().normalized;
+                    if (direction == Vector2.left) facingDirection = Vector2.left;
+                    if (direction == Vector2.right) facingDirection = Vector2.right;
                     QueueAction(ActionTypes.Move, direction);
                 }
             }
@@ -60,22 +69,22 @@ namespace HackedDesign
         {
             if (inWater)
             {
-                if (direction == Vector2.right)
+                if (facingDirection == Vector2.right)
                 {
                     renderer.sprite = rightWater;
                 }
-                if (direction == Vector2.left)
+                if (facingDirection == Vector2.left)
                 {
                     renderer.sprite = leftWater;
                 }
             }
             else
             {
-                if (direction == Vector2.right)
+                if (facingDirection == Vector2.right)
                 {
                     renderer.sprite = rightGround;
                 }
-                if (direction == Vector2.left)
+                if (facingDirection == Vector2.left)
                 {
                     renderer.sprite = leftGround;
                 }

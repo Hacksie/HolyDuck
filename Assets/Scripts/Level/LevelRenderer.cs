@@ -13,39 +13,44 @@ namespace HackedDesign
         [SerializeField] private List<GameObject> areaStartTilemaps;
         [SerializeField] private List<GameObject> areaFinalBossTilemaps;
 
+        [Header("Settings")]
+        [SerializeField] private int tileMapHeight = 8;
+        [SerializeField] private int tileMapWidth = 14;
+
+
         public void Render(Level level, Transform parent)
         {
             ClearLevel(parent);
-            Instantiate(borderTiles[0], new Vector2(-1 * 14, level.height * 8), Quaternion.identity, parent);
+            Instantiate(borderTiles[0], new Vector2(-1 * tileMapWidth, level.height * tileMapHeight), Quaternion.identity, parent);
             for (int x = 0; x < level.width; x++)
             {
-                Instantiate(borderTiles[1], new Vector2(x * 14, level.height * 8), Quaternion.identity, parent);
+                Instantiate(borderTiles[1], new Vector2(x * tileMapWidth, level.height * tileMapHeight), Quaternion.identity, parent);
             }
-            Instantiate(borderTiles[2], new Vector2(level.width * 14, level.height * 8), Quaternion.identity, parent);
+            Instantiate(borderTiles[2], new Vector2(level.width * tileMapWidth, level.height * tileMapHeight), Quaternion.identity, parent);
 
             for (int y = 0; y < level.height; y++)
             {
-                Instantiate(borderTiles[3], new Vector2(-1*14, (level.height - y - 1) * 8), Quaternion.identity, parent);
+                Instantiate(borderTiles[3], new Vector2(-1* tileMapWidth, (level.height - y - 1) * tileMapHeight), Quaternion.identity, parent);
 
                 for (int x = 0; x < level.width; x++)
                 {
-                    RenderArea(level.map[x, y], new Vector2(x * 14, (level.height - y - 1) * 8), parent);
+                    RenderArea(level.map[x, y], new Vector2(x * tileMapWidth, (level.height - y - 1) * tileMapHeight), parent);
                 }
 
-                Instantiate(borderTiles[4], new Vector2(level.width * 14, (level.height - y - 1) * 8), Quaternion.identity, parent);  
+                Instantiate(borderTiles[4], new Vector2(level.width * tileMapWidth, (level.height - y - 1) * tileMapHeight), Quaternion.identity, parent);  
             }
 
-            Instantiate(borderTiles[5], new Vector2(-1 * 14, -8), Quaternion.identity, parent);
+            Instantiate(borderTiles[5], new Vector2(-1 * tileMapWidth, -tileMapHeight), Quaternion.identity, parent);
             for (int x = 0; x < level.width; x++)
             {
-                Instantiate(borderTiles[6], new Vector2(x * 14, -8), Quaternion.identity, parent);
+                Instantiate(borderTiles[6], new Vector2(x * tileMapWidth, -tileMapHeight), Quaternion.identity, parent);
             }
-            Instantiate(borderTiles[7], new Vector2(level.width * 14, -8), Quaternion.identity, parent);
+            Instantiate(borderTiles[7], new Vector2(level.width * tileMapWidth, -tileMapHeight), Quaternion.identity, parent);
         }
 
         public Vector2 LevelToWorldCoords(Vector2Int position, Level level)
         {
-            return new Vector2(position.x * 14, (level.height - position.y - 1) * 8);
+            return new Vector2(position.x * tileMapWidth, (level.height - position.y - 1) * tileMapHeight);
         }
 
         private void ClearLevel(Transform parent)

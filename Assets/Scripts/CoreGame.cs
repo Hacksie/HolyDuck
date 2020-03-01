@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 
 namespace HackedDesign
 {
@@ -72,10 +72,21 @@ namespace HackedDesign
             state.level = levelGenerator.GenerateRandomLevel(21, 21);
             state.level.DebugPrint();
             levelRenderer.Render(state.level, environment);
-            player.transform.position = levelRenderer.LevelToWorldCoords(new Vector2Int((state.level.width - 1) / 2, (state.level.height - 1) / 2), state.level);
+            player.transform.position = levelRenderer.LevelToWorldCoords(new Vector2Int((state.level.width - 1) / 2, (state.level.height - 1) / 2), state.level) + new Vector2(-2, -1);
+            player.transform.position = GetPlayerSpawn();
         }
 
-        
+        private Vector2 GetPlayerSpawn()
+        {
+            var spawns = GameObject.FindGameObjectsWithTag("Respawn");
+
+            Logger.Log(name, "spawns", spawns.Length.ToString());
+
+            var playerSpawn = spawns.FirstOrDefault(s => s.GetComponent<Spawn>().playerStart);
+
+            return playerSpawn.transform.position;
+
+        }
 
         private void SetPlatformInput()
         {
@@ -95,7 +106,7 @@ namespace HackedDesign
         // Update is called once per frame
         void Update()
         {
-            switch(state.currentState)
+            switch (state.currentState)
             {
                 case GameStateEnum.PLAYING:
                     if (turnManager.PlayerTurnCompleted())
@@ -105,7 +116,7 @@ namespace HackedDesign
                     }
                     break;
                 case GameStateEnum.MENU:
-                    if(state.started)
+                    if (state.started)
                     {
                         // Close the menu
                     }
@@ -124,6 +135,12 @@ namespace HackedDesign
         {
             player.UpdateSprite();
             UpdateUI();
+        }
+
+        public void SaveChick()
+        {
+            state.chicksSaved++;
+            Logger.Log(name, "Chick saved!");
         }
 
         private void UpdateUI()
