@@ -8,6 +8,7 @@ namespace HackedDesign
     {
         public void PickupChick()
         {
+            CoreGame.instance.AddActionMessage(name + " rescued a chick!");
             CoreGame.instance.SaveChick(); 
         }
     }

@@ -10,32 +10,34 @@ namespace HackedDesign
 {
     public class ConsolePresenter : MonoBehaviour
     {
-        private TurnManager turnManager;
         private GameState state = null;
+        [SerializeField] private Text console = null;
 
         private void Start()
         {
-
+            if (console == null) Logger.LogError(name, "console text is null");
         }
 
-        public void Initialize(GameState state, TurnManager turnManager)
+        public void Initialize(GameState state)
         {
             this.state = state;
-            this.turnManager = turnManager;
         }
 
         public void Repaint()
         {
-            /*
-            if (state.currentState == GameStateEnum.PLAYING && !gameObject.activeInHierarchy)
+            if (state.currentState == GameStateEnum.PLAYING)
             {
-                Show(true);
+                if (!gameObject.activeInHierarchy)
+                {
+                    Show(true);
+                }
 
+                RepaintText();
             }
             else if (state.currentState != GameStateEnum.PLAYING && gameObject.activeInHierarchy)
             {
                 Show(false);
-            }*/
+            }
         }
 
         private void Show(bool flag)
@@ -43,7 +45,14 @@ namespace HackedDesign
             gameObject.SetActive(flag);
         }
 
-
-
+        private void RepaintText()
+        {
+            var messages = state.actions.Take(9).ToList();
+            console.text = "";
+            for(int i=(messages.Count() - 1); i>=0;i--)
+            {
+                console.text += messages[i] + "\n";
+            }
+        }
     }
 }

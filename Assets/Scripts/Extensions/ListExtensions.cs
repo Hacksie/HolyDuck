@@ -23,4 +23,25 @@ public static class ListExtensions
         return list[p];
     }
 
+    public static HashSet<T> PickRandomElements<T>(this List<T> list, int elements)
+    {
+        HashSet<T> results = new HashSet<T>();
+
+        while(elements > 0)
+        {
+            var e = list.GetRandomElement();
+
+            if(results.Count >= list.Count)
+            {
+                break;
+            }
+
+            if (results.Contains(e)) continue;
+
+            results.Add(e);
+            elements--;
+        }
+
+        return results;
+    }
 }

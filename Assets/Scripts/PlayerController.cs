@@ -46,9 +46,14 @@ namespace HackedDesign
             UpdateSprite();
         }
 
-        private void OnEnable()
-        {
 
+
+        public void MenuEvent(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                CoreGame.instance.SetMenu();
+            }
         }
 
         public void MoveEvent(InputAction.CallbackContext context)
@@ -57,13 +62,57 @@ namespace HackedDesign
             {
                 if (context.phase == InputActionPhase.Performed)
                 {
+
                     direction = context.ReadValue<Vector2>().normalized;
                     if (direction == Vector2.left) facingDirection = Vector2.left;
                     if (direction == Vector2.right) facingDirection = Vector2.right;
+
+                    //Check for bite attack here
                     QueueAction(ActionTypes.Move, direction);
                 }
             }
         }
+
+        public void AppleEvent(InputAction.CallbackContext context)
+        {
+            if (state.currentState == GameStateEnum.PLAYING) // We only care about making turns if we're playing
+            {
+                if (context.phase == InputActionPhase.Performed)
+                {
+                }
+            }
+        }
+
+        public void CandyEvent(InputAction.CallbackContext context)
+        {
+
+        }
+
+        public void QuackEvent(InputAction.CallbackContext context)
+        {
+
+        }
+
+        public void BiteEvent(InputAction.CallbackContext context)
+        {
+
+        }
+
+        public void SplashEvent(InputAction.CallbackContext context)
+        {
+
+        }
+
+        public void InteractEvent(InputAction.CallbackContext context)
+        {
+
+        }
+
+        public void DuckEvent(InputAction.CallbackContext context)
+        {
+
+        }
+
 
         public void UpdateSprite()
         {
@@ -91,11 +140,6 @@ namespace HackedDesign
             }
         }
 
-        private void OnDisable()
-        {
-
-        }
-
         public void QueueAction(ActionTypes actionType, Vector2 direction)
         {
             turnManager.QueueAction(new Action()
@@ -108,11 +152,6 @@ namespace HackedDesign
                 direction = direction
             });
         }
-
-        public void UpdateTransform()
-        {
-            // Movement augments (0 - 10) are reduced by a factor of 10
-            //transform.Translate(movementVector * (baseMovementSpeed + (CoreGame.Instance.state.player.movementAugments / 10.0f)) * Time.fixedDeltaTime);
-        }
     }
 }
+ 

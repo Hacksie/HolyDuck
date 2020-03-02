@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HackedDesign
 {
@@ -16,6 +18,15 @@ namespace HackedDesign
         public int energy = 100;
         public int maxEnergy = 100;
         public int chicksSaved = 0;
+        public int minAttack = 0;
+        public int maxAttack = 5;
+        public int defense = 1;
+
+        public List<Spawn> spawns;
+
+        public List<Chick> chicks;
+
+        public List<string> actions = new List<string>(); // FIXME: Maybe don't use a list for this?
 
         public void IncrementTurn()
         {
@@ -30,7 +41,8 @@ namespace HackedDesign
         OPTIONS,
         CREDITS,
         PLAYING,
-        GAMEOVER,
+        GAMEOVERDEAD,
+        GAMEOVERSTARVED,
         COMPLETE
     }
 }

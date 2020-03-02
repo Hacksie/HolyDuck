@@ -17,8 +17,11 @@ namespace HackedDesign
         [SerializeField] private Image energyBar = null;
         [SerializeField] private Text chicksText = null;
         [SerializeField] private Text eggsText = null;
-        [SerializeField] private Text stonesText = null;
-        [SerializeField] private Text fruitsText = null;
+        [SerializeField] private Text applesText = null;
+        [SerializeField] private Text mushroomsText = null;
+        [SerializeField] private Text attackText = null;
+        [SerializeField] private Text defenseText = null;
+        
 
 
         private void Start()
@@ -27,8 +30,10 @@ namespace HackedDesign
             if (energyBar == null) Logger.LogError(name, "energyBar is null");
             if (chicksText == null) Logger.LogError(name, "chicksText is null");
             if (eggsText == null) Logger.LogError(name, "eggsText is null");
-            if (stonesText == null) Logger.LogError(name, "stonesText is null");
-            if (fruitsText == null) Logger.LogError(name, "fruitsText is null");
+            if (mushroomsText == null) Logger.LogError(name, "mushroomsText is null");
+            if (applesText == null) Logger.LogError(name, "applesText is null");
+            if (attackText == null) Logger.LogError(name, "attackText is null");
+            if (defenseText == null) Logger.LogError(name, "defenseText is null");
         }
 
         public void Initialize(GameState state, Inventory inventory)
@@ -40,9 +45,12 @@ namespace HackedDesign
 
         public void Repaint()
         {
-            if (state.currentState == GameStateEnum.PLAYING && !gameObject.activeInHierarchy)
+            if (state.currentState == GameStateEnum.PLAYING)
             {
-                Show(true);
+                if (!gameObject.activeInHierarchy)
+                {
+                    Show(true);
+                }
                 RepaintText();
             }
             else if (state.currentState != GameStateEnum.PLAYING && gameObject.activeInHierarchy)
@@ -58,6 +66,9 @@ namespace HackedDesign
 
         public void RepaintText()
         {
+            attackText.text = state.maxAttack.ToString() + "!";
+            defenseText.text = state.defense.ToString() + "#";
+
             if (state.maxHealth > 0)
             {
                 healthBar.fillAmount = (float)state.health / state.maxHealth;
@@ -79,54 +90,23 @@ namespace HackedDesign
                 eggsText.text = "0";
             }
 
-            if (inventory.inventory.ContainsKey("Stone"))
+            if (inventory.inventory.ContainsKey("Mushroom"))
             {
-                stonesText.text = inventory.inventory["Stone"].ToString();
+                mushroomsText.text = inventory.inventory["Mushroom"].ToString();
             }
             else
             {
-                stonesText.text = "0";
+                mushroomsText.text = "0";
             }
 
-            if (inventory.inventory.ContainsKey("Fruit"))
+            if (inventory.inventory.ContainsKey("Apple"))
             {
-                fruitsText.text = inventory.inventory["Fruit"].ToString();
+                applesText.text = inventory.inventory["Apple"].ToString();
             }
             else
             {
-                fruitsText.text = "0";
+                applesText.text = "0";
             }
         }
-
-        public void StartEvent()
-        {
-            Logger.Log(name, "StartEvent");
-            CoreGame.instance.StartGame();
-        }
-
-        public void OptionsEvent()
-        {
-            Logger.Log(name, "OptionsEvent");
-            CoreGame.instance.SetOptions();
-        }
-
-        public void CreditsEvent()
-        {
-            Logger.Log(name, "CreditsEvent");
-            CoreGame.instance.SetCredits();
-
-        }
-
-        public void QuitEvent()
-        {
-            Logger.Log(name, "Quitting");
-            Application.Quit();
-        }
-
-        public void ResumeEvent()
-        {
-            Logger.Log(name, "ResumeEvent");
-        }
-
     }
 }

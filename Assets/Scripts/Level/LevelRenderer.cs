@@ -7,11 +7,11 @@ namespace HackedDesign
     public class LevelRenderer : MonoBehaviour
     {
         [Header("AreaTilemaps")]
-        [SerializeField] private GameObject waterTile;
         [SerializeField] private List<GameObject> areaTilemaps;
         [SerializeField] private List<GameObject> borderTiles;
         [SerializeField] private List<GameObject> areaStartTilemaps;
         [SerializeField] private List<GameObject> areaFinalBossTilemaps;
+        [SerializeField] private List<GameObject> areaBossTilemaps;
 
         [Header("Settings")]
         [SerializeField] private int tileMapHeight = 8;
@@ -119,6 +119,35 @@ namespace HackedDesign
                 {
                     Instantiate(trstartobj, position, Quaternion.identity, parent);
                 }
+                return;
+            }
+
+            if(area.isBoss)
+            {
+                var blstartobj = FindCorner("bl", areaBossTilemaps, area.bottom, area.left);
+                if (blstartobj != null)
+                {
+                    Instantiate(blstartobj, position, Quaternion.identity, parent);
+                }
+
+                var brstartobj = FindCorner("br", areaBossTilemaps, area.bottom, area.right);
+                if (brstartobj != null)
+                {
+                    Instantiate(brstartobj, position, Quaternion.identity, parent);
+                }
+
+                var tlstartobj = FindCorner("tl", areaBossTilemaps, area.top, area.left);
+                if (tlstartobj != null)
+                {
+                    Instantiate(tlstartobj, position, Quaternion.identity, parent);
+                }
+
+                var trstartobj = FindCorner("tr", areaBossTilemaps, area.top, area.right);
+                if (trstartobj != null)
+                {
+                    Instantiate(trstartobj, position, Quaternion.identity, parent);
+                }
+
                 return;
             }
 

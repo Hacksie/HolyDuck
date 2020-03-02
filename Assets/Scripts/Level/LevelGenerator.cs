@@ -14,9 +14,18 @@ namespace HackedDesign
             //Temp
 
 
-            //FIXME int check
+            level.map[Random.Range(1, (levelWidth - 1) / 2 - 2), Random.Range(1, (levelHeight - 1) / 2 - 2)] = GenerateBossArea();
+            level.map[Random.Range((levelWidth - 1) / 2 + 2, levelWidth - 2), Random.Range(1, (levelHeight - 1) / 2 - 2)] = GenerateBossArea();
+
+            level.map[Random.Range(1, (levelWidth - 1) / 2 - 2), Random.Range((levelHeight - 1) / 2 + 2, levelHeight - 2)] = GenerateBossArea();
+            level.map[Random.Range((levelWidth - 1) / 2 + 2, levelWidth - 2), Random.Range((levelHeight - 1) / 2 + 2, levelHeight - 2)] = GenerateBossArea();
+
+
+
             level.map[(levelWidth - 1) / 2, (levelHeight - 1)] = GenerateFinalBossArea();
             level.map[(levelWidth - 1) / 2, (levelHeight - 1) / 2] = GenerateStartingArea();
+
+
 
             level.playerStart = new Vector2Int((levelWidth - 1) / 2, (levelHeight - 1) / 2);
 
@@ -57,6 +66,20 @@ namespace HackedDesign
             };
         }
 
+        public Area GenerateBossArea()
+        {
+            return new Area()
+            {
+                top = AreaEdgeTypes.RIVER,
+                left = AreaEdgeTypes.RIVER,
+                right = AreaEdgeTypes.RIVER,
+                bottom = AreaEdgeTypes.RIVER,
+                isBoss = true,
+                isStart = false,
+                isFinalBoss = false
+            };
+        }
+
         public Area GenerateFinalBossArea()
         {
             return new Area()
@@ -65,7 +88,9 @@ namespace HackedDesign
                 left = AreaEdgeTypes.OCEAN,
                 right = AreaEdgeTypes.OCEAN,
                 bottom = AreaEdgeTypes.OCEAN,
-                isFinalBoss = true
+                isFinalBoss = true,
+                isStart = false,
+                isBoss = false
             };
         }
 
