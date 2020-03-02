@@ -2,6 +2,13 @@
 {
     public enum ActionTypes
     {
-        Move
+        Move,
+        Apple,
+        Quack,
+        Bite,
+        Splash,
+        Candy,
+        Interact,
+        Duck
     }
 }

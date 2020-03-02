@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4407586947780346162}
   - component: {fileID: 4124230116756401234}
-  - component: {fileID: -5637571279946609617}
+  - component: {fileID: 1633675056185605614}
   m_Layer: 0
   m_Name: Spawn
   m_TagString: Respawn
@@ -45,8 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnType: 1
+  playerStart: 0
+  finalBossStart: 0
+  bossStart: 0
   active: 1
---- !u!61 &-5637571279946609617
+--- !u!61 &1633675056185605614
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,7 +59,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -70,5 +73,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.75, y: 0.75}
   m_EdgeRadius: 0

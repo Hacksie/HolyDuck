@@ -28,10 +28,19 @@ namespace HackedDesign
         {
             Logger.Log(name, "Item picked up ", itemType, " ", count.ToString());
 
+            CoreGame.instance.AddActionMessage(name + " picked up " + count.ToString() + " " + (count == 1 ? itemType : itemType + "s"));
+
             if(itemType == "Chick")
             {
 
             }
+
+            if(itemType == "Bread")
+            {
+
+            }
+
+
 
             if(inventory.ContainsKey(itemType))
             {
