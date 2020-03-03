@@ -19,6 +19,27 @@ namespace HackedDesign
 
         }
 
+        public int ItemCount(string item)
+        {
+            if (inventory.ContainsKey(item))
+            {
+                return inventory[item];
+            }
+
+            return 0;
+        }
+
+        public bool ConsumeItem(string item, int count)
+        {
+            if(ItemCount(item) >= count)
+            {
+                inventory[item] -= count;
+                return true;
+            }
+
+            return false;
+        }
+
         public void DropItem(string item, int count)
         {
             Logger.Log(name, "Item dropped ", item);
@@ -30,19 +51,19 @@ namespace HackedDesign
 
             CoreGame.instance.AddActionMessage(name + " picked up " + count.ToString() + " " + (count == 1 ? itemType : itemType + "s"));
 
-            if(itemType == "Chick")
+            if (itemType == "Chick")
             {
 
             }
 
-            if(itemType == "Bread")
+            if (itemType == "Bread")
             {
 
             }
 
 
 
-            if(inventory.ContainsKey(itemType))
+            if (inventory.ContainsKey(itemType))
             {
                 inventory[itemType] += count;
             }
@@ -50,7 +71,7 @@ namespace HackedDesign
             {
                 inventory.Add(itemType, count);
             }
-            
+
         }
     }
 }

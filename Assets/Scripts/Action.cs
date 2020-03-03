@@ -6,11 +6,13 @@ namespace HackedDesign
 {
     public class Action
     {
+        public GameObject target;
         public GameObject source;
         public int initiative;
         public bool player;
         public bool enemy;
         public ActionTypes action;
         public Vector2 direction;
+        public int damage;
     }
 }

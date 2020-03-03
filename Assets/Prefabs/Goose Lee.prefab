@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7977478668628972406}
   - component: {fileID: 7977478668628972407}
-  - component: {fileID: 8273217275806570204}
   - component: {fileID: 1457349499837981337}
   - component: {fileID: 5808919297667831266}
-  m_Layer: 0
+  - component: {fileID: 5389724815700581806}
+  m_Layer: 8
   m_Name: Goose Lee
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,30 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953598d2a8586ea4e9a6623a2757e7fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8273217275806570204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7977478668628972409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9522aa5eebce3a347a780eabc3b2dac8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderer: {fileID: 7977478669664602847}
-  leftWater: {fileID: -3636301532189777947, guid: ec888e55676dc9c42963a5af2ba60598,
-    type: 3}
-  leftGround: {fileID: 3847615199047951208, guid: ec888e55676dc9c42963a5af2ba60598,
-    type: 3}
-  rightWater: {fileID: 8658925072031182748, guid: ec888e55676dc9c42963a5af2ba60598,
-    type: 3}
-  rightGround: {fileID: 55553501391532431, guid: ec888e55676dc9c42963a5af2ba60598,
-    type: 3}
-  direction: {x: 1, y: 0}
-  facingDirection: {x: 1, y: 0}
-  inWater: 1
 --- !u!50 &1457349499837981337
 Rigidbody2D:
   serializedVersion: 4
@@ -118,6 +94,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &5389724815700581806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7977478668628972409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e428ee7aefa6eb4db18185e75218563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 7977478669664602847}
+  leftWater: {fileID: -3636301532189777947, guid: ec888e55676dc9c42963a5af2ba60598,
+    type: 3}
+  leftGround: {fileID: 3847615199047951208, guid: ec888e55676dc9c42963a5af2ba60598,
+    type: 3}
+  rightWater: {fileID: 8658925072031182748, guid: ec888e55676dc9c42963a5af2ba60598,
+    type: 3}
+  rightGround: {fileID: 55553501391532431, guid: ec888e55676dc9c42963a5af2ba60598,
+    type: 3}
+  direction: {x: 1, y: 0}
+  facingDirection: {x: 1, y: 0}
+  inWater: 1
 --- !u!1 &7977478669664602913
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7977478669664602846}
   - component: {fileID: 7977478669664602847}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

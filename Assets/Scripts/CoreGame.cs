@@ -26,6 +26,7 @@ namespace HackedDesign
         [SerializeField] private FinalBoss finalBoss = null;
         [SerializeField] private Princess princess = null;
         [SerializeField] private List<Boss> bossList = null;
+        [SerializeField] private LayerMask enemyLayerMask;
 
 
         [Header("State")]
@@ -39,6 +40,7 @@ namespace HackedDesign
         [SerializeField] private StatusPresenter statusPresenter = null;
         [SerializeField] private TurnPresenter turnPresenter = null;
         [SerializeField] private GameOverStarvePresenter gameOverStarvePresenter = null;
+        [SerializeField] private DifficultyPresenter difficultyPresenter = null;
 
         [Header("Prefabs")]
         [SerializeField] private GameObject mummaPrefab = null;
@@ -48,6 +50,7 @@ namespace HackedDesign
         [SerializeField] private GameObject mushroomPrefab = null;
         [SerializeField] private GameObject breadPrefab = null;
         [SerializeField] private GameObject chipPrefab = null;
+        [SerializeField] private GameObject snakePrefab = null;
 
         [Header("Game Settings")]
         [SerializeField] private int levelWidth = 11;
@@ -58,9 +61,12 @@ namespace HackedDesign
         [SerializeField] private int chipCount = 30;
         [SerializeField] private int appleCount = 20;
         [SerializeField] private int mushroomCount = 10;
-        [SerializeField] private int breadEnergy = 30;
-        [SerializeField] private int chipEnergy = 50;
         [SerializeField] private int mummaDucks = 20;
+        [SerializeField] private int snakesCount = 20;
+        [SerializeField] private int enemyRadius = 10;
+
+        [SerializeField] private List<Difficulty> difficulties = new List<Difficulty>();
+        private Difficulty difficulty;
 
         CoreGame()
         {
@@ -97,8 +103,11 @@ namespace HackedDesign
             if (breadPrefab == null) Logger.LogError(name, "breadPrefab is null");
             if (chipPrefab == null) Logger.LogError(name, "chipPrefab is null");
             if (gameOverStarvePresenter == null) Logger.LogError(name, "gameOverStarvePresenter is null");
+            if (difficultyPresenter == null) Logger.LogError(name, "difficultyPresenter is null");
             if (mummaPrefab == null) Logger.LogError(name, "mummaPrefab is null");
+            if (snakePrefab == null) Logger.LogError(name, "snakePrefab is null");
         }
+
 
         void Initialization()
         {
@@ -109,9 +118,10 @@ namespace HackedDesign
             menuPresenter.Initialize(state);
             consolePresenter.Initialize(state);
             creditsPresenter.Initialize(state);
-            statusPresenter.Initialize(state, inventory);
+            statusPresenter.Initialize(state);
             turnPresenter.Initialize(state);
             gameOverStarvePresenter.Initialize(state);
+            difficultyPresenter.Initialize(state);
             SetMenu();
         }
 
@@ -129,15 +139,16 @@ namespace HackedDesign
             SpawnBreads();
             SpawnChips();
             SpawnMummaDucks();
+            SpawnSnakes();
 
             //player.transform.position = levelRenderer.LevelToWorldCoords(new Vector2Int((state.level.width - 1) / 2, (state.level.height - 1) / 2), state.level) + new Vector2(-2, -1);
             player.transform.position = GetPlayerSpawn();
             finalBoss.transform.position = GetFinalBossSpawn();
             princess.transform.position = GetPrincessSpawn();
 
-            var fbNPC = finalBoss.GetComponent<NPCController>();
-
-            fbNPC.Initialize(turnManager, state); // Move to a separate function
+            var fbNPC = finalBoss.GetComponent<EnemyController>();
+            fbNPC.Initialize(turnManager, state, player.transform); // Move to a separate function
+            state.enemies.Add(fbNPC);
 
             var bossesSpawns = GetBossSpawns();
             bossesSpawns.Randomize();
@@ -146,9 +157,10 @@ namespace HackedDesign
             for(int i=0;i<bossesSpawns.Count;i++)
             {
                 bossList[i].transform.position = bossesSpawns[i];
+                //state.enemies.Add(fbNPC);
             }
 
-            
+
         }
 
         private void InitializeSpawns()
@@ -163,6 +175,27 @@ namespace HackedDesign
             foreach (var s in mummaSpawns)
             {
                 Instantiate(mummaPrefab, s.transform.position, Quaternion.identity, npcsParent);
+            }
+        }
+
+        private void SpawnSnakes()
+        {
+            var snakeSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground).ToList().PickRandomElements(snakesCount);
+
+            foreach (var s in snakeSpawns)
+            {
+                var go = Instantiate(snakePrefab, s.transform.position, Quaternion.identity, npcsParent);
+                var enemy = go.GetComponent<EnemyController>();
+
+                if(enemy != null)
+                {
+                    enemy.Initialize(turnManager, state, player.transform);
+                    state.enemies.Add(enemy);
+                }
+                else
+                {
+                    Logger.Log(name, "Enemy without enemyController");
+                }
             }
         }
 
@@ -233,7 +266,7 @@ namespace HackedDesign
 
         public void AddActionMessage(string message)
         {
-            state.actions.Insert(0, state.turn + ": " + message);
+            state.actions.Insert(0, message);
         }
 
         private void SetPlatformInput()
@@ -259,21 +292,37 @@ namespace HackedDesign
                 case GameStateEnum.PLAYING:
                     if (turnManager.PlayerTurnCompleted())
                     {
-                        state.energy--;
-                        if (state.energy <= 0)
+                        /*
+                        state.playerStatus.energy--;
+                        if (state.playerStatus.energy <= 0)
                         {
                             state.currentState = GameStateEnum.GAMEOVERSTARVED;
                             break;
                         }
 
-                        if (state.health <= 0)
+                        if (state.playerStatus.health <= 0)
                         {
                             state.currentState = GameStateEnum.GAMEOVERDEAD;
                             break;
-                        }
+                        }*/
                         turnManager.ProcessTurn();
-                        // Update enemy actions
 
+                        var hits = Physics2D.OverlapCircleAll(player.transform.position, enemyRadius, enemyLayerMask);
+
+                        foreach(var hit in hits)
+                        {
+                            if(hit.gameObject != null)
+                            {
+                                var enemy = hit.gameObject.GetComponent<EnemyController>();
+                                enemy.UpdateTurn();
+                            }
+                        }
+                        /*
+
+                        foreach (var enemy in state.enemies)
+                        {
+                            enemy.UpdateTurn();
+                        }*/
                     }
                     break;
                 case GameStateEnum.MENU:
@@ -300,23 +349,6 @@ namespace HackedDesign
             UpdateUI();
         }
 
-        public void SaveChick()
-        {
-            state.chicksSaved++;
-            Logger.Log(name, "Chick saved!");
-        }
-
-        public void EatBread()
-        {
-            state.energy += breadEnergy;
-            state.energy = Mathf.Min(state.energy, 100);
-        }
-
-        public void EatChip()
-        {
-            state.energy += chipEnergy;
-            state.energy = Mathf.Min(state.energy, 100);
-        }
 
         private void UpdateUI()
         {
@@ -326,6 +358,7 @@ namespace HackedDesign
             statusPresenter.Repaint();
             turnPresenter.Repaint();
             gameOverStarvePresenter.Repaint();
+            difficultyPresenter.Repaint();
         }
 
         public void SetOptions()
@@ -343,6 +376,11 @@ namespace HackedDesign
             state.currentState = GameStateEnum.MENU;
         }
 
+        public void SetDifficult()
+        {
+            state.currentState = GameStateEnum.DIFFICULTY;
+        }
+
         public void SetOver()
         {
             // Reset stuff in here
@@ -358,6 +396,11 @@ namespace HackedDesign
         {
             state.currentState = GameStateEnum.PLAYING;
             state.started = true;
+        }
+
+        public void Quit()
+        {
+            Application.Quit();
         }
 
         /*

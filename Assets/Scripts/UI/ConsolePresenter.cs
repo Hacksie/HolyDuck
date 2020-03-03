@@ -47,7 +47,7 @@ namespace HackedDesign
 
         private void RepaintText()
         {
-            var messages = state.actions.Take(9).ToList();
+            var messages = state.actions.Take(10).ToList();
             console.text = "";
             for(int i=(messages.Count() - 1); i>=0;i--)
             {

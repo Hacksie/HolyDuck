@@ -45,7 +45,8 @@ namespace HackedDesign
         public void StartEvent()
         {
             Logger.Log(name, "StartEvent");
-            CoreGame.instance.StartGame();
+            CoreGame.instance.SetDifficult();
+            //CoreGame.instance.StartGame();
         }
 
         public void OptionsEvent()
@@ -64,7 +65,7 @@ namespace HackedDesign
         public void QuitEvent()
         {
             Logger.Log(name, "Quitting");
-            Application.Quit();
+            CoreGame.instance.Quit();
         }
 
         public void ResumeEvent()

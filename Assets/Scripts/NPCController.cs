@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace HackedDesign
 {
+    [RequireComponent(typeof(Status))]
     public class NPCController : MonoBehaviour
     {
 
@@ -20,11 +21,13 @@ namespace HackedDesign
         [SerializeField] private Vector2 facingDirection = Vector2.right;
         [SerializeField] private bool inWater = true;
 
-        private TurnManager turnManager = null;
-        private GameState state = null;
+        private TurnManager turnManager;
+        private Status status;
+        private GameState state;
 
         void Awake()
         {
+            status = GetComponent<Status>();
             if (leftWater == null) Logger.LogError(name, "left water sprite not set");
             if (rightWater == null) Logger.LogError(name, "right water sprite not set");
             if (leftGround == null) Logger.LogError(name, "left ground sprite not set");
@@ -67,6 +70,12 @@ namespace HackedDesign
                     renderer.sprite = leftGround;
                 }
             }
+        }
+
+        public void Kill()
+        {
+            Logger.Log(name, name + " killed!");
+            gameObject.SetActive(false);
         }
 
         public void QueueAction(ActionTypes actionType, Vector2 direction)

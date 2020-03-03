@@ -4,9 +4,11 @@ using UnityEngine.InputSystem;
 
 namespace HackedDesign
 {
-
+    [RequireComponent(typeof(Status))]
     public class PlayerController : MonoBehaviour
     {
+        private Status status;
+
         [Header("GameObjects")]
         [SerializeField] new SpriteRenderer renderer = null;
         [SerializeField] public InputActions controls = null;
@@ -16,8 +18,9 @@ namespace HackedDesign
         [SerializeField] private Sprite rightWater = null;
         [SerializeField] private Sprite rightGround = null;
 
-        
 
+        [SerializeField] private LayerMask colliderLayerMask;
+        [SerializeField] public int distance = 1;
         [SerializeField] private Vector2 direction = Vector2.right;
         [SerializeField] private Vector2 facingDirection = Vector2.right;
         [SerializeField] private bool inWater = true;
@@ -28,6 +31,7 @@ namespace HackedDesign
 
         void Awake()
         {
+            status = GetComponent<Status>();
             if (leftWater == null) Logger.LogError(name, "left water sprite not set");
             if (rightWater == null) Logger.LogError(name, "right water sprite not set");
             if (leftGround == null) Logger.LogError(name, "left ground sprite not set");
@@ -62,15 +66,68 @@ namespace HackedDesign
             {
                 if (context.phase == InputActionPhase.Performed)
                 {
-
                     direction = context.ReadValue<Vector2>().normalized;
                     if (direction == Vector2.left) facingDirection = Vector2.left;
                     if (direction == Vector2.right) facingDirection = Vector2.right;
 
-                    //Check for bite attack here
-                    QueueAction(ActionTypes.Move, direction);
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance, colliderLayerMask);
+
+                    if(hit.collider != null)
+                    {
+                        var npc = hit.collider.GetComponent<NPCController>();
+                        if (npc != null)
+                        {
+                            turnManager.QueueAction(new Action()
+                            {
+                                target = npc.gameObject,
+                                source = gameObject,
+                                initiative = 10,
+                                player = true,
+                                enemy = false,
+                                action = ActionTypes.Interact,
+                                direction = direction
+                            });
+
+                            return;
+                        }
+
+                        var enemy = hit.collider.GetComponent<EnemyController>();
+                        if(enemy != null)
+                        {
+                            turnManager.QueueAction(new Action()
+                            {
+                                target = enemy.gameObject,
+                                source = gameObject,
+                                initiative = 10,
+                                player = true,
+                                enemy = false,
+                                action = ActionTypes.Bite,
+                                direction = direction,
+                                damage = RollDamage()
+                            }); ;
+
+                            return;
+                        }
+                    }
+
+
+                    turnManager.QueueAction(new Action()
+                    {
+                        target = gameObject,
+                        source = gameObject,
+                        initiative = status.initiative,
+                        player = true,
+                        enemy = false,
+                        action = ActionTypes.Move,
+                        direction = direction
+                    });
                 }
             }
+        }
+
+        public int RollDamage()
+        {
+            return UnityEngine.Random.Range(status.minAttack, status.maxAttack + 1);
         }
 
         public void AppleEvent(InputAction.CallbackContext context)
@@ -79,6 +136,16 @@ namespace HackedDesign
             {
                 if (context.phase == InputActionPhase.Performed)
                 {
+                    turnManager.QueueAction(new Action()
+                    {
+                        target = gameObject,
+                        source = gameObject,
+                        initiative = 10,
+                        player = true,
+                        enemy = false,
+                        action = ActionTypes.Apple,
+                        direction = Vector2.zero
+                    });
                 }
             }
         }
@@ -142,15 +209,7 @@ namespace HackedDesign
 
         public void QueueAction(ActionTypes actionType, Vector2 direction)
         {
-            turnManager.QueueAction(new Action()
-            {
-                source = gameObject,
-                initiative = 10,
-                player = true,
-                enemy = false,
-                action = actionType,
-                direction = direction
-            });
+
         }
     }
 }

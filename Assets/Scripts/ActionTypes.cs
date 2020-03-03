@@ -6,6 +6,7 @@
         Apple,
         Quack,
         Bite,
+        Venom,
         Splash,
         Candy,
         Interact,

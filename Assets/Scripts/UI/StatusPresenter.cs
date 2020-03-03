@@ -11,7 +11,7 @@ namespace HackedDesign
     public class StatusPresenter : MonoBehaviour
     {
         private GameState state = null;
-        private Inventory inventory = null;
+        //private Inventory inventory = null;
 
         [SerializeField] private Image healthBar = null;
         [SerializeField] private Image energyBar = null;
@@ -36,11 +36,9 @@ namespace HackedDesign
             if (defenseText == null) Logger.LogError(name, "defenseText is null");
         }
 
-        public void Initialize(GameState state, Inventory inventory)
+        public void Initialize(GameState state)
         {
             this.state = state;
-            this.inventory = inventory;
-            
         }
 
         public void Repaint()
@@ -66,42 +64,42 @@ namespace HackedDesign
 
         public void RepaintText()
         {
-            attackText.text = state.maxAttack.ToString() + "!";
-            defenseText.text = state.defense.ToString() + "#";
+            attackText.text = state.playerStatus.maxAttack.ToString() + "!";
+            defenseText.text = state.playerStatus.defense.ToString() + "#";
 
-            if (state.maxHealth > 0)
+            if (state.playerStatus.maxHealth > 0)
             {
-                healthBar.fillAmount = (float)state.health / state.maxHealth;
+                healthBar.fillAmount = (float)state.playerStatus.health / state.playerStatus.maxHealth;
             }
 
-            if (state.maxEnergy > 0)
+            if (state.playerStatus.maxEnergy > 0)
             {
-                energyBar.fillAmount = (float)state.energy / state.maxEnergy;
+                energyBar.fillAmount = (float)state.playerStatus.energy / state.playerStatus.maxEnergy;
             }
 
-            chicksText.text = state.chicksSaved.ToString();
+            chicksText.text = state.playerStatus.chicksSaved.ToString();
 
-            if (inventory.inventory.ContainsKey("Egg"))
+            if (state.playerInventory.inventory.ContainsKey("Egg"))
             {
-                eggsText.text = inventory.inventory["Egg"].ToString();
+                eggsText.text = state.playerInventory.inventory["Egg"].ToString();
             }
             else
             {
                 eggsText.text = "0";
             }
 
-            if (inventory.inventory.ContainsKey("Mushroom"))
+            if (state.playerInventory.inventory.ContainsKey("Mushroom"))
             {
-                mushroomsText.text = inventory.inventory["Mushroom"].ToString();
+                mushroomsText.text = state.playerInventory.inventory["Mushroom"].ToString();
             }
             else
             {
                 mushroomsText.text = "0";
             }
 
-            if (inventory.inventory.ContainsKey("Apple"))
+            if (state.playerInventory.inventory.ContainsKey("Apple"))
             {
-                applesText.text = inventory.inventory["Apple"].ToString();
+                applesText.text = state.playerInventory.inventory["Apple"].ToString();
             }
             else
             {
