@@ -8,6 +8,7 @@ namespace HackedDesign
     {
         public GameObject target;
         public GameObject source;
+        public string sourceName;
         public int initiative;
         public bool player;
         public bool enemy;

@@ -51,6 +51,7 @@ namespace HackedDesign
         [SerializeField] private GameObject breadPrefab = null;
         [SerializeField] private GameObject chipPrefab = null;
         [SerializeField] private GameObject snakePrefab = null;
+        [SerializeField] private GameObject ratPrefab = null;
 
         [Header("Game Settings")]
         [SerializeField] private int levelWidth = 11;
@@ -63,6 +64,7 @@ namespace HackedDesign
         [SerializeField] private int mushroomCount = 10;
         [SerializeField] private int mummaDucks = 20;
         [SerializeField] private int snakesCount = 20;
+        [SerializeField] private int ratsCount = 20;
         [SerializeField] private int enemyRadius = 10;
 
         [SerializeField] private List<Difficulty> difficulties = new List<Difficulty>();
@@ -106,6 +108,7 @@ namespace HackedDesign
             if (difficultyPresenter == null) Logger.LogError(name, "difficultyPresenter is null");
             if (mummaPrefab == null) Logger.LogError(name, "mummaPrefab is null");
             if (snakePrefab == null) Logger.LogError(name, "snakePrefab is null");
+            if (ratPrefab == null) Logger.LogError(name, "ratPrefab is null");
         }
 
 
@@ -140,6 +143,7 @@ namespace HackedDesign
             SpawnChips();
             SpawnMummaDucks();
             SpawnSnakes();
+            SpawnRats();
 
             //player.transform.position = levelRenderer.LevelToWorldCoords(new Vector2Int((state.level.width - 1) / 2, (state.level.height - 1) / 2), state.level) + new Vector2(-2, -1);
             player.transform.position = GetPlayerSpawn();
@@ -194,7 +198,28 @@ namespace HackedDesign
                 }
                 else
                 {
-                    Logger.Log(name, "Enemy without enemyController");
+                    Logger.LogError(name, "Enemy without enemyController");
+                }
+            }
+        }
+
+        private void SpawnRats()
+        {
+            var ratSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground).ToList().PickRandomElements(ratsCount);
+
+            foreach (var s in ratSpawns)
+            {
+                var go = Instantiate(ratPrefab, s.transform.position, Quaternion.identity, npcsParent);
+                var enemy = go.GetComponent<EnemyController>();
+
+                if (enemy != null)
+                {
+                    enemy.Initialize(turnManager, state, player.transform);
+                    state.enemies.Add(enemy);
+                }
+                else
+                {
+                    Logger.LogError(name, "Enemy without enemyController");
                 }
             }
         }
@@ -284,30 +309,18 @@ namespace HackedDesign
             }
         }
 
-        // Update is called once per frame
-        void Update()
+
+        void FixedUpdate()
         {
             switch (state.currentState)
             {
                 case GameStateEnum.PLAYING:
                     if (turnManager.PlayerTurnCompleted())
                     {
-                        /*
-                        state.playerStatus.energy--;
-                        if (state.playerStatus.energy <= 0)
-                        {
-                            state.currentState = GameStateEnum.GAMEOVERSTARVED;
-                            break;
-                        }
-
-                        if (state.playerStatus.health <= 0)
-                        {
-                            state.currentState = GameStateEnum.GAMEOVERDEAD;
-                            break;
-                        }*/
                         turnManager.ProcessTurn();
 
                         var hits = Physics2D.OverlapCircleAll(player.transform.position, enemyRadius, enemyLayerMask);
+                        
 
                         foreach(var hit in hits)
                         {
@@ -396,6 +409,16 @@ namespace HackedDesign
         {
             state.currentState = GameStateEnum.PLAYING;
             state.started = true;
+        }
+
+        public void SetGameOverDead()
+        {
+            state.currentState = GameStateEnum.GAMEOVERDEAD;
+        }
+
+        public void SetGameOverStarved()
+        {
+            state.currentState = GameStateEnum.GAMEOVERSTARVED;
         }
 
         public void Quit()

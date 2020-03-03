@@ -19,11 +19,12 @@ namespace HackedDesign
         {
             if(inventory.ConsumeItem("Apple", 1))
             {
-                CoreGame.instance.AddActionMessage(name + " eats an apple");
+                CoreGame.instance.AddActionMessage(status.character + " eats an apple");
+                status.AddHealth(50);
             }
             else
             {
-                CoreGame.instance.AddActionMessage(name + " has no apples to eat");
+                CoreGame.instance.AddActionMessage(status.character + " has no apples to eat");
             }
         }
     }

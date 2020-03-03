@@ -18,7 +18,7 @@ namespace HackedDesign
         [SerializeField] private Sprite rightWater = null;
         [SerializeField] private Sprite rightGround = null;
 
-
+        [Header("Game Settings")]
         [SerializeField] private LayerMask colliderLayerMask;
         [SerializeField] public int distance = 1;
         [SerializeField] private Vector2 direction = Vector2.right;
@@ -81,6 +81,7 @@ namespace HackedDesign
                             {
                                 target = npc.gameObject,
                                 source = gameObject,
+                                sourceName = status.character,
                                 initiative = 10,
                                 player = true,
                                 enemy = false,
@@ -98,6 +99,7 @@ namespace HackedDesign
                             {
                                 target = enemy.gameObject,
                                 source = gameObject,
+                                sourceName = status.character,
                                 initiative = 10,
                                 player = true,
                                 enemy = false,
@@ -115,6 +117,7 @@ namespace HackedDesign
                     {
                         target = gameObject,
                         source = gameObject,
+                        sourceName = status.character,
                         initiative = status.initiative,
                         player = true,
                         enemy = false,
@@ -130,6 +133,18 @@ namespace HackedDesign
             return UnityEngine.Random.Range(status.minAttack, status.maxAttack + 1);
         }
 
+        public void StarveEvent()
+        {
+            CoreGame.instance.AddActionMessage(status.character + " starved!");
+            CoreGame.instance.SetGameOverDead();
+        }
+
+        public void DieEvent()
+        {
+            CoreGame.instance.AddActionMessage(status.character + " died!");
+            CoreGame.instance.SetGameOverDead();
+        }
+
         public void AppleEvent(InputAction.CallbackContext context)
         {
             if (state.currentState == GameStateEnum.PLAYING) // We only care about making turns if we're playing
@@ -140,6 +155,7 @@ namespace HackedDesign
                     {
                         target = gameObject,
                         source = gameObject,
+                        sourceName = status.character,
                         initiative = 10,
                         player = true,
                         enemy = false,
@@ -205,11 +221,6 @@ namespace HackedDesign
                     renderer.sprite = leftGround;
                 }
             }
-        }
-
-        public void QueueAction(ActionTypes actionType, Vector2 direction)
-        {
-
         }
     }
 }

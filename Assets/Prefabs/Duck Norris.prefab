@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 5838830367263786382}
   - component: {fileID: 203742287525482225}
   - component: {fileID: 7478573272192475997}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Duck Norris
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -251,7 +251,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
+  spawnLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  canWater: 1
+  canGround: 1
   distance: 1
 --- !u!114 &8444120562497290119
 MonoBehaviour:
@@ -267,7 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
   distance: 1
 --- !u!61 &5838830367263786379
 BoxCollider2D:
@@ -328,8 +333,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0297601de3dd44cb57158a7afd7327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: Duck Norris
   health: 100
   maxHealth: 100
+  reqEnergy: 1
   energy: 100
   maxEnergy: 100
   minAttack: 0
@@ -341,10 +348,32 @@ MonoBehaviour:
   chipEnergy: 50
   dieEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5838830367263786391}
+        m_MethodName: DieEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   starveEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5838830367263786391}
+        m_MethodName: StarveEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5838830367263786380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,7 +422,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0643c4093525e7d4f93a52a4c34f886e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 1
 --- !u!114 &7478573272192475997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,7 +434,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6de333b6b4ba4354da64f4cf725ef813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 1
 --- !u!1 &5838830368787437781
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +444,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5838830368787437782}
   - component: {fileID: 5838830368787437783}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

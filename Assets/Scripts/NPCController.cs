@@ -10,13 +10,12 @@ namespace HackedDesign
 
         [Header("GameObjects")]
         [SerializeField] new SpriteRenderer renderer = null;
-        
-
         [SerializeField] private Sprite leftWater = null;
         [SerializeField] private Sprite leftGround = null;
         [SerializeField] private Sprite rightWater = null;
         [SerializeField] private Sprite rightGround = null;
 
+        [Header("Game Settings")]
         [SerializeField] private Vector2 direction = Vector2.right;
         [SerializeField] private Vector2 facingDirection = Vector2.right;
         [SerializeField] private bool inWater = true;
@@ -76,19 +75,6 @@ namespace HackedDesign
         {
             Logger.Log(name, name + " killed!");
             gameObject.SetActive(false);
-        }
-
-        public void QueueAction(ActionTypes actionType, Vector2 direction)
-        {
-            turnManager.QueueAction(new Action()
-            {
-                source = gameObject,
-                initiative = 10,
-                player = true,
-                enemy = false,
-                action = actionType,
-                direction = direction
-            });
         }
     }
 }

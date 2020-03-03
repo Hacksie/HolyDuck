@@ -13,7 +13,6 @@ namespace HackedDesign
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (hasBeenPickedUp) return;
-            //Logger.Log(name, collision.gameObject.name);
 
             // Does the other object have an inventory?
             var rescue = collision.gameObject.GetComponent<Rescue>();

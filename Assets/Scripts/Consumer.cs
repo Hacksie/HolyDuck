@@ -16,14 +16,14 @@ namespace HackedDesign
 
         public void PickupBread()
         {
-            CoreGame.instance.AddActionMessage(name + " ate some bread");
+            CoreGame.instance.AddActionMessage(status.character + " ate some bread");
             status.EatBread();
             //CoreGame.instance.SaveChick();
         }
 
         public void PickupChip()
         {
-            CoreGame.instance.AddActionMessage(name + " ate a chip");
+            CoreGame.instance.AddActionMessage(status.character + " ate a chip");
             status.EatChip();
         }
     }

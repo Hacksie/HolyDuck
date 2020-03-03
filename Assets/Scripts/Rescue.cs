@@ -16,7 +16,7 @@ namespace HackedDesign
 
         public void PickupChick()
         {
-            CoreGame.instance.AddActionMessage(name + " rescued a chick!");
+            CoreGame.instance.AddActionMessage(status.character + " rescued a chick!");
             status.SaveChick(); 
         }
     }

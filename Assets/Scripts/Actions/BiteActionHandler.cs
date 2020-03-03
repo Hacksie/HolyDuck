@@ -16,9 +16,8 @@ namespace HackedDesign
         {
             var damage = Mathf.Max(action.damage - status.defense, 0);
 
-            CoreGame.instance.AddActionMessage(action.source.name + " bites " + name + " for " + damage + "(" +action.damage + "-" + status.defense + ")!");
-            status.TakeDamage(damage);
-            
+            CoreGame.instance.AddActionMessage(action.sourceName + " bites " + status.character + " for " + damage + "(" +action.damage + "-" + status.defense + ")!");
+            status.AddHealth(-damage);
         }
     }
 }

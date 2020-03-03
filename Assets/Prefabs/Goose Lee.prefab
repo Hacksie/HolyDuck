@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1457349499837981337}
   - component: {fileID: 5808919297667831266}
   - component: {fileID: 5389724815700581806}
+  - component: {fileID: 6461569615040063286}
   m_Layer: 8
   m_Name: Goose Lee
   m_TagString: Enemy
@@ -118,6 +119,40 @@ MonoBehaviour:
   direction: {x: 1, y: 0}
   facingDirection: {x: 1, y: 0}
   inWater: 1
+  health: 10
+  behaviour:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6461569615040063286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7977478668628972409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd0297601de3dd44cb57158a7afd7327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: Goose Lee
+  health: 100
+  maxHealth: 100
+  energy: 100
+  maxEnergy: 100
+  minAttack: 0
+  maxAttack: 5
+  defense: 1
+  initiative: 10
+  chicksSaved: 1
+  breadEnergy: 30
+  chipEnergy: 50
+  dieEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  starveEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7977478669664602913
 GameObject:
   m_ObjectHideFlags: 0

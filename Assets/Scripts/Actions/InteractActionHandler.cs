@@ -6,10 +6,20 @@ namespace HackedDesign
     {
         [SerializeField] private LayerMask colliderLayerMask;
 
+        private Status status;
+
+
+
         public int distance = 1;
+
+        private void Start()
+        {
+            status = GetComponent<Status>();
+        }
+
         public void Handle(Action action)
         {
-            CoreGame.instance.AddActionMessage(name + " interacts with " + action.source.name);
+            CoreGame.instance.AddActionMessage(action.sourceName + " interacts with " + status.character);
             /*
             RaycastHit2D hit = Physics2D.Raycast(transform.position, action.direction, distance, colliderLayerMask);
 

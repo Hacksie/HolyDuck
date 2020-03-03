@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace HackedDesign
@@ -46,7 +47,7 @@ namespace HackedDesign
         {
             if (actions.ContainsKey(state.turn))
             {
-                var turnActions = actions[state.turn];
+                var turnActions = actions[state.turn].OrderBy(a=>a.initiative);
 
                 foreach(var action in turnActions)
                 {

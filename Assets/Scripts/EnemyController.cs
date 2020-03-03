@@ -18,11 +18,11 @@ namespace HackedDesign
         [SerializeField] private Sprite rightWater = null;
         [SerializeField] private Sprite rightGround = null;
 
+        [Header("Game Settings")]
         [SerializeField] private Vector2 direction = Vector2.right;
         [SerializeField] private Vector2 facingDirection = Vector2.right;
         [SerializeField] private bool inWater = true;
 
-        [SerializeField] private int health = 10;
         [SerializeField] private UnityEvent behaviour;
 
         private TurnManager turnManager = null;
@@ -66,13 +66,32 @@ namespace HackedDesign
         {
             var dir = DirectionToPlayer().normalized;
 
-            dir.x = Mathf.RoundToInt(dir.x);
-            dir.y = Mathf.RoundToInt(dir.y);
-
-            if(Mathf.Abs(dir.x) == Mathf.Abs(dir.y)) // Don't allow diagonals.
+            if((Mathf.Abs(dir.x) >= Mathf.Abs(dir.y)))
             {
+                dir.x = Mathf.RoundToInt(dir.x);
                 dir.y = 0;
             }
+            else
+            {
+                dir.x = 0;
+                dir.y = Mathf.RoundToInt(dir.y);
+            }
+
+            //dir.x = Mathf.RoundToInt(dir.x);
+            //dir.y = Mathf.RoundToInt(dir.y);
+
+            //if(Mathf.Abs(dir.x) == Mathf.Abs(dir.y)) // If both directions have a magnitude of 1, kill off one randomly
+            //{
+
+            //    if(Random.Range(0,2)==0)
+            //    {
+            //        dir.x = 0;  
+            //    }
+            //    else
+            //    {
+            //        dir.y = 0;
+            //    }              
+            //}
 
             return dir;
         }
@@ -124,7 +143,7 @@ namespace HackedDesign
 
         public void Kill()
         {
-            CoreGame.instance.AddActionMessage(name + " died!");
+            CoreGame.instance.AddActionMessage(status.character + " died!");
             gameObject.SetActive(false);
         }
 
@@ -134,6 +153,7 @@ namespace HackedDesign
             {
                 action = ActionTypes.Bite,
                 source = gameObject,
+                sourceName = status.character,
                 direction = RoundedDirectionToPlayer(),
                 target = player.gameObject,
                 damage = RollDamage(),
@@ -149,6 +169,7 @@ namespace HackedDesign
             {
                 action = ActionTypes.Move,
                 source = gameObject,
+                sourceName = status.character,
                 direction = RoundedDirectionToPlayer(),
                 target = gameObject,
                 damage = RollDamage(),

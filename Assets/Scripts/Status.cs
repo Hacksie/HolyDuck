@@ -7,8 +7,10 @@ namespace HackedDesign
 {
     public class Status : MonoBehaviour
     {
+        [SerializeField] public string character = "";
         [SerializeField] public int health = 100;
         [SerializeField] public int maxHealth = 100;
+        [SerializeField] public bool reqEnergy = false;
         [SerializeField] public int energy = 100;
         [SerializeField] public int maxEnergy = 100;
         [SerializeField] public int minAttack = 0;
@@ -41,10 +43,10 @@ namespace HackedDesign
             energy = Mathf.Min(energy, 100);
         }
 
-        public void TakeDamage(int damage)
+        public void AddHealth(int health)
         {
-            health -= damage;
-            if(health <=0)
+            this.health = Mathf.Max(Mathf.Min(this.health + health, this.maxHealth), 0);
+            if (this.health <= 0)
             {
                 dieEvent.Invoke();
             }
@@ -52,10 +54,13 @@ namespace HackedDesign
 
         public void SapEnergy(int energy)
         {
-            energy -= energy;
-            if (health <= 0)
+            if (reqEnergy)
             {
-                starveEvent.Invoke();
+                this.energy -= energy;
+                if (this.energy <= 0)
+                {
+                    starveEvent.Invoke();
+                }
             }
         }
     }

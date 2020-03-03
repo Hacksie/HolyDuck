@@ -21,8 +21,7 @@ namespace HackedDesign
         [SerializeField] private Text mushroomsText = null;
         [SerializeField] private Text attackText = null;
         [SerializeField] private Text defenseText = null;
-        
-
+        [SerializeField] private Text initiativeText = null;
 
         private void Start()
         {
@@ -34,6 +33,7 @@ namespace HackedDesign
             if (applesText == null) Logger.LogError(name, "applesText is null");
             if (attackText == null) Logger.LogError(name, "attackText is null");
             if (defenseText == null) Logger.LogError(name, "defenseText is null");
+            if (initiativeText == null) Logger.LogError(name, "initiativeText is null");
         }
 
         public void Initialize(GameState state)
@@ -66,6 +66,7 @@ namespace HackedDesign
         {
             attackText.text = state.playerStatus.maxAttack.ToString() + "!";
             defenseText.text = state.playerStatus.defense.ToString() + "#";
+            initiativeText.text = state.playerStatus.initiative.ToString() + "^";
 
             if (state.playerStatus.maxHealth > 0)
             {

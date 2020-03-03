@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8090166972503249855}
   - component: {fileID: 687293190231729433}
   - component: {fileID: 8582874780245615744}
+  - component: {fileID: 4053666429608915157}
   m_Layer: 10
   m_Name: MummaDuck
   m_TagString: Untagged
@@ -139,6 +140,36 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 768
   distance: 1
+--- !u!114 &4053666429608915157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6010025128580107863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd0297601de3dd44cb57158a7afd7327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: Mumma Duck
+  health: 100
+  maxHealth: 100
+  energy: 100
+  maxEnergy: 100
+  minAttack: 0
+  maxAttack: 5
+  defense: 1
+  initiative: 10
+  chicksSaved: 1
+  breadEnergy: 30
+  chipEnergy: 50
+  dieEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  starveEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6855710356492139786
 GameObject:
   m_ObjectHideFlags: 0
