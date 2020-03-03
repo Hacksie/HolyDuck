@@ -4694,7 +4694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &957529731
 Transform:
   m_ObjectHideFlags: 0
@@ -7584,7 +7584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1499901025
 Transform:
   m_ObjectHideFlags: 0
@@ -11206,12 +11206,25 @@ MonoBehaviour:
     applesEaten: 0
     mushroomsEaten: 0
     eggsCollected: 0
+    difficulty:
+      levelWidth: 11
+      levelHeight: 11
+      chickCount: 99
+      eggCount: 99
+      breadCount: 99
+      chipCount: 30
+      appleCount: 20
+      mushroomCount: 10
+      mummaDucks: 20
+      snakesCount: 20
+      ratsCount: 20
+      hawkCount: 5
+      enemyRadius: 10
     spawns: []
     chicks: []
     actions: []
     enemies: []
     npcs: []
-  inventory: {fileID: 365762900}
   menuPresenter: {fileID: 162280005}
   consolePresenter: {fileID: 1530035862}
   creditsPresenter: {fileID: 506662180}
@@ -11237,52 +11250,48 @@ MonoBehaviour:
     type: 3}
   ratPrefab: {fileID: 2276539943144916660, guid: 29d6e6f244b3b8e40afcc15b92868fdc,
     type: 3}
-  levelWidth: 7
-  levelHeight: 7
-  chickCount: 99
-  eggCount: 99
-  breadCount: 99
-  chipCount: 30
-  appleCount: 20
-  mushroomCount: 10
-  mummaDucks: 20
-  snakesCount: 20
-  ratsCount: 20
-  enemyRadius: 5
+  hawkPrefab: {fileID: 3406940141355057945, guid: ff967c2fb0ae5f14fa1c5f5212cd2c34,
+    type: 3}
   difficulties:
-  - levelWidth: 0
-    levelHeight: 0
-    chickCount: 0
-    eggCount: 0
-    breadCount: 0
-    chipCount: 0
-    appleCount: 0
-    mushroomCount: 0
-    mummaDucks: 0
-    snakesCount: 0
-    enemyRadius: 0
-  - levelWidth: 0
-    levelHeight: 0
-    chickCount: 0
-    eggCount: 0
-    breadCount: 0
-    chipCount: 0
-    appleCount: 0
-    mushroomCount: 0
-    mummaDucks: 0
-    snakesCount: 0
-    enemyRadius: 0
-  - levelWidth: 0
-    levelHeight: 0
-    chickCount: 0
-    eggCount: 0
-    breadCount: 0
-    chipCount: 0
-    appleCount: 0
-    mushroomCount: 0
-    mummaDucks: 0
-    snakesCount: 0
-    enemyRadius: 0
+  - levelWidth: 21
+    levelHeight: 21
+    chickCount: 99
+    eggCount: 50
+    breadCount: 50
+    chipCount: 30
+    appleCount: 10
+    mushroomCount: 5
+    mummaDucks: 10
+    snakesCount: 10
+    ratsCount: 20
+    hawkCount: 5
+    enemyRadius: 6
+  - levelWidth: 21
+    levelHeight: 21
+    chickCount: 99
+    eggCount: 40
+    breadCount: 40
+    chipCount: 20
+    appleCount: 8
+    mushroomCount: 4
+    mummaDucks: 10
+    snakesCount: 15
+    ratsCount: 20
+    hawkCount: 8
+    enemyRadius: 8
+  - levelWidth: 21
+    levelHeight: 21
+    chickCount: 99
+    eggCount: 20
+    breadCount: 25
+    chipCount: 10
+    appleCount: 5
+    mushroomCount: 3
+    mummaDucks: 8
+    snakesCount: 20
+    ratsCount: 20
+    hawkCount: 15
+    enemyRadius: 10
 --- !u!4 &2122625762
 Transform:
   m_ObjectHideFlags: 0
@@ -11541,6 +11550,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apple
       objectReference: {fileID: 0}
+    - target: {fileID: 1927602641194134102, guid: 15d1265ecea1fc046b9fbf909d1fb475,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15d1265ecea1fc046b9fbf909d1fb475, type: 3}
 --- !u!1001 &664228810832497943
@@ -11554,6 +11568,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Chip
+      objectReference: {fileID: 0}
+    - target: {fileID: 5985266184953516583, guid: 388611234d672764e9a0d0103d2534c7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5985266184953516632, guid: 388611234d672764e9a0d0103d2534c7,
         type: 3}
@@ -11759,6 +11778,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Egg
       objectReference: {fileID: 0}
+    - target: {fileID: 1379318359556446538, guid: 2a1256f1b94b93b4da46f62eb4d09953,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a1256f1b94b93b4da46f62eb4d09953, type: 3}
 --- !u!1001 &1402755165177011922
@@ -11827,6 +11851,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MagicMushroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 6964791791627332477, guid: f01625d6ee0b0ea458cc62ffedd28072,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f01625d6ee0b0ea458cc62ffedd28072, type: 3}
@@ -12119,7 +12148,7 @@ PrefabInstance:
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
       propertyPath: m_Tiles.Array.data[11].second.m_TileSpriteIndex
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
@@ -12145,13 +12174,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[5].m_Data
       value: 
-      objectReference: {fileID: -7304857774246764523, guid: 7420185d46b890b409074f034ae5d04c,
+      objectReference: {fileID: 8517107447714677574, guid: 7420185d46b890b409074f034ae5d04c,
         type: 3}
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[8].m_Data
       value: 
-      objectReference: {fileID: 6875082008355445951, guid: 7420185d46b890b409074f034ae5d04c,
+      objectReference: {fileID: -8259049176156039005, guid: 7420185d46b890b409074f034ae5d04c,
         type: 3}
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
@@ -12167,7 +12196,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[1].m_Data
       value: 
-      objectReference: {fileID: 5096373783942443945, guid: 7420185d46b890b409074f034ae5d04c,
+      objectReference: {fileID: 8765297898444631108, guid: 7420185d46b890b409074f034ae5d04c,
         type: 3}
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
@@ -12182,7 +12211,7 @@ PrefabInstance:
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[3].second.m_AnimationSpeed
-      value: 3
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
@@ -12193,7 +12222,7 @@ PrefabInstance:
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[17].second.m_AnimationSpeed
-      value: 3
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
@@ -12209,28 +12238,28 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[0].m_Data
       value: 
-      objectReference: {fileID: 5984511065474703457, guid: 7420185d46b890b409074f034ae5d04c,
+      objectReference: {fileID: 8275932478496203471, guid: 7420185d46b890b409074f034ae5d04c,
         type: 3}
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[10].m_Data
       value: 
-      objectReference: {fileID: -5080484574054227240, guid: 7420185d46b890b409074f034ae5d04c,
+      objectReference: {fileID: 6057787177563429510, guid: 7420185d46b890b409074f034ae5d04c,
         type: 3}
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
       propertyPath: m_Tiles.Array.data[14].second.m_TileSpriteIndex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
-        type: 3}
-      propertyPath: m_Tiles.Array.data[15].second.m_TileSpriteIndex
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
-      propertyPath: m_Tiles.Array.data[18].second.m_TileSpriteIndex
+      propertyPath: m_Tiles.Array.data[15].second.m_TileSpriteIndex
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
+        type: 3}
+      propertyPath: m_Tiles.Array.data[18].second.m_TileSpriteIndex
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
@@ -12285,7 +12314,7 @@ PrefabInstance:
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[22].second.m_AnimationSpeed
-      value: 3.0000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
@@ -12310,7 +12339,7 @@ PrefabInstance:
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[10].second.m_AnimationSpeed
-      value: 3
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
@@ -12341,7 +12370,7 @@ PrefabInstance:
     - target: {fileID: 2080428446694175957, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[1].second.m_AnimationSpeed
-      value: 3.0000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8047809772843532101, guid: d9b3f77baf82ba247936a9e54054e825,
         type: 3}
@@ -12361,6 +12390,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bread
+      objectReference: {fileID: 0}
+    - target: {fileID: 3455363471640384530, guid: bbc551d2b364ba44fb5ae8b100cb393f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3455363471640384621, guid: bbc551d2b364ba44fb5ae8b100cb393f,
         type: 3}
@@ -12505,6 +12539,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Chick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248726375111075636, guid: 2be4012545da04841ba14d6caefcdfe3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7248726375111075637, guid: 2be4012545da04841ba14d6caefcdfe3,
         type: 3}

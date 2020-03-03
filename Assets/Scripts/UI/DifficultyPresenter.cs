@@ -36,27 +36,24 @@ namespace HackedDesign
             gameObject.SetActive(flag);
         }
 
-        public void StartEvent()
-        {
-            Logger.Log(name, "StartEvent");
-            CoreGame.instance.StartGame();
-        }
-
         public void EasyEvent()
         {
             Logger.Log(name, "EasyEvent");
+            CoreGame.instance.SetCurrentDifficulty(0);
             CoreGame.instance.StartGame();
         }
 
         public void MediumEvent()
         {
             Logger.Log(name, "MediumEvent");
+            CoreGame.instance.SetCurrentDifficulty(1);
             CoreGame.instance.StartGame();
         }
 
         public void HardEvent()
         {
             Logger.Log(name, "HardEvent");
+            CoreGame.instance.SetCurrentDifficulty(2);
             CoreGame.instance.StartGame();
 
         }

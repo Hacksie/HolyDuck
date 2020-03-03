@@ -45,7 +45,7 @@ namespace HackedDesign
         public void StartEvent()
         {
             Logger.Log(name, "StartEvent");
-            CoreGame.instance.SetDifficult();
+            CoreGame.instance.SetDifficulty();
             //CoreGame.instance.StartGame();
         }
 

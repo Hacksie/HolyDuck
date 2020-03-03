@@ -31,7 +31,7 @@ namespace HackedDesign
 
         [Header("State")]
         [SerializeField] private GameState state = new GameState();
-        [SerializeField] private Inventory inventory = null;
+        //[SerializeField] private Inventory inventory = null;
 
         [Header("UI")]
         [SerializeField] private MenuPresenter menuPresenter = null;
@@ -52,23 +52,25 @@ namespace HackedDesign
         [SerializeField] private GameObject chipPrefab = null;
         [SerializeField] private GameObject snakePrefab = null;
         [SerializeField] private GameObject ratPrefab = null;
+        [SerializeField] private GameObject hawkPrefab = null;
 
         [Header("Game Settings")]
-        [SerializeField] private int levelWidth = 11;
-        [SerializeField] private int levelHeight = 11;
-        [SerializeField] private int chickCount = 99;
-        [SerializeField] private int eggCount = 99;
-        [SerializeField] private int breadCount = 99;
-        [SerializeField] private int chipCount = 30;
-        [SerializeField] private int appleCount = 20;
-        [SerializeField] private int mushroomCount = 10;
-        [SerializeField] private int mummaDucks = 20;
-        [SerializeField] private int snakesCount = 20;
-        [SerializeField] private int ratsCount = 20;
-        [SerializeField] private int enemyRadius = 10;
+        
+        //[SerializeField] private int levelWidth = 11;
+        //[SerializeField] private int levelHeight = 11;
+        //[SerializeField] private int chickCount = 99;
+        //[SerializeField] private int eggCount = 99;
+        //[SerializeField] private int breadCount = 99;
+        //[SerializeField] private int chipCount = 30;
+        //[SerializeField] private int appleCount = 20;
+        //[SerializeField] private int mushroomCount = 10;
+        //[SerializeField] private int mummaDucks = 20;
+        //[SerializeField] private int snakesCount = 20;
+        //[SerializeField] private int ratsCount = 20;
+        //[SerializeField] private int hawkCount = 5;
+        //[SerializeField] private int enemyRadius = 10;
 
         [SerializeField] private List<Difficulty> difficulties = new List<Difficulty>();
-        private Difficulty difficulty;
 
         CoreGame()
         {
@@ -109,13 +111,14 @@ namespace HackedDesign
             if (mummaPrefab == null) Logger.LogError(name, "mummaPrefab is null");
             if (snakePrefab == null) Logger.LogError(name, "snakePrefab is null");
             if (ratPrefab == null) Logger.LogError(name, "ratPrefab is null");
+            if (hawkPrefab == null) Logger.LogError(name, "hawkPrefab is null");
         }
 
 
         void Initialization()
         {
             SetPlatformInput();
-            InitializeLevel();
+            
             turnManager.Initialize(state);
             player.Initialize(turnManager, state);
             menuPresenter.Initialize(state);
@@ -130,11 +133,16 @@ namespace HackedDesign
 
         void InitializeLevel()
         {
-            state.level = levelGenerator.GenerateRandomLevel(levelWidth, levelHeight);
+            state.level = levelGenerator.GenerateRandomLevel(state.difficulty.levelWidth, state.difficulty.levelHeight);
             state.level.DebugPrint();
             levelRenderer.Render(state.level, environment);
 
             InitializeSpawns();
+            SpawnPlayer();
+            SpawnFinalBoss();
+            SpawnBosses();
+            SpawnPrincess();
+
             SpawnChicks();
             SpawnEggs();
             SpawnApples();
@@ -144,27 +152,9 @@ namespace HackedDesign
             SpawnMummaDucks();
             SpawnSnakes();
             SpawnRats();
+            SpawnHawks();
 
             //player.transform.position = levelRenderer.LevelToWorldCoords(new Vector2Int((state.level.width - 1) / 2, (state.level.height - 1) / 2), state.level) + new Vector2(-2, -1);
-            player.transform.position = GetPlayerSpawn();
-            finalBoss.transform.position = GetFinalBossSpawn();
-            princess.transform.position = GetPrincessSpawn();
-
-            var fbNPC = finalBoss.GetComponent<EnemyController>();
-            fbNPC.Initialize(turnManager, state, player.transform); // Move to a separate function
-            state.enemies.Add(fbNPC);
-
-            var bossesSpawns = GetBossSpawns();
-            bossesSpawns.Randomize();
-
-
-            for(int i=0;i<bossesSpawns.Count;i++)
-            {
-                bossList[i].transform.position = bossesSpawns[i];
-                //state.enemies.Add(fbNPC);
-            }
-
-
         }
 
         private void InitializeSpawns()
@@ -172,19 +162,65 @@ namespace HackedDesign
             state.spawns = GameObject.FindGameObjectsWithTag("Respawn").Select(e => e.GetComponent<Spawn>()).ToList();
         }
 
+        private void SpawnPlayer()
+        {
+            var spawn = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().playerStart);
+            player.transform.position = spawn.transform.position;
+            state.spawns.Remove(spawn);
+        }
+
+        private void SpawnFinalBoss()
+        {
+            var spawn = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().finalBossStart);
+            finalBoss.transform.position = spawn.transform.position;
+            var fbNPC = finalBoss.GetComponent<EnemyController>();
+            fbNPC.Initialize(turnManager, state, player.transform);
+            state.enemies.Add(fbNPC);
+            state.spawns.Remove(spawn);
+        }
+
+        private void SpawnBosses()
+        {
+            var bossesSpawns = state.spawns.FindAll(s => s.GetComponent<Spawn>().bossStart).ToList();
+            bossesSpawns.Randomize();
+
+
+            for (int i = 0; i < bossesSpawns.Count; i++)
+            {
+                bossList[i].transform.position = bossesSpawns[i].transform.position;
+                var bNPC = finalBoss.GetComponent<EnemyController>();
+                bNPC.Initialize(turnManager, state, player.transform);
+                state.enemies.Add(bNPC);
+                state.spawns.Remove(bossesSpawns[i]);
+            }
+        }
+
+        private void SpawnPrincess()
+        {
+            var spawn = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().princessStart);
+            princess.transform.position = spawn.transform.position;
+            
+            //var fbNPC = princess.GetComponent<NPCController>();
+            //fbNPC.Initialize(turnManager, state, player.transform);
+            //state.enemies.Add(fbNPC);
+            //state.spawns.Remove(spawn);
+        }
+
         private void SpawnMummaDucks()
         {
-            var mummaSpawns = state.spawns.ToList().PickRandomElements(mummaDucks);
+            var mummaSpawns = state.spawns.ToList().PickRandomElements(state.difficulty.mummaDucks);
 
             foreach (var s in mummaSpawns)
             {
                 Instantiate(mummaPrefab, s.transform.position, Quaternion.identity, npcsParent);
+                state.spawns.Remove(s);
+
             }
         }
 
         private void SpawnSnakes()
         {
-            var snakeSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground).ToList().PickRandomElements(snakesCount);
+            var snakeSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground).ToList().PickRandomElements(state.difficulty.snakesCount);
 
             foreach (var s in snakeSpawns)
             {
@@ -200,12 +236,13 @@ namespace HackedDesign
                 {
                     Logger.LogError(name, "Enemy without enemyController");
                 }
+                state.spawns.Remove(s);
             }
         }
 
         private void SpawnRats()
         {
-            var ratSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground).ToList().PickRandomElements(ratsCount);
+            var ratSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground).ToList().PickRandomElements(state.difficulty.ratsCount);
 
             foreach (var s in ratSpawns)
             {
@@ -221,73 +258,94 @@ namespace HackedDesign
                 {
                     Logger.LogError(name, "Enemy without enemyController");
                 }
+                state.spawns.Remove(s);
+            }
+        }
+
+        private void SpawnHawks()
+        {
+            var hawkSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground).ToList().PickRandomElements(state.difficulty.hawkCount);
+
+            foreach (var s in hawkSpawns)
+            {
+                var go = Instantiate(hawkPrefab, s.transform.position, Quaternion.identity, npcsParent);
+                var enemy = go.GetComponent<EnemyController>();
+
+                if (enemy != null)
+                {
+                    enemy.Initialize(turnManager, state, player.transform);
+                    state.enemies.Add(enemy);
+                }
+                else
+                {
+                    Logger.LogError(name, "Enemy without enemyController");
+                }
+                state.spawns.Remove(s);
             }
         }
 
         private void SpawnChicks()
         {
-            var chickSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground).ToList().PickRandomElements(chickCount);
+            var chickSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground).ToList().PickRandomElements(state.difficulty.chickCount);
 
             foreach (var s in chickSpawns)
             {
                 Instantiate(chickPrefab, s.transform.position, Quaternion.identity, itemsParent);
+                state.spawns.Remove(s);
             }
         }
 
         private void SpawnEggs()
         {
-            var eggSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground).ToList().PickRandomElements(eggCount);
+            var eggSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground).ToList().PickRandomElements(state.difficulty.eggCount);
 
             foreach (var s in eggSpawns)
             {
                 Instantiate(eggPrefab, s.transform.position, Quaternion.identity, itemsParent);
+                state.spawns.Remove(s);
             }
         }
 
         private void SpawnApples()
         {
-            var appleSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground).ToList().PickRandomElements(appleCount);
+            var appleSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground).ToList().PickRandomElements(state.difficulty.appleCount);
 
             foreach (var s in appleSpawns)
             {
                 Instantiate(applePrefab, s.transform.position, Quaternion.identity, itemsParent);
+                state.spawns.Remove(s);
             }
         }
 
         private void SpawnMushrooms()
         {
-            var mushroomSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground).ToList().PickRandomElements(mushroomCount);
+            var mushroomSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground).ToList().PickRandomElements(state.difficulty.mushroomCount);
             foreach (var s in mushroomSpawns)
             {
                 Instantiate(mushroomPrefab, s.transform.position, Quaternion.identity, itemsParent);
+                state.spawns.Remove(s);
             }
         }
 
         private void SpawnBreads()
         {
-            var breadSpawns = state.spawns.ToList().PickRandomElements(breadCount);
+            var breadSpawns = state.spawns.ToList().PickRandomElements(state.difficulty.breadCount);
             foreach (var s in breadSpawns)
             {
                 Instantiate(breadPrefab, s.transform.position, Quaternion.identity, itemsParent);
+                state.spawns.Remove(s);
             }
         }
 
         private void SpawnChips()
         {
-            var chipSpawns = state.spawns.ToList().PickRandomElements(chipCount);
+            var chipSpawns = state.spawns.ToList().PickRandomElements(state.difficulty.chipCount);
             foreach (var s in chipSpawns)
             {
                 Instantiate(chipPrefab, s.transform.position, Quaternion.identity, itemsParent);
+                state.spawns.Remove(s);
             }
         }
-
-
-        private Vector2 GetPlayerSpawn() => state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().playerStart).transform.position;
-        private Vector2 GetFinalBossSpawn() => state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().finalBossStart).transform.position;
-        private Vector2 GetPrincessSpawn() => state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().princessStart).transform.position;
-
-        private List<Vector2> GetBossSpawns() => state.spawns.FindAll(s => s.GetComponent<Spawn>().bossStart).Select(s => (Vector2)s.transform.position).ToList();
-
 
         public void AddActionMessage(string message)
         {
@@ -319,7 +377,7 @@ namespace HackedDesign
                     {
                         turnManager.ProcessTurn();
 
-                        var hits = Physics2D.OverlapCircleAll(player.transform.position, enemyRadius, enemyLayerMask);
+                        var hits = Physics2D.OverlapCircleAll(player.transform.position, state.difficulty.enemyRadius, enemyLayerMask);
                         
 
                         foreach(var hit in hits)
@@ -351,8 +409,6 @@ namespace HackedDesign
                 default:
                     break;
             }
-
-
         }
 
 
@@ -374,6 +430,11 @@ namespace HackedDesign
             difficultyPresenter.Repaint();
         }
 
+        public void SetCurrentDifficulty(int difficulty)
+        {
+            state.difficulty = difficulties[difficulty];
+        }
+
         public void SetOptions()
         {
             state.currentState = GameStateEnum.OPTIONS;
@@ -389,7 +450,7 @@ namespace HackedDesign
             state.currentState = GameStateEnum.MENU;
         }
 
-        public void SetDifficult()
+        public void SetDifficulty()
         {
             state.currentState = GameStateEnum.DIFFICULTY;
         }
@@ -407,6 +468,7 @@ namespace HackedDesign
         }
         public void StartGame()
         {
+            InitializeLevel();
             state.currentState = GameStateEnum.PLAYING;
             state.started = true;
         }

@@ -26,13 +26,6 @@ namespace HackedDesign
             Physics2D.SyncTransforms();
             var hits = Physics2D.RaycastAll(transform.position, action.direction, (float)distance + 0.1f, colliderLayerMask);
 
-            Logger.Log(name, hits.Length.ToString());
-
-            foreach(var h in hits)
-            {
-                Logger.Log(name, h.collider.gameObject.name, action.direction.ToString());
-            }
-
             // Check for collision with self
             if(hits.Any(h => h.collider.gameObject != gameObject))
             {

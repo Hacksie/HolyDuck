@@ -33,6 +33,8 @@ namespace HackedDesign
         public int mushroomsEaten = 0;
         public int eggsCollected = 0;
 
+        public Difficulty difficulty;
+
         public List<Spawn> spawns;
 
         public List<Chick> chicks;
