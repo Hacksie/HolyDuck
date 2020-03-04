@@ -45,6 +45,7 @@ namespace HackedDesign
         [SerializeField] private TurnPresenter turnPresenter = null;
         [SerializeField] private GameOverStarvePresenter gameOverStarvePresenter = null;
         [SerializeField] private DifficultyPresenter difficultyPresenter = null;
+        [SerializeField] private ShopPresenter shopPresenter = null;
 
         [Header("Prefabs")]
         [SerializeField] private GameObject mummaPrefab = null;
@@ -117,6 +118,7 @@ namespace HackedDesign
             if (chipPrefab == null) Logger.LogError(name, "chipPrefab is null");
             if (gameOverStarvePresenter == null) Logger.LogError(name, "gameOverStarvePresenter is null");
             if (difficultyPresenter == null) Logger.LogError(name, "difficultyPresenter is null");
+            if (shopPresenter == null) Logger.LogError(name, "shopPresenter is null");
             if (mummaPrefab == null) Logger.LogError(name, "mummaPrefab is null");
             if (snakePrefab == null) Logger.LogError(name, "snakePrefab is null");
             if (ratPrefab == null) Logger.LogError(name, "ratPrefab is null");
@@ -137,6 +139,7 @@ namespace HackedDesign
             turnPresenter.Initialize(state);
             gameOverStarvePresenter.Initialize(state);
             difficultyPresenter.Initialize(state);
+            shopPresenter.Initialize(state);
             SetMenu();
         }
 
@@ -153,14 +156,11 @@ namespace HackedDesign
             SpawnNamedEnemy(crowBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().crowBossStart));
             SpawnNamedEnemy(swanBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().swanStart));
             SpawnNamedEnemy(seagullBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().seagullStart));
-
-            Logger.Log(name, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().snipeStart).transform.position.ToString());
-            Logger.Log(name, snipeBoss.name);
             SpawnNamedEnemy(snipeBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().snipeStart));
             SpawnNamedEnemy(sandpiperBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().sandpiperStart));
 
       
-            SpawnPrincess();
+            SpawnPrincess(princess.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().princessStart));
 
             SpawnChicks();
             SpawnEggs();
@@ -200,32 +200,14 @@ namespace HackedDesign
             state.spawns.Remove(spawn);
         }
 
-
-        //private void SpawnBosses()
-        //{
-        //    var bossesSpawns = state.spawns.FindAll(s => s.GetComponent<Spawn>().bossStart).ToList();
-        //    bossesSpawns.Randomize();
-
-
-        //    for (int i = 0; i < bossesSpawns.Count; i++)
-        //    {
-        //        bossList[i].transform.position = bossesSpawns[i].transform.position;
-        //        var bNPC = finalBoss.GetComponent<EnemyController>();
-        //        bNPC.Initialize(turnManager, state, player.transform);
-        //        state.enemies.Add(bNPC);
-        //        state.spawns.Remove(bossesSpawns[i]);
-        //    }
-        //}
-
-        private void SpawnPrincess()
+        private void SpawnPrincess(GameObject princess, Spawn spawn)
         {
-            var spawn = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().princessStart);
-            princess.transform.position = spawn.transform.position;
-            
-            //var fbNPC = princess.GetComponent<NPCController>();
-            //fbNPC.Initialize(turnManager, state, player.transform);
+            SpawnCharacter(princess, spawn);
+                       
+            var fbNPC = princess.GetComponent<NPCController>();
+            fbNPC.Initialize(turnManager, state);
             //state.enemies.Add(fbNPC);
-            //state.spawns.Remove(spawn);
+            state.spawns.Remove(spawn);
         }
 
         private void SpawnMummaDucks()
@@ -390,7 +372,7 @@ namespace HackedDesign
         }
 
 
-        void FixedUpdate()
+        void Update()
         {
             switch (state.currentState)
             {
@@ -450,6 +432,7 @@ namespace HackedDesign
             turnPresenter.Repaint();
             gameOverStarvePresenter.Repaint();
             difficultyPresenter.Repaint();
+            shopPresenter.Repaint();
         }
 
         public void SetCurrentDifficulty(int difficulty)
@@ -493,6 +476,11 @@ namespace HackedDesign
             InitializeLevel();
             state.currentState = GameStateEnum.PLAYING;
             state.started = true;
+        }
+
+        public void SetShop()
+        {
+            state.currentState = GameStateEnum.SHOP;
         }
 
         public void SetGameOverDead()

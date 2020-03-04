@@ -58,7 +58,10 @@ namespace HackedDesign
         OPTIONS,
         CREDITS,
         DIFFICULTY,
+        CUTSCENE1,
+        CUTSCENE2,
         PLAYING,
+        SHOP,
         GAMEOVERDEAD,
         GAMEOVERSTARVED,
         COMPLETE

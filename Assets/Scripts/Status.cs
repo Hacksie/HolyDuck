@@ -27,7 +27,7 @@ namespace HackedDesign
 
         public void SaveChick()
         {
-            chicksSaved++;
+            //chicksSaved++;
             Logger.Log(name, "Chick saved!");
         }
 

@@ -46,7 +46,16 @@ namespace HackedDesign
         {
             Logger.Log(name, "Item picked up ", itemType, " ", count.ToString());
 
-            CoreGame.instance.AddActionMessage(status.character + " picked up " + count.ToString() + " " + (count == 1 ? itemType : itemType + "s"));
+            if(itemType == "Chick")
+            {
+                CoreGame.instance.AddActionMessage(status.character + " rescued " + count.ToString() + " " + (count == 1 ? itemType : itemType + "s"));
+            }
+            else
+            {
+                CoreGame.instance.AddActionMessage(status.character + " picked up " + count.ToString() + " " + (count == 1 ? itemType : itemType + "s"));
+            }
+
+            
 
             if (inventory.ContainsKey(itemType))
             {

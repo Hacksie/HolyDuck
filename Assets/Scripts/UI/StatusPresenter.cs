@@ -43,7 +43,7 @@ namespace HackedDesign
 
         public void Repaint()
         {
-            if (state.currentState == GameStateEnum.PLAYING)
+            if (state.currentState == GameStateEnum.PLAYING || state.currentState == GameStateEnum.SHOP)
             {
                 if (!gameObject.activeInHierarchy)
                 {
@@ -78,7 +78,17 @@ namespace HackedDesign
                 energyBar.fillAmount = (float)state.playerStatus.energy / state.playerStatus.maxEnergy;
             }
 
-            chicksText.text = state.playerStatus.chicksSaved.ToString();
+            //chicksText.text = state.playerStatus.chicksSaved.ToString();
+
+            if (state.playerInventory.inventory.ContainsKey("Chick"))
+            {
+                chicksText.text = state.playerInventory.inventory["Chick"].ToString();
+            }
+            else
+            {
+                chicksText.text = "0";
+            }
+
 
             if (state.playerInventory.inventory.ContainsKey("Egg"))
             {

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7248726375111075637}
   - component: {fileID: 7248726375111075639}
   - component: {fileID: 7248726375111075638}
+  - component: {fileID: 2361438495996794398}
   m_Layer: 0
   m_Name: Chick
   m_TagString: Untagged
@@ -73,6 +74,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 7248726376087729084}
   hasBeenPickedUp: 0
+--- !u!114 &2361438495996794398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7248726375111075636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c82af6134095be4cb59bfbc5f24f35b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 7248726376087729084}
+  hasBeenPickedUp: 0
+  itemType: Chick
+  count: 1
 --- !u!1 &7248726376087729058
 GameObject:
   m_ObjectHideFlags: 0

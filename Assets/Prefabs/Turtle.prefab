@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7089138872036827346}
-  - component: {fileID: 7089138872036827345}
   - component: {fileID: 7089138872036827344}
-  - component: {fileID: 7089138872036827347}
+  - component: {fileID: 6939816440395835070}
+  - component: {fileID: 7030322499403719383}
   m_Layer: 10
   m_Name: Turtle
   m_TagString: NPC
@@ -34,27 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7089138872036827345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7089138872036827349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74a9794e186afdb4f8888421e34a5b4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colliderLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  spawnLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  canWater: 1
-  canGround: 1
-  distance: 1
 --- !u!61 &7089138872036827344
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -81,27 +60,61 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!50 &7089138872036827347
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!114 &6939816440395835070
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7089138872036827349}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd0297601de3dd44cb57158a7afd7327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: Terry Turtle
+  health: 100
+  maxHealth: 100
+  reqEnergy: 0
+  energy: 100
+  maxEnergy: 100
+  minAttack: 0
+  maxAttack: 5
+  defense: 1
+  initiative: 10
+  chicksSaved: 1
+  breadEnergy: 30
+  chipEnergy: 50
+  dieEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  starveEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7030322499403719383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7089138872036827349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9522aa5eebce3a347a780eabc3b2dac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 7089138872904942670}
+  leftWater: {fileID: -7072037944407521695, guid: e6b9063678f80594d8299c9c28ed36a8,
+    type: 3}
+  leftGround: {fileID: 9022850859403834832, guid: e6b9063678f80594d8299c9c28ed36a8,
+    type: 3}
+  rightWater: {fileID: 4511738577359260497, guid: e6b9063678f80594d8299c9c28ed36a8,
+    type: 3}
+  rightGround: {fileID: 8496022891151862755, guid: e6b9063678f80594d8299c9c28ed36a8,
+    type: 3}
+  direction: {x: 1, y: 0}
+  facingDirection: {x: 1, y: 0}
+  inWater: 1
 --- !u!1 &7089138872904942656
 GameObject:
   m_ObjectHideFlags: 0
