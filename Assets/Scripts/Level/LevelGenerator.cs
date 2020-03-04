@@ -11,24 +11,15 @@ namespace HackedDesign
             var startTime = Time.unscaledTime;
             var level = new Level(levelWidth, levelHeight);
 
-            //Temp
-
-
-            
-            level.map[Random.Range((levelWidth - 1) / 2 + 2, levelWidth - 2), Random.Range(1, (levelHeight - 1) / 2 - 2)] = GenerateBossArea();
-
-            level.map[Random.Range(1, (levelWidth - 1) / 2 - 2), Random.Range((levelHeight - 1) / 2 + 2, levelHeight - 2)] = GenerateBossArea();
-            level.map[Random.Range((levelWidth - 1) / 2 + 2, levelWidth - 2), Random.Range((levelHeight - 1) / 2 + 2, levelHeight - 2)] = GenerateBossArea();
-
-
 
             level.map[(levelWidth - 1) / 2, (levelHeight - 2)] = GenerateFinalBossArea();
             level.map[(levelWidth - 1) / 2, (levelHeight - 3)] = GenerateCrowBossArea();
             level.map[(levelWidth - 1) / 2, (levelHeight - 1) / 2] = GenerateStartingArea();
 
             level.map[Random.Range(1, (levelWidth - 1) / 2 - 2), Random.Range(1, (levelHeight - 1) / 2 - 2)] = GenerateSwanBossArea();
-
-
+            level.map[Random.Range((levelWidth - 1) / 2 + 2, levelWidth - 2), Random.Range(1, (levelHeight - 1) / 2 - 2)] = GenerateSeagullBossArea();
+            level.map[Random.Range(1, (levelWidth - 1) / 2 - 2), Random.Range((levelHeight - 1) / 2 + 2, levelHeight - 2)] = GenerateSandpiperBossArea();
+            level.map[Random.Range((levelWidth - 1) / 2 + 2, levelWidth - 2), Random.Range((levelHeight - 1) / 2 + 2, levelHeight - 2)] = GenerateSnipeBossArea();
 
             level.playerStart = new Vector2Int((levelWidth - 1) / 2, (levelHeight - 1) / 2);
 
@@ -70,19 +61,6 @@ namespace HackedDesign
         }
 
 
-        public Area GenerateBossArea()
-        {
-            return new Area()
-            {
-                top = AreaEdgeTypes.RIVER,
-                left = AreaEdgeTypes.RIVER,
-                right = AreaEdgeTypes.RIVER,
-                bottom = AreaEdgeTypes.RIVER,
-                isBoss = true,
-                isStart = false,
-                isGooseBoss = false
-            };
-        }
 
         public Area GenerateFinalBossArea()
         {
@@ -116,6 +94,7 @@ namespace HackedDesign
                 isSandpiperBoss = false,
                 isSnipeBoss = false,
                 isSwanBoss = false,
+                isSeagullBoss = false,
                 isStart = false,
                 isBoss = false
             };
@@ -134,11 +113,68 @@ namespace HackedDesign
                 isSandpiperBoss = false,
                 isSnipeBoss = false,
                 isSwanBoss = true,
+                isSeagullBoss = false,
                 isStart = false,
                 isBoss = false
             };
         }
 
+        public Area GenerateSeagullBossArea()
+        {
+            return new Area()
+            {
+                top = AreaEdgeTypes.OCEAN,
+                left = AreaEdgeTypes.OCEAN,
+                right = AreaEdgeTypes.OCEAN,
+                bottom = AreaEdgeTypes.OCEAN,
+                isGooseBoss = false,
+                isCrowBoss = false,
+                isSandpiperBoss = false,
+                isSnipeBoss = false,
+                isSwanBoss = false,
+                isSeagullBoss = true,
+                isStart = false,
+                isBoss = false
+            };
+        }
+
+        public Area GenerateSnipeBossArea()
+        {
+            return new Area()
+            {
+                top = AreaEdgeTypes.OCEAN,
+                left = AreaEdgeTypes.OCEAN,
+                right = AreaEdgeTypes.OCEAN,
+                bottom = AreaEdgeTypes.OCEAN,
+                isGooseBoss = false,
+                isCrowBoss = false,
+                isSandpiperBoss = false,
+                isSnipeBoss = true,
+                isSwanBoss = false,
+                isSeagullBoss = false,
+                isStart = false,
+                isBoss = false
+            };
+        }
+
+        public Area GenerateSandpiperBossArea()
+        {
+            return new Area()
+            {
+                top = AreaEdgeTypes.OCEAN,
+                left = AreaEdgeTypes.OCEAN,
+                right = AreaEdgeTypes.OCEAN,
+                bottom = AreaEdgeTypes.OCEAN,
+                isGooseBoss = false,
+                isCrowBoss = false,
+                isSandpiperBoss = true,
+                isSnipeBoss = false,
+                isSwanBoss = false,
+                isSeagullBoss = false,
+                isStart = false,
+                isBoss = false
+            };
+        }
 
         public bool GenerateArea(Level level, Vector2Int position, int levelWidth, int levelHeight)
         {

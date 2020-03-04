@@ -25,8 +25,11 @@ namespace HackedDesign
         [SerializeField] private Transform npcsParent = null;
         [SerializeField] private FinalBoss finalBoss = null;
         [SerializeField] private CrowBoss crowBoss = null;
+        [SerializeField] private SwanBoss swanBoss = null;
+        [SerializeField] private SeagullBoss seagullBoss = null;
+        [SerializeField] private SnipeBoss snipeBoss = null;
+        [SerializeField] private SandpiperBoss sandpiperBoss = null;
         [SerializeField] private Princess princess = null;
-        [SerializeField] private List<Boss> bossList = null;
         [SerializeField] private LayerMask enemyLayerMask;
 
 
@@ -93,6 +96,10 @@ namespace HackedDesign
             if (player == null) Logger.LogError(name, "player is null");
             if (finalBoss == null) Logger.LogError(name, "finalBoss is null");
             if (crowBoss == null) Logger.LogError(name, "crowBoss is null");
+            if (swanBoss == null) Logger.LogError(name, "swanBoss is null");
+            if (seagullBoss == null) Logger.LogError(name, "seagullBoss is null");
+            if (snipeBoss == null) Logger.LogError(name, "snipeBoss is null");
+            if (sandpiperBoss == null) Logger.LogError(name, "sandpiperBoss is null");
             if (princess == null) Logger.LogError(name, "princess is null");
             if (environment == null) Logger.LogError(name, "environment is null");
             if (itemsParent == null) Logger.LogError(name, "itemsParent is null");
@@ -140,10 +147,19 @@ namespace HackedDesign
             levelRenderer.Render(state.level, environment);
 
             InitializeSpawns();
-            SpawnPlayer();
-            SpawnFinalBoss();
-            SpawnCrowBoss();
-            SpawnBosses();
+            //FIXME: Flakey
+            SpawnPlayer(player.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().playerStart));
+            SpawnNamedEnemy(finalBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().finalBossStart));
+            SpawnNamedEnemy(crowBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().crowBossStart));
+            SpawnNamedEnemy(swanBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().swanStart));
+            SpawnNamedEnemy(seagullBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().seagullStart));
+
+            Logger.Log(name, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().snipeStart).transform.position.ToString());
+            Logger.Log(name, snipeBoss.name);
+            SpawnNamedEnemy(snipeBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().snipeStart));
+            SpawnNamedEnemy(sandpiperBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().sandpiperStart));
+
+      
             SpawnPrincess();
 
             SpawnChicks();
@@ -165,49 +181,41 @@ namespace HackedDesign
             state.spawns = GameObject.FindGameObjectsWithTag("Respawn").Select(e => e.GetComponent<Spawn>()).ToList();
         }
 
-        private void SpawnPlayer()
+        private void SpawnPlayer(GameObject player, Spawn spawn)
         {
-            var spawn = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().playerStart);
-            player.transform.position = spawn.transform.position;
-            state.spawns.Remove(spawn);
+            SpawnCharacter(player, spawn);
         }
 
-        private void SpawnFinalBoss()
+        private void SpawnNamedEnemy(GameObject enemy, Spawn spawn)
         {
-            var spawn = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().finalBossStart);
-            finalBoss.transform.position = spawn.transform.position;
-            var fbNPC = finalBoss.GetComponent<EnemyController>();
-            fbNPC.Initialize(turnManager, state, player.transform);
-            state.enemies.Add(fbNPC);
-            state.spawns.Remove(spawn);
+            SpawnCharacter(enemy, spawn);
+            var controller = crowBoss.GetComponent<EnemyController>();
+            controller.Initialize(turnManager, state, player.transform);
+            state.enemies.Add(controller);
         }
 
-        private void SpawnCrowBoss()
+        private void SpawnCharacter(GameObject character, Spawn spawn)
         {
-            var spawn = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().crowBossStart);
-            crowBoss.transform.position = spawn.transform.position;
-            var bNPC = crowBoss.GetComponent<EnemyController>();
-            bNPC.Initialize(turnManager, state, player.transform);
-            state.enemies.Add(bNPC);
+            character.transform.position = spawn.transform.position;
             state.spawns.Remove(spawn);
         }
 
 
-        private void SpawnBosses()
-        {
-            var bossesSpawns = state.spawns.FindAll(s => s.GetComponent<Spawn>().bossStart).ToList();
-            bossesSpawns.Randomize();
+        //private void SpawnBosses()
+        //{
+        //    var bossesSpawns = state.spawns.FindAll(s => s.GetComponent<Spawn>().bossStart).ToList();
+        //    bossesSpawns.Randomize();
 
 
-            for (int i = 0; i < bossesSpawns.Count; i++)
-            {
-                bossList[i].transform.position = bossesSpawns[i].transform.position;
-                var bNPC = finalBoss.GetComponent<EnemyController>();
-                bNPC.Initialize(turnManager, state, player.transform);
-                state.enemies.Add(bNPC);
-                state.spawns.Remove(bossesSpawns[i]);
-            }
-        }
+        //    for (int i = 0; i < bossesSpawns.Count; i++)
+        //    {
+        //        bossList[i].transform.position = bossesSpawns[i].transform.position;
+        //        var bNPC = finalBoss.GetComponent<EnemyController>();
+        //        bNPC.Initialize(turnManager, state, player.transform);
+        //        state.enemies.Add(bNPC);
+        //        state.spawns.Remove(bossesSpawns[i]);
+        //    }
+        //}
 
         private void SpawnPrincess()
         {

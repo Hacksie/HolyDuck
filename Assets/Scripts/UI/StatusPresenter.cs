@@ -64,9 +64,9 @@ namespace HackedDesign
 
         public void RepaintText()
         {
-            attackText.text = state.playerStatus.maxAttack.ToString() + "!";
-            defenseText.text = state.playerStatus.defense.ToString() + "#";
-            initiativeText.text = state.playerStatus.initiative.ToString() + "^";
+            attackText.text = state.playerStatus.maxAttack.ToString();
+            defenseText.text = state.playerStatus.defense.ToString();
+            initiativeText.text = state.playerStatus.initiative.ToString();
 
             if (state.playerStatus.maxHealth > 0)
             {

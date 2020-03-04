@@ -91,7 +91,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8343358068279463503}
-  - component: {fileID: 8343358068279463502}
+  - component: {fileID: 6928491740312400929}
+  - component: {fileID: 3649447952997862730}
+  - component: {fileID: 7207586915175915727}
+  - component: {fileID: 283838425837255162}
+  - component: {fileID: 3892197821799994715}
   m_Layer: 8
   m_Name: Sandpiper Stallone
   m_TagString: Enemy
@@ -106,7 +110,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8343358068279463500}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -114,7 +118,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8343358068279463502
+--- !u!50 &6928491740312400929
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8343358068279463500}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &3649447952997862730
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8343358068279463500}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.25}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5}
+  m_EdgeRadius: 0
+--- !u!114 &7207586915175915727
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,6 +174,86 @@ MonoBehaviour:
   m_GameObject: {fileID: 8343358068279463500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a883be6da589b24479f5ee977e9a5a74, type: 3}
+  m_Script: {fileID: 11500000, guid: cd0297601de3dd44cb57158a7afd7327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: Sandpiper Stallone
+  health: 100
+  maxHealth: 100
+  reqEnergy: 0
+  energy: 100
+  maxEnergy: 100
+  minAttack: 0
+  maxAttack: 5
+  defense: 1
+  initiative: 10
+  chicksSaved: 1
+  breadEnergy: 30
+  chipEnergy: 50
+  dieEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 283838425837255162}
+        m_MethodName: Kill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  starveEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &283838425837255162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8343358068279463500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e428ee7aefa6eb4db18185e75218563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 0}
+  leftWater: {fileID: 359042672018681830, guid: 5e5991713889af1409a0aab8642d617c,
+    type: 3}
+  leftGround: {fileID: 3387488067054627049, guid: 5e5991713889af1409a0aab8642d617c,
+    type: 3}
+  rightWater: {fileID: -3362095802737069125, guid: 5e5991713889af1409a0aab8642d617c,
+    type: 3}
+  rightGround: {fileID: -2039758575632117308, guid: 5e5991713889af1409a0aab8642d617c,
+    type: 3}
+  direction: {x: 1, y: 0}
+  facingDirection: {x: 1, y: 0}
+  inWater: 1
+  behaviour:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3892197821799994715}
+        m_MethodName: Behaviour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3892197821799994715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8343358068279463500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7705349d36b35b24cb16539ae9cc3067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

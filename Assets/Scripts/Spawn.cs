@@ -9,8 +9,12 @@ namespace HackedDesign
         public SpawnType spawnType;
         public bool playerStart = false;
         public bool finalBossStart = false;
+        public bool finalBossStart2 = false;
         public bool crowBossStart = false;
-        public bool bossStart = false;
+        public bool swanStart = false;
+        public bool seagullStart = false;
+        public bool snipeStart = false;
+        public bool sandpiperStart = false;
         public bool princessStart = false;
         public bool active = true;
 

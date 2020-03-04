@@ -7,13 +7,16 @@ namespace HackedDesign
     public class LevelRenderer : MonoBehaviour
     {
         [Header("AreaTilemaps")]
-        [SerializeField] private List<GameObject> areaTilemaps;
-        [SerializeField] private List<GameObject> borderTiles;
-        [SerializeField] private List<GameObject> areaStartTilemaps;
-        [SerializeField] private List<GameObject> areaGooseBossTilemaps;
-        [SerializeField] private List<GameObject> areaCrowBossTilemaps;
-        [SerializeField] private List<GameObject> areaSwanBossTilemaps;
-        [SerializeField] private List<GameObject> areaBossTilemaps;
+        [SerializeField] private List<GameObject> areaTilemaps = new List<GameObject>();
+        [SerializeField] private List<GameObject> borderTiles = new List<GameObject>();
+        [SerializeField] private List<GameObject> areaStartTilemaps = new List<GameObject>();
+        [SerializeField] private List<GameObject> areaGooseBossTilemaps = new List<GameObject>();
+        [SerializeField] private List<GameObject> areaCrowBossTilemaps = new List<GameObject>();
+        [SerializeField] private List<GameObject> areaSwanBossTilemaps = new List<GameObject>();
+        [SerializeField] private List<GameObject> areaSeagullBossTilemaps = new List<GameObject>();
+        [SerializeField] private List<GameObject> areaSnipeBossTilemaps = new List<GameObject>();
+        [SerializeField] private List<GameObject> areaSandpiperBossTilemaps = new List<GameObject>();
+        //[SerializeField] private List<GameObject> areaBossTilemaps = new List<GameObject>();
 
         [Header("Settings")]
         [SerializeField] private int tileMapHeight = 8;
@@ -180,32 +183,87 @@ namespace HackedDesign
                 return;
             }
 
-            if (area.isBoss)
+            if (area.isSeagullBoss)
             {
-                var blstartobj = FindCorner("bl", areaBossTilemaps, area.bottom, area.left);
+                var blstartobj = FindCorner("bl", areaSeagullBossTilemaps, area.bottom, area.left);
                 if (blstartobj != null)
                 {
                     Instantiate(blstartobj, position, Quaternion.identity, parent);
                 }
 
-                var brstartobj = FindCorner("br", areaBossTilemaps, area.bottom, area.right);
+                var brstartobj = FindCorner("br", areaSeagullBossTilemaps, area.bottom, area.right);
                 if (brstartobj != null)
                 {
                     Instantiate(brstartobj, position, Quaternion.identity, parent);
                 }
 
-                var tlstartobj = FindCorner("tl", areaBossTilemaps, area.top, area.left);
+                var tlstartobj = FindCorner("tl", areaSeagullBossTilemaps, area.top, area.left);
                 if (tlstartobj != null)
                 {
                     Instantiate(tlstartobj, position, Quaternion.identity, parent);
                 }
 
-                var trstartobj = FindCorner("tr", areaBossTilemaps, area.top, area.right);
+                var trstartobj = FindCorner("tr", areaSeagullBossTilemaps, area.top, area.right);
                 if (trstartobj != null)
                 {
                     Instantiate(trstartobj, position, Quaternion.identity, parent);
                 }
+                return;
+            }
 
+            if (area.isSnipeBoss)
+            {
+                var blstartobj = FindCorner("bl", areaSnipeBossTilemaps, area.bottom, area.left);
+                if (blstartobj != null)
+                {
+                    Instantiate(blstartobj, position, Quaternion.identity, parent);
+                }
+
+                var brstartobj = FindCorner("br", areaSnipeBossTilemaps, area.bottom, area.right);
+                if (brstartobj != null)
+                {
+                    Instantiate(brstartobj, position, Quaternion.identity, parent);
+                }
+
+                var tlstartobj = FindCorner("tl", areaSnipeBossTilemaps, area.top, area.left);
+                if (tlstartobj != null)
+                {
+                    Instantiate(tlstartobj, position, Quaternion.identity, parent);
+                }
+
+                var trstartobj = FindCorner("tr", areaSnipeBossTilemaps, area.top, area.right);
+                if (trstartobj != null)
+                {
+                    Instantiate(trstartobj, position, Quaternion.identity, parent);
+                }
+                return;
+            }
+
+            if (area.isSandpiperBoss)
+            {
+                var blstartobj = FindCorner("bl", areaSandpiperBossTilemaps, area.bottom, area.left);
+                if (blstartobj != null)
+                {
+                    Instantiate(blstartobj, position, Quaternion.identity, parent);
+                }
+
+                var brstartobj = FindCorner("br", areaSandpiperBossTilemaps, area.bottom, area.right);
+                if (brstartobj != null)
+                {
+                    Instantiate(brstartobj, position, Quaternion.identity, parent);
+                }
+
+                var tlstartobj = FindCorner("tl", areaSandpiperBossTilemaps, area.top, area.left);
+                if (tlstartobj != null)
+                {
+                    Instantiate(tlstartobj, position, Quaternion.identity, parent);
+                }
+
+                var trstartobj = FindCorner("tr", areaSandpiperBossTilemaps, area.top, area.right);
+                if (trstartobj != null)
+                {
+                    Instantiate(trstartobj, position, Quaternion.identity, parent);
+                }
                 return;
             }
 
