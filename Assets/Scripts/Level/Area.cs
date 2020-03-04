@@ -14,7 +14,14 @@ namespace HackedDesign
         public AreaEdgeTypes right;
         public bool isStart;
         public bool isBoss;
-        public bool isFinalBoss;
+        public bool isGooseBoss;
+        public bool isCrowBoss;
+        public bool isSwanBoss;
+        public bool isSnipeBoss;
+        public bool isSandpiperBoss;
+        public bool isSeagullBoss;
+
+        //public bool 
 
         public override string ToString()
         {

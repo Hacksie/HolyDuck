@@ -20,6 +20,15 @@ public static class ListExtensions
     {
         int p = UnityEngine.Random.Range(0, list.Count);
 
+       if(list.Count == 0)
+        {
+            return default(T);
+        }
+        //if(p==0)
+        //{
+        //    return default(T);
+        //}
+
         return list[p];
     }
 

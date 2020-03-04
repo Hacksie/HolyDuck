@@ -24,6 +24,7 @@ namespace HackedDesign
         [SerializeField] private Transform itemsParent = null;
         [SerializeField] private Transform npcsParent = null;
         [SerializeField] private FinalBoss finalBoss = null;
+        [SerializeField] private CrowBoss crowBoss = null;
         [SerializeField] private Princess princess = null;
         [SerializeField] private List<Boss> bossList = null;
         [SerializeField] private LayerMask enemyLayerMask;
@@ -91,6 +92,7 @@ namespace HackedDesign
             if (levelRenderer == null) Logger.LogError(name, "levelRenderer is null");
             if (player == null) Logger.LogError(name, "player is null");
             if (finalBoss == null) Logger.LogError(name, "finalBoss is null");
+            if (crowBoss == null) Logger.LogError(name, "crowBoss is null");
             if (princess == null) Logger.LogError(name, "princess is null");
             if (environment == null) Logger.LogError(name, "environment is null");
             if (itemsParent == null) Logger.LogError(name, "itemsParent is null");
@@ -140,6 +142,7 @@ namespace HackedDesign
             InitializeSpawns();
             SpawnPlayer();
             SpawnFinalBoss();
+            SpawnCrowBoss();
             SpawnBosses();
             SpawnPrincess();
 
@@ -178,6 +181,17 @@ namespace HackedDesign
             state.enemies.Add(fbNPC);
             state.spawns.Remove(spawn);
         }
+
+        private void SpawnCrowBoss()
+        {
+            var spawn = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().crowBossStart);
+            crowBoss.transform.position = spawn.transform.position;
+            var bNPC = crowBoss.GetComponent<EnemyController>();
+            bNPC.Initialize(turnManager, state, player.transform);
+            state.enemies.Add(bNPC);
+            state.spawns.Remove(spawn);
+        }
+
 
         private void SpawnBosses()
         {

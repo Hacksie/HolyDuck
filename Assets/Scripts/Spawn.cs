@@ -9,6 +9,7 @@ namespace HackedDesign
         public SpawnType spawnType;
         public bool playerStart = false;
         public bool finalBossStart = false;
+        public bool crowBossStart = false;
         public bool bossStart = false;
         public bool princessStart = false;
         public bool active = true;
@@ -46,6 +47,7 @@ namespace HackedDesign
     public enum SpawnType
     {
         Water,
-        Ground
+        Ground,
+        Prop
     }
 }

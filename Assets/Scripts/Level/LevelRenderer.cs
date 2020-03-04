@@ -10,7 +10,9 @@ namespace HackedDesign
         [SerializeField] private List<GameObject> areaTilemaps;
         [SerializeField] private List<GameObject> borderTiles;
         [SerializeField] private List<GameObject> areaStartTilemaps;
-        [SerializeField] private List<GameObject> areaFinalBossTilemaps;
+        [SerializeField] private List<GameObject> areaGooseBossTilemaps;
+        [SerializeField] private List<GameObject> areaCrowBossTilemaps;
+        [SerializeField] private List<GameObject> areaSwanBossTilemaps;
         [SerializeField] private List<GameObject> areaBossTilemaps;
 
         [Header("Settings")]
@@ -94,27 +96,27 @@ namespace HackedDesign
                 return;
             }
 
-            if (area.isFinalBoss)
+            if (area.isGooseBoss)
             {
-                var blstartobj = FindCorner("bl", areaFinalBossTilemaps, area.bottom, area.left);
+                var blstartobj = FindCorner("bl", areaGooseBossTilemaps, area.bottom, area.left);
                 if (blstartobj != null)
                 {
                     Instantiate(blstartobj, position, Quaternion.identity, parent);
                 }
 
-                var brstartobj = FindCorner("br", areaFinalBossTilemaps, area.bottom, area.right);
+                var brstartobj = FindCorner("br", areaGooseBossTilemaps, area.bottom, area.right);
                 if (brstartobj != null)
                 {
                     Instantiate(brstartobj, position, Quaternion.identity, parent);
                 }
 
-                var tlstartobj = FindCorner("tl", areaFinalBossTilemaps, area.top, area.left);
+                var tlstartobj = FindCorner("tl", areaGooseBossTilemaps, area.top, area.left);
                 if (tlstartobj != null)
                 {
                     Instantiate(tlstartobj, position, Quaternion.identity, parent);
                 }
 
-                var trstartobj = FindCorner("tr", areaFinalBossTilemaps, area.top, area.right);
+                var trstartobj = FindCorner("tr", areaGooseBossTilemaps, area.top, area.right);
                 if (trstartobj != null)
                 {
                     Instantiate(trstartobj, position, Quaternion.identity, parent);
@@ -122,7 +124,63 @@ namespace HackedDesign
                 return;
             }
 
-            if(area.isBoss)
+            if (area.isCrowBoss)
+            {
+                var blstartobj = FindCorner("bl", areaCrowBossTilemaps, area.bottom, area.left);
+                if (blstartobj != null)
+                {
+                    Instantiate(blstartobj, position, Quaternion.identity, parent);
+                }
+
+                var brstartobj = FindCorner("br", areaCrowBossTilemaps, area.bottom, area.right);
+                if (brstartobj != null)
+                {
+                    Instantiate(brstartobj, position, Quaternion.identity, parent);
+                }
+
+                var tlstartobj = FindCorner("tl", areaCrowBossTilemaps, area.top, area.left);
+                if (tlstartobj != null)
+                {
+                    Instantiate(tlstartobj, position, Quaternion.identity, parent);
+                }
+
+                var trstartobj = FindCorner("tr", areaCrowBossTilemaps, area.top, area.right);
+                if (trstartobj != null)
+                {
+                    Instantiate(trstartobj, position, Quaternion.identity, parent);
+                }
+                return;
+            }
+
+            if(area.isSwanBoss)
+            {
+                var blstartobj = FindCorner("bl", areaSwanBossTilemaps, area.bottom, area.left);
+                if (blstartobj != null)
+                {
+                    Instantiate(blstartobj, position, Quaternion.identity, parent);
+                }
+
+                var brstartobj = FindCorner("br", areaSwanBossTilemaps, area.bottom, area.right);
+                if (brstartobj != null)
+                {
+                    Instantiate(brstartobj, position, Quaternion.identity, parent);
+                }
+
+                var tlstartobj = FindCorner("tl", areaSwanBossTilemaps, area.top, area.left);
+                if (tlstartobj != null)
+                {
+                    Instantiate(tlstartobj, position, Quaternion.identity, parent);
+                }
+
+                var trstartobj = FindCorner("tr", areaSwanBossTilemaps, area.top, area.right);
+                if (trstartobj != null)
+                {
+                    Instantiate(trstartobj, position, Quaternion.identity, parent);
+                }
+                return;
+            }
+
+            if (area.isBoss)
             {
                 var blstartobj = FindCorner("bl", areaBossTilemaps, area.bottom, area.left);
                 if (blstartobj != null)

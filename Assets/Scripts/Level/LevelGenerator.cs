@@ -14,7 +14,7 @@ namespace HackedDesign
             //Temp
 
 
-            level.map[Random.Range(1, (levelWidth - 1) / 2 - 2), Random.Range(1, (levelHeight - 1) / 2 - 2)] = GenerateBossArea();
+            
             level.map[Random.Range((levelWidth - 1) / 2 + 2, levelWidth - 2), Random.Range(1, (levelHeight - 1) / 2 - 2)] = GenerateBossArea();
 
             level.map[Random.Range(1, (levelWidth - 1) / 2 - 2), Random.Range((levelHeight - 1) / 2 + 2, levelHeight - 2)] = GenerateBossArea();
@@ -22,8 +22,11 @@ namespace HackedDesign
 
 
 
-            level.map[(levelWidth - 1) / 2, (levelHeight - 1)] = GenerateFinalBossArea();
+            level.map[(levelWidth - 1) / 2, (levelHeight - 2)] = GenerateFinalBossArea();
+            level.map[(levelWidth - 1) / 2, (levelHeight - 3)] = GenerateCrowBossArea();
             level.map[(levelWidth - 1) / 2, (levelHeight - 1) / 2] = GenerateStartingArea();
+
+            level.map[Random.Range(1, (levelWidth - 1) / 2 - 2), Random.Range(1, (levelHeight - 1) / 2 - 2)] = GenerateSwanBossArea();
 
 
 
@@ -66,6 +69,7 @@ namespace HackedDesign
             };
         }
 
+
         public Area GenerateBossArea()
         {
             return new Area()
@@ -76,7 +80,7 @@ namespace HackedDesign
                 bottom = AreaEdgeTypes.RIVER,
                 isBoss = true,
                 isStart = false,
-                isFinalBoss = false
+                isGooseBoss = false
             };
         }
 
@@ -88,11 +92,53 @@ namespace HackedDesign
                 left = AreaEdgeTypes.OCEAN,
                 right = AreaEdgeTypes.OCEAN,
                 bottom = AreaEdgeTypes.OCEAN,
-                isFinalBoss = true,
+                isGooseBoss = true,
+                isCrowBoss = false,
+                isSwanBoss = false,
+                isSnipeBoss = false,
+                isSandpiperBoss = false,
+                isSeagullBoss = false,
                 isStart = false,
                 isBoss = false
             };
         }
+
+        public Area GenerateCrowBossArea()
+        {
+            return new Area()
+            {
+                top = AreaEdgeTypes.OCEAN,
+                left = AreaEdgeTypes.OCEAN,
+                right = AreaEdgeTypes.OCEAN,
+                bottom = AreaEdgeTypes.OCEAN,
+                isGooseBoss = false,
+                isCrowBoss = true,
+                isSandpiperBoss = false,
+                isSnipeBoss = false,
+                isSwanBoss = false,
+                isStart = false,
+                isBoss = false
+            };
+        }
+
+        public Area GenerateSwanBossArea()
+        {
+            return new Area()
+            {
+                top = AreaEdgeTypes.OCEAN,
+                left = AreaEdgeTypes.OCEAN,
+                right = AreaEdgeTypes.OCEAN,
+                bottom = AreaEdgeTypes.OCEAN,
+                isGooseBoss = false,
+                isCrowBoss = false,
+                isSandpiperBoss = false,
+                isSnipeBoss = false,
+                isSwanBoss = true,
+                isStart = false,
+                isBoss = false
+            };
+        }
+
 
         public bool GenerateArea(Level level, Vector2Int position, int levelWidth, int levelHeight)
         {
@@ -114,11 +160,11 @@ namespace HackedDesign
                 bottom = AreaEdgeTypes.OCEAN,
                 right = AreaEdgeTypes.OCEAN,
                 isBoss = false,
-                isFinalBoss = false,
+                isGooseBoss = false,
                 isStart = false
             };
 
-            var freeChoice = new List<AreaEdgeTypes>() { AreaEdgeTypes.CREEK, AreaEdgeTypes.OCEAN, AreaEdgeTypes.RIVER };
+            var freeChoice = new List<AreaEdgeTypes>() { AreaEdgeTypes.TREES, AreaEdgeTypes.CREEK, AreaEdgeTypes.OCEAN, AreaEdgeTypes.RIVER };
 
             var tops = PossibleTopEdges(position, freeChoice, level, levelWidth, levelHeight);
             var lefts = PossibleLeftEdges(position, freeChoice, level, levelWidth, levelHeight);
@@ -151,7 +197,7 @@ namespace HackedDesign
             //if (position.y <= 0 || position.y >= (levelHeight - 1) || position.x <= 0 || position.x >= (levelWidth - 1))
             if (position.y <= 0)
             {
-                edges.Add(AreaEdgeTypes.OCEAN);
+                edges.Add(AreaEdgeTypes.TREES);
                 return edges;
             }
 
@@ -172,7 +218,7 @@ namespace HackedDesign
 
             if (position.x <= 0)
             {
-                edges.Add(AreaEdgeTypes.OCEAN);
+                edges.Add(AreaEdgeTypes.TREES);
                 return edges;
             }
 
@@ -193,7 +239,7 @@ namespace HackedDesign
 
             if (position.y >= (levelHeight - 1))
             {
-                edges.Add(AreaEdgeTypes.OCEAN);
+                edges.Add(AreaEdgeTypes.TREES);
                 return edges;
             }
 
@@ -215,7 +261,7 @@ namespace HackedDesign
 
             if (position.x >= (levelWidth - 1))
             {
-                edges.Add(AreaEdgeTypes.OCEAN);
+                edges.Add(AreaEdgeTypes.TREES);
                 return edges;
             }
 
@@ -229,14 +275,5 @@ namespace HackedDesign
             edges.Add(right.left);
             return edges;
         }
-
-
-
-        public void GenerateGooseLeeLocation()
-        {
-
-        }
-
-
     }
 }
