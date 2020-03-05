@@ -74,6 +74,26 @@ namespace HackedDesign
 
                     if (hit.collider != null)
                     {
+                        var crow = hit.collider.GetComponent<CrowBoss>();
+                        if (crow != null)
+                        {
+                            turnManager.QueueAction(new Action()
+                            {
+                                target = crow.gameObject,
+                                source = gameObject,
+                                sourceName = status.character,
+                                initiative = status.initiative,
+                                player = true,
+                                enemy = false,
+                                action = ActionTypes.Shinies,
+                                direction = direction,
+                                damage = 0
+                            });
+
+
+                            return;
+                        }
+
                         var npc = hit.collider.GetComponent<NPCController>();
                         if (npc != null)
                         {
@@ -140,6 +160,7 @@ namespace HackedDesign
 
                     if (hit.collider != null)
                     {
+
                         var enemy = hit.collider.GetComponent<EnemyController>();
                         if (enemy != null)
                         {
@@ -198,7 +219,7 @@ namespace HackedDesign
         public void StarveEvent()
         {
             CoreGame.instance.AddActionMessage(status.character + " starved!");
-            CoreGame.instance.SetGameOverDead();
+            CoreGame.instance.SetGameOverStarved();
         }
 
         public void DieEvent()

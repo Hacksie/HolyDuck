@@ -178,18 +178,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: Sandpiper Stallone
-  health: 100
-  maxHealth: 100
+  health: 20
+  maxHealth: 20
   reqEnergy: 0
   energy: 100
   maxEnergy: 100
-  minAttack: 0
-  maxAttack: 5
+  minAttack: 1
+  maxAttack: 6
   defense: 1
   initiative: 10
-  chicksSaved: 1
+  attackPrice: 10
+  defensePrice: 10
+  initiativePrice: 10
+  applePrice: 10
+  mushroomPrice: 10
+  breadPrice: 1
   breadEnergy: 30
   chipEnergy: 50
+  lettuceHealth: 20
+  quacked: 0
+  quackedTurnStart: 0
+  quackedTurnCounter: 1
+  stunned: 0
+  stunnedCounter: 0
   dieEvent:
     m_PersistentCalls:
       m_Calls:
@@ -231,6 +242,7 @@ MonoBehaviour:
   direction: {x: 1, y: 0}
   facingDirection: {x: 1, y: 0}
   inWater: 1
+  visible: 1
   behaviour:
     m_PersistentCalls:
       m_Calls:

@@ -131,6 +131,18 @@ namespace HackedDesign
                                 CoreGame.instance.AddActionMessage(action.sourceName + " can't quack that!");
                             }
                             break;
+                        case ActionTypes.Shinies:
+                            var shiny = action.target.GetComponent<ShinyActionHandler>();
+                            if (shiny != null)
+                            {
+                                shiny.Handle(action);
+                            }
+                            else
+                            {
+                                CoreGame.instance.AddActionMessage(action.sourceName + " can't quack that!");
+                            }
+                            break;
+
                         default:
                             Logger.Log(name, "unknown action");
                             break;

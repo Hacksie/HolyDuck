@@ -1399,6 +1399,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Suzie Quacktro (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8119183450205799882, guid: 48923990bc55bc340a93de52afd440bb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8119183450205799883, guid: 48923990bc55bc340a93de52afd440bb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2768,7 +2773,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &306886949
 Transform:
   m_ObjectHideFlags: 0
@@ -3619,6 +3624,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Goose Lee (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7977478668628972409, guid: aadca369e07e7bf4abac75fd2254ef1b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aadca369e07e7bf4abac75fd2254ef1b, type: 3}
@@ -4867,7 +4877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &618814607
 Transform:
   m_ObjectHideFlags: 0
@@ -4994,8 +5004,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25}
-  m_SizeDelta: {x: 247.5, y: 83.5}
+  m_AnchoredPosition: {x: 0, y: -20}
+  m_SizeDelta: {x: 317, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &619710028
 MonoBehaviour:
@@ -5015,7 +5025,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 71a4a77e72e7fc3498d478cfeb0c0138, type: 3}
+  m_Texture: {fileID: 2800000, guid: 0754614d895a57943bfdd2603696c06f, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -5485,6 +5495,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mr T
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089138872036827349, guid: d495d1cb50821d940b07385f47530f14,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d495d1cb50821d940b07385f47530f14, type: 3}
@@ -6337,6 +6352,7 @@ MonoBehaviour:
   - {fileID: 3650033430567576705, guid: 39f9b52a47892ca43b5264168687bfe9, type: 3}
   - {fileID: 6032592161345640274, guid: ae89ad3ceaa78ca4baebfd7684280fb4, type: 3}
   - {fileID: 6679825473402156084, guid: dbc48dcc5eec00346a0a4fc1cb2b5dae, type: 3}
+  - {fileID: 7737199139801039331, guid: 13e8d67ed31ef71438fe200109bb6e23, type: 3}
   borderTiles:
   - {fileID: 2118937904905500171, guid: 951a793a48bd4164f91fbd26584767e4, type: 3}
   - {fileID: 7894334530494150907, guid: 93ca7f23b9cdddf408f9f491c007e83c, type: 3}
@@ -9722,6 +9738,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Suzie Quacktro (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8119183450205799882, guid: 48923990bc55bc340a93de52afd440bb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8119183450205799883, guid: 48923990bc55bc340a93de52afd440bb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10918,6 +10939,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Russell Crow (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1533543601013227341, guid: a0db94fbca8dbcf47af72ae13bfa4e83,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1533543601013227442, guid: a0db94fbca8dbcf47af72ae13bfa4e83,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11118,6 +11144,10 @@ MonoBehaviour:
   attackText: {fileID: 1793039907}
   defenseText: {fileID: 1559213494}
   initiativeText: {fileID: 1277595598}
+  greenShinyText: {fileID: 1138310900}
+  yellowShinyText: {fileID: 62032338}
+  blueShinyText: {fileID: 1731098056}
+  redShinyText: {fileID: 1233470986}
 --- !u!1 &1499901024
 GameObject:
   m_ObjectHideFlags: 0
@@ -14110,6 +14140,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878259955}
   m_CullTransparentMesh: 0
+--- !u!114 &1896389146 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7030322499403719383, guid: d495d1cb50821d940b07385f47530f14,
+    type: 3}
+  m_PrefabInstance: {fileID: 776769022}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9522aa5eebce3a347a780eabc3b2dac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1909752966
 GameObject:
   m_ObjectHideFlags: 0
@@ -14763,30 +14805,33 @@ MonoBehaviour:
           m_CallState: 2
   - speaker: Duck Norris!
     text: "Holy Duck! Goose Lee stole my precious golden loaf. \nI must rescue it
-      from his evil grasp. \nBut how will I ever get past his wingman, Russell Crow?"
+      from his evil grasp. \nBut his wingman, Russell Crow, is much too cunning to
+      sneak past."
     nextEvent:
       m_PersistentCalls:
         m_Calls: []
   - speaker: Mr T
-    text: I pity the fool who doesn't know a crow cannot resist shinies. Collect
-      the shinies from the four corners of this wetland and use them to distract
-      Russell Crow.
+    text: I pity the fool who doesn't know a crow cannot resist shinies. Travel to
+      the four corners to battle the four boss birds and take their shinies from
+      them.
     nextEvent:
       m_PersistentCalls:
         m_Calls: []
   - speaker: Duck Norris!
-    text: That is sage advice.  You are a wise old turtle.
+    text: That is sage advice.  You are a wise tortoise, Mr T. You must be a hundred
+      years old.
     nextEvent:
       m_PersistentCalls:
         m_Calls: []
   - speaker: Mr T
-    text: Actually, I'm only three years old.
+    text: I'm actually only two years old. And a turtle. And we don't live that long.
     nextEvent:
       m_PersistentCalls:
         m_Calls: []
   - speaker: Duck Norris!
-    text: Thank you for your wise advice, old man. I must leave now to collect the
-      shinies.
+    text: I must leave now to collect the shinies and rescue the loaf of my life.
+      You have been very helpful, old tortoise. I wish another hundred years of life
+      for you.
     nextEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -15633,6 +15678,7 @@ MonoBehaviour:
   crowCutscene: {fileID: 1447104915}
   loafCutscene: {fileID: 618814606}
   loafCutscene2: {fileID: 306886948}
+  mrt: {fileID: 1896389146}
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -15654,8 +15700,8 @@ MonoBehaviour:
       levelHeight: 11
       chickCount: 99
       eggCount: 99
-      breadCount: 99
-      chipCount: 30
+      breadCount: 199
+      chipCount: 99
       lettuceCount: 40
       appleCount: 20
       mushroomCount: 10
@@ -15713,8 +15759,8 @@ MonoBehaviour:
     levelHeight: 21
     chickCount: 99
     eggCount: 99
-    breadCount: 50
-    chipCount: 30
+    breadCount: 199
+    chipCount: 99
     lettuceCount: 80
     appleCount: 15
     mushroomCount: 15
@@ -15729,8 +15775,8 @@ MonoBehaviour:
     levelHeight: 21
     chickCount: 99
     eggCount: 66
-    breadCount: 40
-    chipCount: 20
+    breadCount: 99
+    chipCount: 50
     lettuceCount: 60
     appleCount: 10
     mushroomCount: 10
@@ -15745,8 +15791,8 @@ MonoBehaviour:
     levelHeight: 21
     chickCount: 99
     eggCount: 30
-    breadCount: 25
-    chipCount: 15
+    breadCount: 66
+    chipCount: 30
     lettuceCount: 30
     appleCount: 5
     mushroomCount: 5
@@ -16160,6 +16206,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Russell Crow
       objectReference: {fileID: 0}
+    - target: {fileID: 1533543601013227341, guid: a0db94fbca8dbcf47af72ae13bfa4e83,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1533543601013227442, guid: a0db94fbca8dbcf47af72ae13bfa4e83,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16239,6 +16290,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Steven Seagull
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957230109905502617, guid: dc2eb9f3ef740bb4c9ce06c203396d7f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4957230109905502630, guid: dc2eb9f3ef740bb4c9ce06c203396d7f,
         type: 3}
@@ -16446,6 +16502,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Duck Norris
       objectReference: {fileID: 0}
+    - target: {fileID: 5838830367263786389, guid: ed4877ea6daff4c46bf9e70d3a97530b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5838830367263786390, guid: ed4877ea6daff4c46bf9e70d3a97530b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16514,6 +16575,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Lettuce
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714744329108362939, guid: c4796df6566fe6f46b4f713c90986124,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1714744329108373012, guid: c4796df6566fe6f46b4f713c90986124,
         type: 3}
@@ -16589,6 +16655,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wesley Snipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 7024819580871740680, guid: d145af35741b00e43b1f22df9e3cb2b9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7024819581738641445, guid: d145af35741b00e43b1f22df9e3cb2b9,
         type: 3}
@@ -16732,6 +16803,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arnold Swanzenegger
+      objectReference: {fileID: 0}
+    - target: {fileID: 7293991430429240520, guid: cbed19f2c6be53045a5483d4db24935c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7293991430429240521, guid: cbed19f2c6be53045a5483d4db24935c,
         type: 3}
@@ -16881,6 +16957,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goose Lee
       objectReference: {fileID: 0}
+    - target: {fileID: 7977478668628972409, guid: aadca369e07e7bf4abac75fd2254ef1b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aadca369e07e7bf4abac75fd2254ef1b, type: 3}
 --- !u!1001 &8119183451256922840
@@ -16894,6 +16975,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Suzie Quacktro
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119183450205799882, guid: 48923990bc55bc340a93de52afd440bb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8119183450205799883, guid: 48923990bc55bc340a93de52afd440bb,
         type: 3}
@@ -16963,6 +17049,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sandpiper Stallone
+      objectReference: {fileID: 0}
+    - target: {fileID: 8343358068279463500, guid: 5cd8f9ea6a19f1848ba549ced0187263,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8343358068279463503, guid: 5cd8f9ea6a19f1848ba549ced0187263,
         type: 3}

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3331797089319180688}
   - component: {fileID: 7205995350756157532}
   - component: {fileID: 632672367438980025}
+  - component: {fileID: 2802408489299160383}
   m_Layer: 8
   m_Name: Crow
   m_TagString: Enemy
@@ -127,9 +128,21 @@ MonoBehaviour:
   maxAttack: 5
   defense: 1
   initiative: 10
-  chicksSaved: 1
+  attackPrice: 10
+  defensePrice: 10
+  initiativePrice: 10
+  applePrice: 10
+  mushroomPrice: 10
+  breadPrice: 1
   breadEnergy: 30
   chipEnergy: 50
+  lettuceHealth: 20
+  quacked: 0
+  quackedTurnStart: 0
+  quackedTurnCounter: 1
+  stunned: 0
+  stunnedCounter: 0
+  distractedByShinies: 0
   dieEvent:
     m_PersistentCalls:
       m_Calls:
@@ -171,6 +184,7 @@ MonoBehaviour:
   direction: {x: 1, y: 0}
   facingDirection: {x: 1, y: 0}
   inWater: 1
+  visible: 1
   behaviour:
     m_PersistentCalls:
       m_Calls:
@@ -195,6 +209,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1189b1a141c1e574c818a8e04942066b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2802408489299160383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533543601013227341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec6ce9cc7a36d74dafbd2f3cb2cddb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1533543602255691895

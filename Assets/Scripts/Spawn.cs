@@ -21,6 +21,7 @@ namespace HackedDesign
         public bool princessStartCutscene2 = false;
         public bool loafCutscene = false;
         public bool loafCutscene2 = false;
+        public bool isMrTStart = false;
         public bool active = true;
 
 

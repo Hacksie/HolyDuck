@@ -22,6 +22,12 @@ namespace HackedDesign
 
         public void Handle(Action action)
         {
+            if(status.distractedByShinies)
+            {
+                CoreGame.instance.AddActionMessage(status.character + " is distracted by the shinies");
+                return;
+            }
+
             status.SapEnergy(1);
             Physics2D.SyncTransforms();
             var hits = Physics2D.RaycastAll(transform.position, action.direction, (float)distance + 0.1f, colliderLayerMask);

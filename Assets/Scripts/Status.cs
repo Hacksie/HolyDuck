@@ -35,6 +35,8 @@ namespace HackedDesign
 
         [SerializeField] public bool stunned = false;
         [SerializeField] public int stunnedCounter = 0;
+
+        [SerializeField] public bool distractedByShinies = false;
         
 
         [SerializeField] public UnityEvent dieEvent;

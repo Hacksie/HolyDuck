@@ -14,6 +14,7 @@
         Duck,
         Submerge,
         Emerge,
-        Stun
+        Stun,
+        Shinies
     }
 }

@@ -36,6 +36,7 @@ namespace HackedDesign
         [SerializeField] private GameObject crowCutscene = null;
         [SerializeField] private GameObject loafCutscene = null;
         [SerializeField] private GameObject loafCutscene2 = null;
+        [SerializeField] private NPCController mrt = null;
         [SerializeField] private LayerMask enemyLayerMask;
 
 
@@ -141,6 +142,7 @@ namespace HackedDesign
             if (hawkPrefab == null) Logger.LogError(name, "hawkPrefab is null");
             if (crocPrefab == null) Logger.LogError(name, "crocPrefab is null");
             if (crabPrefab == null) Logger.LogError(name, "crabPrefab is null");
+            if (mrt == null) Logger.LogError(name, "mrtPrefab is null");
 
             //if (finalBossCutscene == null) Logger.LogError(name, "finalBossCutscene is null");
             //if (crowBossCutscene == null) Logger.LogError(name, "crowBossCutscene is null");
@@ -178,6 +180,10 @@ namespace HackedDesign
             InitializeSpawns();
             //FIXME: Flakey
             SpawnPlayer(player.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().playerStart));
+
+            SpawnCutscene();
+
+
             SpawnNamedEnemy(finalBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().finalBossStart));
             SpawnNamedEnemy(crowBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().crowBossStart));
             SpawnNamedEnemy(swanBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().swanStart));
@@ -185,6 +191,7 @@ namespace HackedDesign
             SpawnNamedEnemy(snipeBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().snipeStart));
             SpawnNamedEnemy(sandpiperBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().sandpiperStart));
             SpawnPrincess(princess.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().princessStart));
+            SpawnCharacter(mrt.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().isMrTStart));
 
             SpawnChicks();
             SpawnEggs();
@@ -199,7 +206,9 @@ namespace HackedDesign
             SpawnHawks();
             SpawnCrocs();
             SpawnCrabs();
-            SpawnCutscene();
+
+            
+
         }
 
         private void InitializeSpawns()
@@ -209,14 +218,17 @@ namespace HackedDesign
 
         private void SpawnCutscene()
         {
-            gooseleeCutscene.transform.position = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().finalBossStartCutscene).transform.position;
-            crowCutscene.transform.position = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().crowBossStartCutscene).transform.position;
-            suzieCutscene.transform.position = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().princessStartCutscene).transform.position;
-            suzieCutscene2.transform.position = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().princessStartCutscene2).transform.position;
-            
 
-            loafCutscene.transform.position = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().loafCutscene).transform.position;
-            loafCutscene2.transform.position = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().loafCutscene2).transform.position;
+            var spawn1 = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().finalBossStartCutscene);
+            //var spawn2 = 
+
+            SpawnCharacter(gooseleeCutscene, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().finalBossStartCutscene));
+            SpawnCharacter(crowCutscene, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().crowBossStartCutscene));
+            SpawnCharacter(suzieCutscene, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().princessStartCutscene));
+            SpawnCharacter(suzieCutscene2, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().princessStartCutscene2));
+            SpawnCharacter(loafCutscene, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().loafCutscene));
+            SpawnCharacter(loafCutscene2, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().loafCutscene2));
+
             suzieCutscene2.SetActive(false);
             loafCutscene2.SetActive(false);
         }
@@ -238,6 +250,7 @@ namespace HackedDesign
         {
             character.transform.position = spawn.transform.position;
             state.spawns.Remove(spawn);
+            character.SetActive(true);
         }
 
         private void SpawnPrincess(GameObject princess, Spawn spawn)
@@ -571,6 +584,11 @@ namespace HackedDesign
         public void SetPlaying()
         {
             state.currentState = GameStateEnum.PLAYING;
+
+            //state.playerInventory.PickupItem("Red Shiny", 1);
+            //state.playerInventory.PickupItem("Blue Shiny", 1);
+            //state.playerInventory.PickupItem("Yellow Shiny", 1);
+            //state.playerInventory.PickupItem("Green Shiny", 1);
         }
 
 

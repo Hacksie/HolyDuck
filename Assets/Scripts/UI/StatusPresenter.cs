@@ -22,6 +22,10 @@ namespace HackedDesign
         [SerializeField] private Text attackText = null;
         [SerializeField] private Text defenseText = null;
         [SerializeField] private Text initiativeText = null;
+        [SerializeField] private Text greenShinyText = null;
+        [SerializeField] private Text yellowShinyText = null;
+        [SerializeField] private Text blueShinyText = null;
+        [SerializeField] private Text redShinyText = null;
 
         private void Start()
         {
@@ -34,6 +38,10 @@ namespace HackedDesign
             if (attackText == null) Logger.LogError(name, "attackText is null");
             if (defenseText == null) Logger.LogError(name, "defenseText is null");
             if (initiativeText == null) Logger.LogError(name, "initiativeText is null");
+            if (greenShinyText == null) Logger.LogError(name, "greenShinyText is null");
+            if (yellowShinyText == null) Logger.LogError(name, "yellowShinyText is null");
+            if (redShinyText == null) Logger.LogError(name, "redShinyText is null");
+            if (blueShinyText == null) Logger.LogError(name, "blueShinyText is null");
         }
 
         public void Initialize(GameState state)
@@ -115,6 +123,42 @@ namespace HackedDesign
             else
             {
                 applesText.text = "0";
+            }
+
+            if(state.playerInventory.inventory.ContainsKey("Green Shiny"))
+            {
+                greenShinyText.text = state.playerInventory.inventory["Green Shiny"].ToString();
+            }
+            else
+            {
+                greenShinyText.text = "0";
+            }
+
+            if (state.playerInventory.inventory.ContainsKey("Yellow Shiny"))
+            {
+                yellowShinyText.text = state.playerInventory.inventory["Yellow Shiny"].ToString();
+            }
+            else
+            {
+                yellowShinyText.text = "0";
+            }
+
+            if (state.playerInventory.inventory.ContainsKey("Red Shiny"))
+            {
+                redShinyText.text = state.playerInventory.inventory["Red Shiny"].ToString();
+            }
+            else
+            {
+                redShinyText.text = "0";
+            }
+
+            if (state.playerInventory.inventory.ContainsKey("Blue Shiny"))
+            {
+                blueShinyText.text = state.playerInventory.inventory["Blue Shiny"].ToString();
+            }
+            else
+            {
+                blueShinyText.text = "0";
             }
         }
     }
