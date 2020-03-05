@@ -136,9 +136,6 @@ namespace HackedDesign
                 {
                     Logger.Log(name, "quack event");
 
-
-
-
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance, colliderLayerMask);
 
                     if (hit.collider != null)
@@ -221,7 +218,7 @@ namespace HackedDesign
                         target = gameObject,
                         source = gameObject,
                         sourceName = status.character,
-                        initiative = 10,
+                        initiative = status.initiative,
                         player = true,
                         enemy = false,
                         action = ActionTypes.Apple,
@@ -231,26 +228,32 @@ namespace HackedDesign
             }
         }
 
-        public void BiteEvent(InputAction.CallbackContext context)
+        public void MushroomEvent(InputAction.CallbackContext context)
         {
-
+            if (state.currentState == GameStateEnum.PLAYING) // We only care about making turns if we're playing
+            {
+                if (context.phase == InputActionPhase.Performed)
+                {
+                    turnManager.QueueAction(new Action()
+                    {
+                        target = gameObject,
+                        source = gameObject,
+                        sourceName = status.character,
+                        initiative = status.initiative,
+                        player = true,
+                        enemy = false,
+                        action = ActionTypes.Mushroom,
+                        direction = Vector2.zero
+                    });
+                }
+            }
         }
+
 
         public void SplashEvent(InputAction.CallbackContext context)
         {
 
         }
-
-        public void InteractEvent(InputAction.CallbackContext context)
-        {
-
-        }
-
-        public void DuckEvent(InputAction.CallbackContext context)
-        {
-
-        }
-
 
         public void UpdateSprite()
         {

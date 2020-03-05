@@ -4,6 +4,7 @@
     {
         Move,
         Apple,
+        Mushroom,
         Quack,
         Bite,
         Venom,

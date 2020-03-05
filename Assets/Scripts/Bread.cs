@@ -11,6 +11,7 @@ namespace HackedDesign
         public bool hasBeenPickedUp = false;
         public bool isBread = true;
         public bool isChip = false;
+        public bool isLettuce = false;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -25,6 +26,7 @@ namespace HackedDesign
 
             if (isBread) consumer.PickupBread();
             if (isChip) consumer.PickupChip();
+            if (isLettuce) consumer.PickupLettuce();
 
             hasBeenPickedUp = true;
             sprite.gameObject.SetActive(false);

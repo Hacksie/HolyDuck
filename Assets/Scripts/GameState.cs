@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace HackedDesign
         public int turn;
         public Status playerStatus;
         public Inventory playerInventory;
+
+        public int cutscene = 0;
 
         /*
         public int health= 100;
@@ -58,12 +61,20 @@ namespace HackedDesign
         OPTIONS,
         CREDITS,
         DIFFICULTY,
-        CUTSCENE1,
-        CUTSCENE2,
+        STARTCUTSCENE,
         PLAYING,
         SHOP,
         GAMEOVERDEAD,
         GAMEOVERSTARVED,
         COMPLETE
+    }
+
+    [System.Serializable]
+    public class Cutscene
+    {
+        public string speaker = "";
+        [TextArea]
+        public string text = "";
+        public UnityEvent nextEvent;
     }
 }

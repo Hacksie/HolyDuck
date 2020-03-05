@@ -14,6 +14,7 @@ namespace HackedDesign
         [SerializeField] public int eggCount = 99;
         [SerializeField] public int breadCount = 99;
         [SerializeField] public int chipCount = 30;
+        [SerializeField] public int lettuceCount = 40;
         [SerializeField] public int appleCount = 20;
         [SerializeField] public int mushroomCount = 10;
         [SerializeField] public int mummaDucks = 20;

@@ -54,7 +54,7 @@ namespace HackedDesign
             initiativeBuyButton.interactable = state.playerInventory.ItemCount("Chick") >= 10 && state.playerStatus.initiative > 1;
             breadBuyButton.interactable = state.playerInventory.ItemCount("Egg") >= 1;
             appleBuyButton.interactable = state.playerInventory.ItemCount("Egg") >= 10;
-            mushroomBuyButton.interactable = state.playerInventory.ItemCount("Egg") >= 10;
+            mushroomBuyButton.interactable = state.playerInventory.ItemCount("Egg") >= 22;
         }
 
         public void DoneEvent()
@@ -133,7 +133,7 @@ namespace HackedDesign
         public void MushroomBuyEvent()
         {
             Logger.Log(name, "mushroombuyevent");
-            if (state.playerInventory.ConsumeItem("Egg", 10))
+            if (state.playerInventory.ConsumeItem("Egg", 20))
             {
                 state.playerInventory.PickupItem("Mushroom", 1);
             }

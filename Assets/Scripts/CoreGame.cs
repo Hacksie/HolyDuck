@@ -30,6 +30,12 @@ namespace HackedDesign
         [SerializeField] private SnipeBoss snipeBoss = null;
         [SerializeField] private SandpiperBoss sandpiperBoss = null;
         [SerializeField] private Princess princess = null;
+        [SerializeField] private GameObject gooseleeCutscene = null;
+        [SerializeField] private GameObject suzieCutscene = null;
+        [SerializeField] private GameObject suzieCutscene2 = null;
+        [SerializeField] private GameObject crowCutscene = null;
+        [SerializeField] private GameObject loafCutscene = null;
+        [SerializeField] private GameObject loafCutscene2 = null;
         [SerializeField] private LayerMask enemyLayerMask;
 
 
@@ -45,8 +51,10 @@ namespace HackedDesign
         [SerializeField] private TurnPresenter turnPresenter = null;
         [SerializeField] private GameOverStarvePresenter gameOverStarvePresenter = null;
         [SerializeField] private GameOverDeadPresenter gameOverDeadPresenter = null;
+        [SerializeField] private GameOverSuccessPresenter gameOverSuccessPresenter = null;
         [SerializeField] private DifficultyPresenter difficultyPresenter = null;
         [SerializeField] private ShopPresenter shopPresenter = null;
+        [SerializeField] private CutscenePresenter cutscenePresenter = null;
 
         [Header("Prefabs")]
         [SerializeField] private GameObject mummaPrefab = null;
@@ -56,6 +64,7 @@ namespace HackedDesign
         [SerializeField] private GameObject mushroomPrefab = null;
         [SerializeField] private GameObject breadPrefab = null;
         [SerializeField] private GameObject chipPrefab = null;
+        [SerializeField] private GameObject lettucePrefab = null;
         [SerializeField] private GameObject snakePrefab = null;
         [SerializeField] private GameObject ratPrefab = null;
         [SerializeField] private GameObject hawkPrefab = null;
@@ -63,7 +72,7 @@ namespace HackedDesign
         [SerializeField] private GameObject crabPrefab = null;
 
         [Header("Game Settings")]
-        
+
         //[SerializeField] private int levelWidth = 11;
         //[SerializeField] private int levelHeight = 11;
         //[SerializeField] private int chickCount = 99;
@@ -113,14 +122,17 @@ namespace HackedDesign
             if (creditsPresenter == null) Logger.LogError(name, "creditsPresenter is null");
             if (statusPresenter == null) Logger.LogError(name, "statusPresenter is null");
             if (turnPresenter == null) Logger.LogError(name, "turnPresenter is null");
+            if (cutscenePresenter == null) Logger.LogError(name, "cutscenePresenter is null");
             if (chickPrefab == null) Logger.LogError(name, "chickPrefab is null");
             if (eggPrefab == null) Logger.LogError(name, "eggPrefab is null");
             if (applePrefab == null) Logger.LogError(name, "applePrefab is null");
             if (mushroomPrefab == null) Logger.LogError(name, "mushroomPrefab is null");
             if (breadPrefab == null) Logger.LogError(name, "breadPrefab is null");
             if (chipPrefab == null) Logger.LogError(name, "chipPrefab is null");
+            if (lettucePrefab == null) Logger.LogError(name, "lettucePrefab is null");
             if (gameOverStarvePresenter == null) Logger.LogError(name, "gameOverStarvePresenter is null");
             if (gameOverDeadPresenter == null) Logger.LogError(name, "gameOverDeadPresenter is null");
+            if (gameOverSuccessPresenter == null) Logger.LogError(name, "gameOverSuccessPresenter is null");
             if (difficultyPresenter == null) Logger.LogError(name, "difficultyPresenter is null");
             if (shopPresenter == null) Logger.LogError(name, "shopPresenter is null");
             if (mummaPrefab == null) Logger.LogError(name, "mummaPrefab is null");
@@ -129,13 +141,18 @@ namespace HackedDesign
             if (hawkPrefab == null) Logger.LogError(name, "hawkPrefab is null");
             if (crocPrefab == null) Logger.LogError(name, "crocPrefab is null");
             if (crabPrefab == null) Logger.LogError(name, "crabPrefab is null");
+
+            //if (finalBossCutscene == null) Logger.LogError(name, "finalBossCutscene is null");
+            //if (crowBossCutscene == null) Logger.LogError(name, "crowBossCutscene is null");
+            //if (princessCutscene == null) Logger.LogError(name, "princessCutscene is null");
+            //if (loafCutscene == null) Logger.LogError(name, "loafCutscene is null");
         }
 
 
         void Initialization()
         {
             SetPlatformInput();
-            
+
             turnManager.Initialize(state);
             player.Initialize(turnManager, state);
             menuPresenter.Initialize(state);
@@ -145,8 +162,10 @@ namespace HackedDesign
             turnPresenter.Initialize(state);
             gameOverStarvePresenter.Initialize(state);
             gameOverDeadPresenter.Initialize(state);
+            gameOverSuccessPresenter.Initialize(state);
             difficultyPresenter.Initialize(state);
             shopPresenter.Initialize(state);
+            cutscenePresenter.Initialize(state);
             SetMenu();
         }
 
@@ -165,8 +184,6 @@ namespace HackedDesign
             SpawnNamedEnemy(seagullBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().seagullStart));
             SpawnNamedEnemy(snipeBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().snipeStart));
             SpawnNamedEnemy(sandpiperBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().sandpiperStart));
-
-      
             SpawnPrincess(princess.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().princessStart));
 
             SpawnChicks();
@@ -175,20 +192,33 @@ namespace HackedDesign
             SpawnMushrooms();
             SpawnBreads();
             SpawnChips();
+            SpawnLettuces();
             SpawnMummaDucks();
             SpawnSnakes();
             SpawnRats();
             SpawnHawks();
             SpawnCrocs();
             SpawnCrabs();
-
-            state.playerInventory.PickupItem("Chick", 30);
-            state.playerInventory.PickupItem("Egg", 21);
+            SpawnCutscene();
         }
 
         private void InitializeSpawns()
         {
             state.spawns = GameObject.FindGameObjectsWithTag("Respawn").Select(e => e.GetComponent<Spawn>()).ToList();
+        }
+
+        private void SpawnCutscene()
+        {
+            gooseleeCutscene.transform.position = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().finalBossStartCutscene).transform.position;
+            crowCutscene.transform.position = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().crowBossStartCutscene).transform.position;
+            suzieCutscene.transform.position = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().princessStartCutscene).transform.position;
+            suzieCutscene2.transform.position = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().princessStartCutscene2).transform.position;
+            
+
+            loafCutscene.transform.position = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().loafCutscene).transform.position;
+            loafCutscene2.transform.position = state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().loafCutscene2).transform.position;
+            suzieCutscene2.SetActive(false);
+            loafCutscene2.SetActive(false);
         }
 
         private void SpawnPlayer(GameObject player, Spawn spawn)
@@ -213,7 +243,7 @@ namespace HackedDesign
         private void SpawnPrincess(GameObject princess, Spawn spawn)
         {
             SpawnCharacter(princess, spawn);
-                       
+
             var fbNPC = princess.GetComponent<NPCController>();
             fbNPC.Initialize(turnManager, state);
             //state.enemies.Add(fbNPC);
@@ -228,7 +258,6 @@ namespace HackedDesign
             {
                 Instantiate(mummaPrefab, s.transform.position, Quaternion.identity, npcsParent);
                 state.spawns.Remove(s);
-
             }
         }
 
@@ -241,7 +270,7 @@ namespace HackedDesign
                 var go = Instantiate(snakePrefab, s.transform.position, Quaternion.identity, npcsParent);
                 var enemy = go.GetComponent<EnemyController>();
 
-                if(enemy != null)
+                if (enemy != null)
                 {
                     enemy.Initialize(turnManager, state, player.transform);
                     state.enemies.Add(enemy);
@@ -405,6 +434,16 @@ namespace HackedDesign
             }
         }
 
+        private void SpawnLettuces()
+        {
+            var lettuceSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground).ToList().PickRandomElements(state.difficulty.lettuceCount);
+            foreach (var s in lettuceSpawns)
+            {
+                Instantiate(lettucePrefab, s.transform.position, Quaternion.identity, itemsParent);
+                state.spawns.Remove(s);
+            }
+        }
+
         public void AddActionMessage(string message)
         {
             state.actions.Insert(0, message);
@@ -436,11 +475,11 @@ namespace HackedDesign
                         turnManager.ProcessTurn();
 
                         var hits = Physics2D.OverlapCircleAll(player.transform.position, state.difficulty.enemyRadius, enemyLayerMask);
-                        
 
-                        foreach(var hit in hits)
+
+                        foreach (var hit in hits)
                         {
-                            if(hit.gameObject != null)
+                            if (hit.gameObject != null)
                             {
                                 var enemy = hit.gameObject.GetComponent<EnemyController>();
                                 enemy.UpdateTurn();
@@ -480,8 +519,10 @@ namespace HackedDesign
             turnPresenter.Repaint();
             gameOverStarvePresenter.Repaint();
             gameOverDeadPresenter.Repaint();
+            gameOverSuccessPresenter.Repaint();
             difficultyPresenter.Repaint();
             shopPresenter.Repaint();
+            cutscenePresenter.Repaint();
         }
 
         public void SetCurrentDifficulty(int difficulty)
@@ -523,9 +564,15 @@ namespace HackedDesign
         public void StartGame()
         {
             InitializeLevel();
-            state.currentState = GameStateEnum.PLAYING;
+            state.currentState = GameStateEnum.STARTCUTSCENE;
             state.started = true;
         }
+
+        public void SetPlaying()
+        {
+            state.currentState = GameStateEnum.PLAYING;
+        }
+
 
         public void SetShop()
         {
@@ -542,18 +589,37 @@ namespace HackedDesign
             state.currentState = GameStateEnum.GAMEOVERSTARVED;
         }
 
+        public void StealLoaf()
+        {
+            loafCutscene.SetActive(false);
+            loafCutscene2.SetActive(true);
+
+            Logger.Log(name, "steal loaf");
+        }
+
+        public void StealSuzie()
+        {
+            suzieCutscene.SetActive(false);
+            suzieCutscene2.SetActive(true);
+            Logger.Log(name, "steal suzie");
+        }
+
+        public void GooseLeeLeave()
+        {
+            gooseleeCutscene.SetActive(false);
+            crowCutscene.SetActive(false);
+            suzieCutscene.SetActive(false);
+            suzieCutscene2.SetActive(false);
+
+            loafCutscene.SetActive(false);
+            loafCutscene2.SetActive(false);
+            suzieCutscene2.SetActive(false);
+            Logger.Log(name, "steal away");
+        }
+
         public void Quit()
         {
             Application.Quit();
         }
-
-        /*
-        void UpdatePlayerInput()
-        {
-            //player.UpdatePlayerTurn(inputController);
-            //Update enemy actions
-
-        }*/
     }
-
 }

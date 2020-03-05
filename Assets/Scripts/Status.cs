@@ -25,8 +25,9 @@ namespace HackedDesign
         [SerializeField] public int breadPrice = 1;
 
         //[SerializeField] public int chicksSaved = 1;
-        [SerializeField] private int breadEnergy = 30;
-        [SerializeField] private int chipEnergy = 50;
+        [SerializeField] public int breadEnergy = 30;
+        [SerializeField] public int chipEnergy = 50;
+        [SerializeField] public int lettuceHealth = 20;
 
         [SerializeField] private bool quacked = false;
         [SerializeField] private int quackedTurnStart = 0;
@@ -48,13 +49,18 @@ namespace HackedDesign
         public void EatBread()
         {
             energy += breadEnergy;
-            energy = Mathf.Min(energy, 100);
+            energy = Mathf.Min(energy, maxEnergy);
         }
 
         public void EatChip()
         {
             energy += chipEnergy;
-            energy = Mathf.Min(energy, 100);
+            energy = Mathf.Min(energy, maxEnergy);
+        }
+
+        public void EatLettuce()
+        {
+            AddHealth(lettuceHealth);
         }
 
         public void AddHealth(int health)
@@ -63,6 +69,15 @@ namespace HackedDesign
             if (this.health <= 0)
             {
                 dieEvent.Invoke();
+            }
+        }
+
+        public void AddEnergy(int energy)
+        {
+            this.energy = Mathf.Max(Mathf.Min(this.energy + energy, this.maxEnergy), 0);
+            if (this.energy <= 0)
+            {
+                starveEvent.Invoke();
             }
         }
 
