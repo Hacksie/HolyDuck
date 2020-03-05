@@ -51,7 +51,7 @@ namespace HackedDesign
                 }
                 RepaintText();
             }
-            else if (state.currentState != GameStateEnum.PLAYING && gameObject.activeInHierarchy)
+            else if ((state.currentState != GameStateEnum.PLAYING && state.currentState != GameStateEnum.SHOP) && gameObject.activeInHierarchy)
             {
                 Show(false);
             }

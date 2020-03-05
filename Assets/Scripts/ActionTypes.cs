@@ -10,6 +10,9 @@
         Splash,
         Candy,
         Interact,
-        Duck
+        Duck,
+        Submerge,
+        Emerge,
+        Stun
     }
 }

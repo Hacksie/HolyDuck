@@ -6,7 +6,7 @@ namespace HackedDesign
 {
     [RequireComponent(typeof(EnemyController))]
     [RequireComponent(typeof(Status))]
-    public class Croc : MonoBehaviour
+    public class Crab : MonoBehaviour
     {
         private Status status;
         private EnemyController enemyController;

@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 1220254886472151863}
   - component: {fileID: 3206429351108835324}
   - component: {fileID: 2682027921170458795}
+  - component: {fileID: 282869967476885489}
   m_Layer: 8
   m_Name: Rat
   m_TagString: Enemy
@@ -207,12 +208,22 @@ MonoBehaviour:
   energy: 100
   maxEnergy: 100
   minAttack: 0
-  maxAttack: 5
+  maxAttack: 4
   defense: 0
   initiative: 12
-  chicksSaved: 0
+  attackPrice: 10
+  defensePrice: 10
+  initiativePrice: 10
+  applePrice: 10
+  mushroomPrice: 10
+  breadPrice: 1
   breadEnergy: 30
   chipEnergy: 50
+  quacked: 0
+  quackedTurnStart: 0
+  quackedTurnCounter: 1
+  stunned: 0
+  stunnedCounter: 0
   dieEvent:
     m_PersistentCalls:
       m_Calls:
@@ -266,6 +277,7 @@ MonoBehaviour:
   direction: {x: 1, y: 0}
   facingDirection: {x: 1, y: 0}
   inWater: 0
+  visible: 1
   behaviour:
     m_PersistentCalls:
       m_Calls:
@@ -290,5 +302,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5e200b1ef1901041a218156b38192f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &282869967476885489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2276539943144916660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697bb3da7aa349c47886c16174a69dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

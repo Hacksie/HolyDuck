@@ -12,6 +12,12 @@ GameObject:
   - component: {fileID: 7209201445033344656}
   - component: {fileID: 7209201445033344657}
   - component: {fileID: 7209201445033344658}
+  - component: {fileID: 6833383020367646496}
+  - component: {fileID: 3533031851128480560}
+  - component: {fileID: 8795893273482810418}
+  - component: {fileID: 7605446979256554786}
+  - component: {fileID: 2803960337550138661}
+  - component: {fileID: 1959041663191705623}
   m_Layer: 8
   m_Name: Crab
   m_TagString: Enemy
@@ -48,12 +54,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1792
   spawnLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   canWater: 1
-  canGround: 1
+  canGround: 0
   distance: 1
 --- !u!61 &7209201445033344657
 BoxCollider2D:
@@ -102,6 +108,146 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6833383020367646496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7209201445033344652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd0297601de3dd44cb57158a7afd7327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: Crab
+  health: 5
+  maxHealth: 5
+  reqEnergy: 0
+  energy: 100
+  maxEnergy: 100
+  minAttack: 0
+  maxAttack: 4
+  defense: 2
+  initiative: 15
+  attackPrice: 10
+  defensePrice: 10
+  initiativePrice: 10
+  applePrice: 10
+  mushroomPrice: 10
+  breadPrice: 1
+  breadEnergy: 30
+  chipEnergy: 50
+  quacked: 0
+  quackedTurnStart: 0
+  quackedTurnCounter: 1
+  stunned: 0
+  stunnedCounter: 0
+  dieEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3533031851128480560}
+        m_MethodName: Kill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  starveEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3533031851128480560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7209201445033344652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e428ee7aefa6eb4db18185e75218563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 7209201445214097936}
+  leftWater: {fileID: -7359399820343061856, guid: e6b9063678f80594d8299c9c28ed36a8,
+    type: 3}
+  leftGround: {fileID: 6974422865258724276, guid: e6b9063678f80594d8299c9c28ed36a8,
+    type: 3}
+  rightWater: {fileID: 8084778271782464010, guid: e6b9063678f80594d8299c9c28ed36a8,
+    type: 3}
+  rightGround: {fileID: 2379900100023060675, guid: e6b9063678f80594d8299c9c28ed36a8,
+    type: 3}
+  direction: {x: 1, y: 0}
+  facingDirection: {x: 1, y: 0}
+  inWater: 1
+  visible: 1
+  behaviour:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8795893273482810418}
+        m_MethodName: Behaviour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8795893273482810418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7209201445033344652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d5b9a713a960043b9cc17a0d6e5e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7605446979256554786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7209201445033344652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee3881ccdefcf749a70cef86d31b173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 1
+--- !u!114 &2803960337550138661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7209201445033344652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de333b6b4ba4354da64f4cf725ef813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1959041663191705623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7209201445033344652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697bb3da7aa349c47886c16174a69dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7209201445214097938
 GameObject:
   m_ObjectHideFlags: 0

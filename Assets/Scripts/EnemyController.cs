@@ -22,6 +22,7 @@ namespace HackedDesign
         [SerializeField] private Vector2 direction = Vector2.right;
         [SerializeField] private Vector2 facingDirection = Vector2.right;
         [SerializeField] private bool inWater = true;
+        [SerializeField] private bool visible = true;
 
         [SerializeField] private UnityEvent behaviour;
 
@@ -77,24 +78,20 @@ namespace HackedDesign
                 dir.y = Mathf.RoundToInt(dir.y);
             }
 
-            //dir.x = Mathf.RoundToInt(dir.x);
-            //dir.y = Mathf.RoundToInt(dir.y);
-
-            //if(Mathf.Abs(dir.x) == Mathf.Abs(dir.y)) // If both directions have a magnitude of 1, kill off one randomly
-            //{
-
-            //    if(Random.Range(0,2)==0)
-            //    {
-            //        dir.x = 0;  
-            //    }
-            //    else
-            //    {
-            //        dir.y = 0;
-            //    }              
-            //}
 
             return dir;
         }
+
+        public void SetVisible(bool flag)
+        {
+            renderer.enabled = flag;
+        }
+
+        public bool IsVisible()
+        {
+            return renderer.enabled;
+        }
+
         public float DistanceToPlayer()
         {
             return DirectionToPlayer().magnitude;
@@ -112,7 +109,23 @@ namespace HackedDesign
             }
             UpdateSprite();
 
-            behaviour.Invoke();
+            if (status.stunned)
+            {
+                CoreGame.instance.AddActionMessage(status.character + " is stunned!");
+                status.stunnedCounter--;
+
+                if (status.stunnedCounter <= 0)
+                {
+                    CoreGame.instance.AddActionMessage(status.character + " will recover next turn!");
+                    status.stunned = false;
+                }
+                
+            }
+            else
+            {
+
+                behaviour.Invoke();
+            }
         }
 
         public void UpdateSprite()
@@ -173,6 +186,37 @@ namespace HackedDesign
                 direction = RoundedDirectionToPlayer(),
                 target = gameObject,
                 damage = RollDamage(),
+                enemy = true,
+                initiative = status.initiative,
+                player = false
+            });
+        }
+
+        public void SubmergeEvent()
+        {
+            turnManager.QueueAction(new Action()
+            {
+                action = ActionTypes.Submerge,
+                source = gameObject,
+                sourceName = status.character,
+                direction = RoundedDirectionToPlayer(),
+                target = gameObject,
+                damage = 0,
+                enemy = true,
+                initiative = status.initiative,
+                player = false
+            });
+        }
+        public void EmergeEvent()
+        {
+            turnManager.QueueAction(new Action()
+            {
+                action = ActionTypes.Emerge,
+                source = gameObject,
+                sourceName = status.character,
+                direction = RoundedDirectionToPlayer(),
+                target = gameObject,
+                damage = 0,
                 enemy = true,
                 initiative = status.initiative,
                 player = false

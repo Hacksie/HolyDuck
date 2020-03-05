@@ -20,6 +20,8 @@ namespace HackedDesign
         [SerializeField] public int snakesCount = 20;
         [SerializeField] public int ratsCount = 20;
         [SerializeField] public int hawkCount = 5;
+        [SerializeField] public int crocsCount = 10;
+        [SerializeField] public int crabsCount = 20;
         [SerializeField] public int enemyRadius = 10;
 
 

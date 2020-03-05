@@ -61,7 +61,7 @@ namespace HackedDesign
                             }
                             else
                             {
-                                CoreGame.instance.AddActionMessage(action.source.name + " failed to move");
+                                CoreGame.instance.AddActionMessage(action.sourceName + " can't move");
                             }
 
                             break;
@@ -73,7 +73,7 @@ namespace HackedDesign
                             }
                             else
                             {
-                                CoreGame.instance.AddActionMessage(action.source.name + " failed to interact with " + action.target.name);
+                                CoreGame.instance.AddActionMessage(action.sourceName + " can't interact with " + action.target.name);
                             }
                             break;
                         case ActionTypes.Bite:
@@ -84,7 +84,7 @@ namespace HackedDesign
                             }
                             else
                             {
-                                CoreGame.instance.AddActionMessage(action.source.name + " failed to bite " + action.target.name);
+                                CoreGame.instance.AddActionMessage(action.sourceName + " can't bite " + action.target.name);
                             }
                             break;
                         case ActionTypes.Apple:
@@ -95,7 +95,40 @@ namespace HackedDesign
                             }
                             else
                             {
-                                CoreGame.instance.AddActionMessage(action.source.name + " failed eat an apple");
+                                CoreGame.instance.AddActionMessage(action.sourceName + " can't eat an apple");
+                            }
+                            break;
+                        case ActionTypes.Submerge:
+                            var submerge = action.target.GetComponent<SubmergeActionHandler>();
+                            if(submerge != null)
+                            {
+                                submerge.Handle(action);
+                            }
+                            else
+                            {
+                                CoreGame.instance.AddActionMessage(action.sourceName + " can't submerge");
+                            }
+                            break;
+                        case ActionTypes.Emerge:
+                            var emerge = action.target.GetComponent<SubmergeActionHandler>();
+                            if (emerge != null)
+                            {
+                                emerge.Handle(action);
+                            }
+                            else
+                            {
+                                CoreGame.instance.AddActionMessage(action.sourceName + " can't emerge");
+                            }
+                            break;
+                        case ActionTypes.Quack:
+                            var quack = action.target.GetComponent<QuackActionHandler>();
+                            if (quack != null)
+                            {
+                                quack.Handle(action);
+                            }
+                            else
+                            {
+                                CoreGame.instance.AddActionMessage(action.sourceName + " can't quack that!");
                             }
                             break;
                         default:

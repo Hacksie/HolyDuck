@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 8245281676549711430}
   - component: {fileID: 526149355464139989}
   - component: {fileID: 2352056822347730257}
+  - component: {fileID: 8628724071521324263}
   m_Layer: 10
   m_Name: Suzie Quacktro
   m_TagString: NPC
@@ -152,9 +153,20 @@ MonoBehaviour:
   maxAttack: 5
   defense: 1
   initiative: 10
+  attackPrice: 10
+  defensePrice: 10
+  initiativePrice: 10
+  applePrice: 10
+  mushroomPrice: 10
+  breadPrice: 1
   chicksSaved: 1
   breadEnergy: 30
   chipEnergy: 50
+  quacked: 0
+  quackedTurnStart: 0
+  quackedTurnCounter: 1
+  stunned: 0
+  stunnedTurnStart: 0
   dieEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -224,3 +236,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &8628724071521324263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8119183450205799882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697bb3da7aa349c47886c16174a69dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

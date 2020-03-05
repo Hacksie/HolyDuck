@@ -45,25 +45,9 @@ namespace HackedDesign
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""bite"",
-                    ""type"": ""Button"",
-                    ""id"": ""f6514716-3b29-420f-88de-760a4b01d254"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""splash"",
                     ""type"": ""Button"",
                     ""id"": ""ba5c6e7a-c8c9-40fe-8f39-5e8d194c4778"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""candy"",
-                    ""type"": ""Button"",
-                    ""id"": ""1fe25ff5-b768-4781-86cc-5ee707ad268d"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -77,17 +61,57 @@ namespace HackedDesign
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""duck"",
+                    ""name"": ""menu"",
                     ""type"": ""Button"",
-                    ""id"": ""c418bdc2-78b4-47ab-9a69-9801b15b7b63"",
+                    ""id"": ""629cff92-ccf2-47d7-9169-6538a381f0f7"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""menu"",
+                    ""name"": ""one"",
                     ""type"": ""Button"",
-                    ""id"": ""629cff92-ccf2-47d7-9169-6538a381f0f7"",
+                    ""id"": ""fa87287d-a842-4b5c-b539-fcde6a9d1fa9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""two"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ed6d77b-dc57-4ab6-8eb3-d082cda78070"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""three"",
+                    ""type"": ""Button"",
+                    ""id"": ""fe28bf97-eb32-4f92-a9b9-aee229e8aa17"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""four"",
+                    ""type"": ""Button"",
+                    ""id"": ""05d0ae13-7f68-4a41-bb18-f8b710d5e0f0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""five"",
+                    ""type"": ""Button"",
+                    ""id"": ""981734ca-158b-4df5-b4c0-de81370a633f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""six"",
+                    ""type"": ""Button"",
+                    ""id"": ""1f261bdc-3949-4672-9d50-37ed994bedea"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -173,34 +197,12 @@ namespace HackedDesign
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7a507011-92c0-4099-ad2f-093739cfb224"",
-                    ""path"": ""<Keyboard>/b"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""bite"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""5e1f3cc1-a1ae-4534-a912-b8361af1f137"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""splash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""190882b4-ac9b-4373-80be-04ac62a73fe0"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""candy"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -217,23 +219,78 @@ namespace HackedDesign
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7ad4f8d2-2e4e-4366-a07e-97949bc3ccd3"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""duck"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""df8570ca-7e82-4f8f-9188-c27c85a28e2c"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a38a8c2f-da91-4ed3-b23e-225afb0ee719"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""one"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d007558-4356-4c8f-9b97-b19803fcc9bd"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a41d33f7-4066-4042-b11b-a8b4fdea01f9"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1b5ec69-3ec1-4078-acf9-c74ac85c0463"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""four"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c2732d2-a00c-49b8-99db-b714d0124534"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""five"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3bc0165-22c1-4f01-9808-e32893225e15"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""six"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -247,12 +304,15 @@ namespace HackedDesign
             m_player_move = m_player.FindAction("move", throwIfNotFound: true);
             m_player_apple = m_player.FindAction("apple", throwIfNotFound: true);
             m_player_quack = m_player.FindAction("quack", throwIfNotFound: true);
-            m_player_bite = m_player.FindAction("bite", throwIfNotFound: true);
             m_player_splash = m_player.FindAction("splash", throwIfNotFound: true);
-            m_player_candy = m_player.FindAction("candy", throwIfNotFound: true);
             m_player_interact = m_player.FindAction("interact", throwIfNotFound: true);
-            m_player_duck = m_player.FindAction("duck", throwIfNotFound: true);
             m_player_menu = m_player.FindAction("menu", throwIfNotFound: true);
+            m_player_one = m_player.FindAction("one", throwIfNotFound: true);
+            m_player_two = m_player.FindAction("two", throwIfNotFound: true);
+            m_player_three = m_player.FindAction("three", throwIfNotFound: true);
+            m_player_four = m_player.FindAction("four", throwIfNotFound: true);
+            m_player_five = m_player.FindAction("five", throwIfNotFound: true);
+            m_player_six = m_player.FindAction("six", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -305,12 +365,15 @@ namespace HackedDesign
         private readonly InputAction m_player_move;
         private readonly InputAction m_player_apple;
         private readonly InputAction m_player_quack;
-        private readonly InputAction m_player_bite;
         private readonly InputAction m_player_splash;
-        private readonly InputAction m_player_candy;
         private readonly InputAction m_player_interact;
-        private readonly InputAction m_player_duck;
         private readonly InputAction m_player_menu;
+        private readonly InputAction m_player_one;
+        private readonly InputAction m_player_two;
+        private readonly InputAction m_player_three;
+        private readonly InputAction m_player_four;
+        private readonly InputAction m_player_five;
+        private readonly InputAction m_player_six;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
@@ -318,12 +381,15 @@ namespace HackedDesign
             public InputAction @move => m_Wrapper.m_player_move;
             public InputAction @apple => m_Wrapper.m_player_apple;
             public InputAction @quack => m_Wrapper.m_player_quack;
-            public InputAction @bite => m_Wrapper.m_player_bite;
             public InputAction @splash => m_Wrapper.m_player_splash;
-            public InputAction @candy => m_Wrapper.m_player_candy;
             public InputAction @interact => m_Wrapper.m_player_interact;
-            public InputAction @duck => m_Wrapper.m_player_duck;
             public InputAction @menu => m_Wrapper.m_player_menu;
+            public InputAction @one => m_Wrapper.m_player_one;
+            public InputAction @two => m_Wrapper.m_player_two;
+            public InputAction @three => m_Wrapper.m_player_three;
+            public InputAction @four => m_Wrapper.m_player_four;
+            public InputAction @five => m_Wrapper.m_player_five;
+            public InputAction @six => m_Wrapper.m_player_six;
             public InputActionMap Get() { return m_Wrapper.m_player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -342,24 +408,33 @@ namespace HackedDesign
                     @quack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuack;
                     @quack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuack;
                     @quack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuack;
-                    @bite.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBite;
-                    @bite.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBite;
-                    @bite.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBite;
                     @splash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSplash;
                     @splash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSplash;
                     @splash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSplash;
-                    @candy.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCandy;
-                    @candy.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCandy;
-                    @candy.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCandy;
                     @interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                     @interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                     @interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                    @duck.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDuck;
-                    @duck.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDuck;
-                    @duck.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDuck;
                     @menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                     @menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                     @menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                    @one.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOne;
+                    @one.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOne;
+                    @one.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOne;
+                    @two.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTwo;
+                    @two.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTwo;
+                    @two.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTwo;
+                    @three.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThree;
+                    @three.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThree;
+                    @three.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThree;
+                    @four.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFour;
+                    @four.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFour;
+                    @four.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFour;
+                    @five.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFive;
+                    @five.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFive;
+                    @five.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFive;
+                    @six.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSix;
+                    @six.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSix;
+                    @six.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSix;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -373,24 +448,33 @@ namespace HackedDesign
                     @quack.started += instance.OnQuack;
                     @quack.performed += instance.OnQuack;
                     @quack.canceled += instance.OnQuack;
-                    @bite.started += instance.OnBite;
-                    @bite.performed += instance.OnBite;
-                    @bite.canceled += instance.OnBite;
                     @splash.started += instance.OnSplash;
                     @splash.performed += instance.OnSplash;
                     @splash.canceled += instance.OnSplash;
-                    @candy.started += instance.OnCandy;
-                    @candy.performed += instance.OnCandy;
-                    @candy.canceled += instance.OnCandy;
                     @interact.started += instance.OnInteract;
                     @interact.performed += instance.OnInteract;
                     @interact.canceled += instance.OnInteract;
-                    @duck.started += instance.OnDuck;
-                    @duck.performed += instance.OnDuck;
-                    @duck.canceled += instance.OnDuck;
                     @menu.started += instance.OnMenu;
                     @menu.performed += instance.OnMenu;
                     @menu.canceled += instance.OnMenu;
+                    @one.started += instance.OnOne;
+                    @one.performed += instance.OnOne;
+                    @one.canceled += instance.OnOne;
+                    @two.started += instance.OnTwo;
+                    @two.performed += instance.OnTwo;
+                    @two.canceled += instance.OnTwo;
+                    @three.started += instance.OnThree;
+                    @three.performed += instance.OnThree;
+                    @three.canceled += instance.OnThree;
+                    @four.started += instance.OnFour;
+                    @four.performed += instance.OnFour;
+                    @four.canceled += instance.OnFour;
+                    @five.started += instance.OnFive;
+                    @five.performed += instance.OnFive;
+                    @five.canceled += instance.OnFive;
+                    @six.started += instance.OnSix;
+                    @six.performed += instance.OnSix;
+                    @six.canceled += instance.OnSix;
                 }
             }
         }
@@ -400,12 +484,15 @@ namespace HackedDesign
             void OnMove(InputAction.CallbackContext context);
             void OnApple(InputAction.CallbackContext context);
             void OnQuack(InputAction.CallbackContext context);
-            void OnBite(InputAction.CallbackContext context);
             void OnSplash(InputAction.CallbackContext context);
-            void OnCandy(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
-            void OnDuck(InputAction.CallbackContext context);
             void OnMenu(InputAction.CallbackContext context);
+            void OnOne(InputAction.CallbackContext context);
+            void OnTwo(InputAction.CallbackContext context);
+            void OnThree(InputAction.CallbackContext context);
+            void OnFour(InputAction.CallbackContext context);
+            void OnFive(InputAction.CallbackContext context);
+            void OnSix(InputAction.CallbackContext context);
         }
     }
 }

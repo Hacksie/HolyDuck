@@ -17,10 +17,24 @@ namespace HackedDesign
         [SerializeField] public int maxAttack = 5;
         [SerializeField] public int defense = 1;
         [SerializeField] public int initiative = 10;
+        [SerializeField] public int attackPrice = 10;
+        [SerializeField] public int defensePrice = 10;
+        [SerializeField] public int initiativePrice = 10;
+        [SerializeField] public int applePrice = 10;
+        [SerializeField] public int mushroomPrice = 10;
+        [SerializeField] public int breadPrice = 1;
 
-        [SerializeField] public int chicksSaved = 1;
+        //[SerializeField] public int chicksSaved = 1;
         [SerializeField] private int breadEnergy = 30;
         [SerializeField] private int chipEnergy = 50;
+
+        [SerializeField] private bool quacked = false;
+        [SerializeField] private int quackedTurnStart = 0;
+        [SerializeField] private int quackedTurnCounter = 1;
+
+        [SerializeField] public bool stunned = false;
+        [SerializeField] public int stunnedCounter = 0;
+        
 
         [SerializeField] public UnityEvent dieEvent;
         [SerializeField] public UnityEvent starveEvent;
@@ -58,7 +72,7 @@ namespace HackedDesign
             {
                 this.energy -= energy;
                 if (this.energy <= 0)
-                {
+                { 
                     starveEvent.Invoke();
                 }
             }

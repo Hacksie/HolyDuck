@@ -72,7 +72,7 @@ namespace HackedDesign
 
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance, colliderLayerMask);
 
-                    if(hit.collider != null)
+                    if (hit.collider != null)
                     {
                         var npc = hit.collider.GetComponent<NPCController>();
                         if (npc != null)
@@ -82,7 +82,7 @@ namespace HackedDesign
                                 target = npc.gameObject,
                                 source = gameObject,
                                 sourceName = status.character,
-                                initiative = 10,
+                                initiative = status.initiative,
                                 player = true,
                                 enemy = false,
                                 action = ActionTypes.Interact,
@@ -93,14 +93,14 @@ namespace HackedDesign
                         }
 
                         var enemy = hit.collider.GetComponent<EnemyController>();
-                        if(enemy != null)
+                        if (enemy != null)
                         {
                             turnManager.QueueAction(new Action()
                             {
                                 target = enemy.gameObject,
                                 source = gameObject,
                                 sourceName = status.character,
-                                initiative = 10,
+                                initiative = status.initiative,
                                 player = true,
                                 enemy = false,
                                 action = ActionTypes.Bite,
@@ -124,6 +124,71 @@ namespace HackedDesign
                         action = ActionTypes.Move,
                         direction = direction
                     });
+                }
+            }
+        }
+
+        public void QuackEvent(InputAction.CallbackContext context)
+        {
+            if (state.currentState == GameStateEnum.PLAYING) // We only care about making turns if we're playing
+            {
+                if (context.phase == InputActionPhase.Performed)
+                {
+                    Logger.Log(name, "quack event");
+
+
+
+
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance, colliderLayerMask);
+
+                    if (hit.collider != null)
+                    {
+                        var enemy = hit.collider.GetComponent<EnemyController>();
+                        if (enemy != null)
+                        {
+                            turnManager.QueueAction(new Action()
+                            {
+                                target = enemy.gameObject,
+                                source = gameObject,
+                                sourceName = status.character,
+                                initiative = status.initiative,
+                                player = true,
+                                enemy = false,
+                                action = ActionTypes.Quack,
+                                direction = direction,
+                                damage = 0
+                            });
+
+
+                            return;
+                        }
+
+                        var npc = hit.collider.GetComponent<NPCController>();
+                        if (npc != null)
+                        {
+                            turnManager.QueueAction(new Action()
+                            {
+                                target = npc.gameObject,
+                                source = gameObject,
+                                sourceName = status.character,
+                                initiative = status.initiative,
+                                player = true,
+                                enemy = false,
+                                action = ActionTypes.Quack,
+                                direction = direction,
+                                damage = 0
+                            });
+                            return;
+                        }
+
+
+                        CoreGame.instance.AddActionMessage(status.character + " has nothing to quack!");
+
+                    }
+                    else
+                    {
+                        CoreGame.instance.AddActionMessage(status.character + " has nothing to quack!");
+                    }
                 }
             }
         }
@@ -164,16 +229,6 @@ namespace HackedDesign
                     });
                 }
             }
-        }
-
-        public void CandyEvent(InputAction.CallbackContext context)
-        {
-
-        }
-
-        public void QuackEvent(InputAction.CallbackContext context)
-        {
-
         }
 
         public void BiteEvent(InputAction.CallbackContext context)
@@ -224,4 +279,3 @@ namespace HackedDesign
         }
     }
 }
- 

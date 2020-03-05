@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7089138872036827344}
   - component: {fileID: 6939816440395835070}
   - component: {fileID: 7030322499403719383}
+  - component: {fileID: 9109276276175995439}
   m_Layer: 10
   m_Name: Turtle
   m_TagString: NPC
@@ -82,9 +83,19 @@ MonoBehaviour:
   maxAttack: 5
   defense: 1
   initiative: 10
-  chicksSaved: 1
+  attackPrice: 10
+  defensePrice: 10
+  initiativePrice: 10
+  applePrice: 10
+  mushroomPrice: 10
+  breadPrice: 1
   breadEnergy: 30
   chipEnergy: 50
+  quacked: 0
+  quackedTurnStart: 0
+  quackedTurnCounter: 1
+  stunned: 0
+  stunnedCounter: 0
   dieEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -115,6 +126,18 @@ MonoBehaviour:
   direction: {x: 1, y: 0}
   facingDirection: {x: 1, y: 0}
   inWater: 1
+--- !u!114 &9109276276175995439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7089138872036827349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697bb3da7aa349c47886c16174a69dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7089138872904942656
 GameObject:
   m_ObjectHideFlags: 0

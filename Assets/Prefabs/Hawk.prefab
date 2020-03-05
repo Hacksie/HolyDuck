@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4483811956797253676}
   - component: {fileID: 1156835176190037858}
   - component: {fileID: 962960746666132154}
+  - component: {fileID: 2673840290733791251}
   m_Layer: 8
   m_Name: Hawk
   m_TagString: Enemy
@@ -51,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1792
   spawnLayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -118,15 +119,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: Hawk
-  health: 100
-  maxHealth: 100
+  health: 5
+  maxHealth: 5
   reqEnergy: 0
   energy: 100
   maxEnergy: 100
   minAttack: 0
   maxAttack: 10
-  defense: 4
+  defense: 3
   initiative: 10
+  attackPrice: 10
+  defensePrice: 10
+  initiativePrice: 10
+  applePrice: 10
+  mushroomPrice: 10
+  breadPrice: 1
   chicksSaved: 1
   breadEnergy: 30
   chipEnergy: 50
@@ -171,6 +178,7 @@ MonoBehaviour:
   direction: {x: 1, y: 0}
   facingDirection: {x: 1, y: 0}
   inWater: 1
+  visible: 1
   behaviour:
     m_PersistentCalls:
       m_Calls:
@@ -195,6 +203,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 392a1ebd06a42bf43beb27352551ae6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2673840290733791251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3406940141355057945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de333b6b4ba4354da64f4cf725ef813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3406940141738050200

@@ -17,14 +17,14 @@ namespace HackedDesign
 
         public void Behaviour()
         {
-            if (enemyController.DistanceToPlayer() <= 1)
-            {
-                enemyController.BiteEvent();
-            }
-            else
-            {
+            //if (enemyController.DistanceToPlayer() <= 1)
+            //{
+            //    //enemyController.BiteEvent();
+            //}
+            //else
+            //{
                 enemyController.MoveTowardPlayerEvent();
-            }
+            //}
         }
     }
 }

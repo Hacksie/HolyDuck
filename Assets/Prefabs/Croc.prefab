@@ -15,6 +15,9 @@ GameObject:
   - component: {fileID: 241457782418721382}
   - component: {fileID: 5545209817379618823}
   - component: {fileID: 4146535570798829287}
+  - component: {fileID: 5180732979382691493}
+  - component: {fileID: 5484781421735622277}
+  - component: {fileID: 464213696833612541}
   m_Layer: 8
   m_Name: Croc
   m_TagString: Enemy
@@ -126,10 +129,20 @@ MonoBehaviour:
   minAttack: 0
   maxAttack: 10
   defense: 3
-  initiative: 10
-  chicksSaved: 1
+  initiative: 8
+  attackPrice: 10
+  defensePrice: 10
+  initiativePrice: 10
+  applePrice: 10
+  mushroomPrice: 10
+  breadPrice: 1
   breadEnergy: 30
   chipEnergy: 50
+  quacked: 0
+  quackedTurnStart: 0
+  quackedTurnCounter: 1
+  stunned: 0
+  stunnedCounter: 0
   dieEvent:
     m_PersistentCalls:
       m_Calls:
@@ -171,6 +184,7 @@ MonoBehaviour:
   direction: {x: 1, y: 0}
   facingDirection: {x: 1, y: 0}
   inWater: 1
+  visible: 1
   behaviour:
     m_PersistentCalls:
       m_Calls:
@@ -195,6 +209,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccec354d1c141524daa64e58c53d1bb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5180732979382691493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7472987911219556692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de333b6b4ba4354da64f4cf725ef813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5484781421735622277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7472987911219556692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee3881ccdefcf749a70cef86d31b173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 1
+--- !u!114 &464213696833612541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7472987911219556692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697bb3da7aa349c47886c16174a69dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7472987911339697621

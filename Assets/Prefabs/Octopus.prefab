@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 4967798790889513846}
   - component: {fileID: 600546237127209139}
   - component: {fileID: 4166970118724981198}
+  - component: {fileID: -4436350557913608528}
   m_Layer: 8
   m_Name: Octopus
   m_TagString: Enemy
@@ -209,9 +210,19 @@ MonoBehaviour:
   maxAttack: 7
   defense: 2
   initiative: 10
-  chicksSaved: 1
+  attackPrice: 10
+  defensePrice: 10
+  initiativePrice: 10
+  applePrice: 10
+  mushroomPrice: 10
+  breadPrice: 1
   breadEnergy: 30
   chipEnergy: 50
+  quacked: 0
+  quackedTurnStart: 0
+  quackedTurnCounter: 1
+  stunned: 0
+  stunnedCounter: 0
   dieEvent:
     m_PersistentCalls:
       m_Calls:
@@ -253,6 +264,7 @@ MonoBehaviour:
   direction: {x: 1, y: 0}
   facingDirection: {x: 1, y: 0}
   inWater: 1
+  visible: 1
   behaviour:
     m_PersistentCalls:
       m_Calls:
@@ -277,5 +289,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a837ebc52f57d7548b447a508edcff55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4436350557913608528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8548866837629140954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697bb3da7aa349c47886c16174a69dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

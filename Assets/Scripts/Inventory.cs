@@ -8,6 +8,8 @@ namespace HackedDesign
     public class Inventory : MonoBehaviour
     {
         public Dictionary<string, int> inventory = new Dictionary<string, int>();
+        public Dictionary<string, int> collection = new Dictionary<string, int>();
+        public Dictionary<string, int> consumedCollection = new Dictionary<string, int>();
 
         private Status status;
         // Start is called before the first frame update
@@ -31,6 +33,7 @@ namespace HackedDesign
             if(ItemCount(item) >= count)
             {
                 inventory[item] -= count;
+                consumedCollection[item] += count;
                 return true;
             }
 
@@ -60,10 +63,13 @@ namespace HackedDesign
             if (inventory.ContainsKey(itemType))
             {
                 inventory[itemType] += count;
+                collection[itemType] += count;
             }
             else
             {
                 inventory.Add(itemType, count);
+                collection.Add(itemType, count);
+                consumedCollection.Add(itemType, 0);
             }
 
         }

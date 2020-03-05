@@ -25,7 +25,7 @@ namespace HackedDesign
 
         public void Repaint()
         {
-            if (state.currentState == GameStateEnum.PLAYING)
+            if (state.currentState == GameStateEnum.PLAYING || state.currentState == GameStateEnum.SHOP)
             {
                 if (!gameObject.activeInHierarchy)
                 {
@@ -34,7 +34,7 @@ namespace HackedDesign
 
                 RepaintText();
             }
-            else if (state.currentState != GameStateEnum.PLAYING && gameObject.activeInHierarchy)
+            else if ((state.currentState != GameStateEnum.PLAYING && state.currentState != GameStateEnum.SHOP) && gameObject.activeInHierarchy)
             {
                 Show(false);
             }

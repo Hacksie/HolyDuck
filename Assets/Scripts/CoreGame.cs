@@ -44,6 +44,7 @@ namespace HackedDesign
         [SerializeField] private StatusPresenter statusPresenter = null;
         [SerializeField] private TurnPresenter turnPresenter = null;
         [SerializeField] private GameOverStarvePresenter gameOverStarvePresenter = null;
+        [SerializeField] private GameOverDeadPresenter gameOverDeadPresenter = null;
         [SerializeField] private DifficultyPresenter difficultyPresenter = null;
         [SerializeField] private ShopPresenter shopPresenter = null;
 
@@ -58,6 +59,8 @@ namespace HackedDesign
         [SerializeField] private GameObject snakePrefab = null;
         [SerializeField] private GameObject ratPrefab = null;
         [SerializeField] private GameObject hawkPrefab = null;
+        [SerializeField] private GameObject crocPrefab = null;
+        [SerializeField] private GameObject crabPrefab = null;
 
         [Header("Game Settings")]
         
@@ -117,12 +120,15 @@ namespace HackedDesign
             if (breadPrefab == null) Logger.LogError(name, "breadPrefab is null");
             if (chipPrefab == null) Logger.LogError(name, "chipPrefab is null");
             if (gameOverStarvePresenter == null) Logger.LogError(name, "gameOverStarvePresenter is null");
+            if (gameOverDeadPresenter == null) Logger.LogError(name, "gameOverDeadPresenter is null");
             if (difficultyPresenter == null) Logger.LogError(name, "difficultyPresenter is null");
             if (shopPresenter == null) Logger.LogError(name, "shopPresenter is null");
             if (mummaPrefab == null) Logger.LogError(name, "mummaPrefab is null");
             if (snakePrefab == null) Logger.LogError(name, "snakePrefab is null");
             if (ratPrefab == null) Logger.LogError(name, "ratPrefab is null");
             if (hawkPrefab == null) Logger.LogError(name, "hawkPrefab is null");
+            if (crocPrefab == null) Logger.LogError(name, "crocPrefab is null");
+            if (crabPrefab == null) Logger.LogError(name, "crabPrefab is null");
         }
 
 
@@ -138,6 +144,7 @@ namespace HackedDesign
             statusPresenter.Initialize(state);
             turnPresenter.Initialize(state);
             gameOverStarvePresenter.Initialize(state);
+            gameOverDeadPresenter.Initialize(state);
             difficultyPresenter.Initialize(state);
             shopPresenter.Initialize(state);
             SetMenu();
@@ -172,8 +179,11 @@ namespace HackedDesign
             SpawnSnakes();
             SpawnRats();
             SpawnHawks();
+            SpawnCrocs();
+            SpawnCrabs();
 
-            //player.transform.position = levelRenderer.LevelToWorldCoords(new Vector2Int((state.level.width - 1) / 2, (state.level.height - 1) / 2), state.level) + new Vector2(-2, -1);
+            state.playerInventory.PickupItem("Chick", 30);
+            state.playerInventory.PickupItem("Egg", 21);
         }
 
         private void InitializeSpawns()
@@ -273,6 +283,50 @@ namespace HackedDesign
             foreach (var s in hawkSpawns)
             {
                 var go = Instantiate(hawkPrefab, s.transform.position, Quaternion.identity, npcsParent);
+                var enemy = go.GetComponent<EnemyController>();
+
+                if (enemy != null)
+                {
+                    enemy.Initialize(turnManager, state, player.transform);
+                    state.enemies.Add(enemy);
+                }
+                else
+                {
+                    Logger.LogError(name, "Enemy without enemyController");
+                }
+                state.spawns.Remove(s);
+            }
+        }
+
+        private void SpawnCrocs()
+        {
+            var crocSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Water).ToList().PickRandomElements(state.difficulty.crocsCount);
+
+            foreach (var s in crocSpawns)
+            {
+                var go = Instantiate(crocPrefab, s.transform.position, Quaternion.identity, npcsParent);
+                var enemy = go.GetComponent<EnemyController>();
+
+                if (enemy != null)
+                {
+                    enemy.Initialize(turnManager, state, player.transform);
+                    state.enemies.Add(enemy);
+                }
+                else
+                {
+                    Logger.LogError(name, "Enemy without enemyController");
+                }
+                state.spawns.Remove(s);
+            }
+        }
+
+        private void SpawnCrabs()
+        {
+            var crabSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Water).ToList().PickRandomElements(state.difficulty.crabsCount);
+
+            foreach (var s in crabSpawns)
+            {
+                var go = Instantiate(crabPrefab, s.transform.position, Quaternion.identity, npcsParent);
                 var enemy = go.GetComponent<EnemyController>();
 
                 if (enemy != null)
@@ -392,12 +446,6 @@ namespace HackedDesign
                                 enemy.UpdateTurn();
                             }
                         }
-                        /*
-
-                        foreach (var enemy in state.enemies)
-                        {
-                            enemy.UpdateTurn();
-                        }*/
                     }
                     break;
                 case GameStateEnum.MENU:
@@ -431,6 +479,7 @@ namespace HackedDesign
             statusPresenter.Repaint();
             turnPresenter.Repaint();
             gameOverStarvePresenter.Repaint();
+            gameOverDeadPresenter.Repaint();
             difficultyPresenter.Repaint();
             shopPresenter.Repaint();
         }
