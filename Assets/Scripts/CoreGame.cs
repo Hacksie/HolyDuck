@@ -48,6 +48,7 @@ namespace HackedDesign
         [SerializeField] private MenuPresenter menuPresenter = null;
         [SerializeField] private ConsolePresenter consolePresenter = null;
         [SerializeField] private CreditsPresenter creditsPresenter = null;
+        [SerializeField] private HowtoPresenter howtoPresenter = null;
         [SerializeField] private StatusPresenter statusPresenter = null;
         [SerializeField] private TurnPresenter turnPresenter = null;
         [SerializeField] private GameOverStarvePresenter gameOverStarvePresenter = null;
@@ -121,6 +122,7 @@ namespace HackedDesign
             if (menuPresenter == null) Logger.LogError(name, "menuPresenter is null");
             if (consolePresenter == null) Logger.LogError(name, "consolePresenter is null");
             if (creditsPresenter == null) Logger.LogError(name, "creditsPresenter is null");
+            if (howtoPresenter == null) Logger.LogError(name, "howtoPresenter is null");
             if (statusPresenter == null) Logger.LogError(name, "statusPresenter is null");
             if (turnPresenter == null) Logger.LogError(name, "turnPresenter is null");
             if (cutscenePresenter == null) Logger.LogError(name, "cutscenePresenter is null");
@@ -168,6 +170,7 @@ namespace HackedDesign
             difficultyPresenter.Initialize(state);
             shopPresenter.Initialize(state);
             cutscenePresenter.Initialize(state);
+            howtoPresenter.Initialize(state);
             SetMenu();
         }
 
@@ -182,7 +185,6 @@ namespace HackedDesign
             SpawnPlayer(player.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().playerStart));
 
             SpawnCutscene();
-
 
             SpawnNamedEnemy(finalBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().finalBossStart));
             SpawnNamedEnemy(crowBoss.gameObject, state.spawns.FirstOrDefault(s => s.GetComponent<Spawn>().crowBossStart));
@@ -207,8 +209,7 @@ namespace HackedDesign
             SpawnCrocs();
             SpawnCrabs();
 
-            
-
+            state.cutscene = 0;
         }
 
         private void InitializeSpawns()
@@ -536,6 +537,7 @@ namespace HackedDesign
             difficultyPresenter.Repaint();
             shopPresenter.Repaint();
             cutscenePresenter.Repaint();
+            howtoPresenter.Repaint();
         }
 
         public void SetCurrentDifficulty(int difficulty)
@@ -543,9 +545,9 @@ namespace HackedDesign
             state.difficulty = difficulties[difficulty];
         }
 
-        public void SetOptions()
+        public void SetHowto()
         {
-            state.currentState = GameStateEnum.OPTIONS;
+            state.currentState = GameStateEnum.HOWTO;
         }
 
         public void SetCredits()
@@ -572,7 +574,8 @@ namespace HackedDesign
 
         public void ResumeGame()
         {
-            state.currentState = GameStateEnum.PLAYING;
+            state.currentState = state.cutscene < 9 ? GameStateEnum.STARTCUTSCENE : GameStateEnum.PLAYING;
+
         }
         public void StartGame()
         {

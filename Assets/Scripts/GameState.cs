@@ -58,7 +58,7 @@ namespace HackedDesign
     {
         MENU,
         INFO,
-        OPTIONS,
+        HOWTO,
         CREDITS,
         DIFFICULTY,
         STARTCUTSCENE,

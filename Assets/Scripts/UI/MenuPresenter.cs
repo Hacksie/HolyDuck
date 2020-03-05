@@ -49,10 +49,10 @@ namespace HackedDesign
             //CoreGame.instance.StartGame();
         }
 
-        public void OptionsEvent()
+        public void HowtoEvent()
         {
-            Logger.Log(name, "OptionsEvent");
-            CoreGame.instance.SetOptions();
+            Logger.Log(name, "HowtoEvent");
+            CoreGame.instance.SetHowto();
         }
 
         public void CreditsEvent()

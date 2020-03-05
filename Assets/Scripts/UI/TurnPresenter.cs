@@ -45,36 +45,5 @@ namespace HackedDesign
         {
             turnText.text = state.turn.ToString();
         }
-
-        public void StartEvent()
-        {
-            Logger.Log(name, "StartEvent");
-            CoreGame.instance.StartGame();
-        }
-
-        public void OptionsEvent()
-        {
-            Logger.Log(name, "OptionsEvent");
-            CoreGame.instance.SetOptions();
-        }
-
-        public void CreditsEvent()
-        {
-            Logger.Log(name, "CreditsEvent");
-            CoreGame.instance.SetCredits();
-
-        }
-
-        public void QuitEvent()
-        {
-            Logger.Log(name, "Quitting");
-            Application.Quit();
-        }
-
-        public void ResumeEvent()
-        {
-            Logger.Log(name, "ResumeEvent");
-        }
-
     }
 }
