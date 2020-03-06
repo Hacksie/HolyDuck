@@ -178,8 +178,33 @@ namespace HackedDesign
             SetMenu();
         }
 
+        private void Reset()
+        {
+            state.actions.Clear();
+            state.currentState = GameStateEnum.MENU;
+            state.cutscene = 0;
+            state.endcutscene = 0;
+            state.enemies.Clear();
+            state.level = null;
+            state.npcs.Clear();
+            state.playerInventory.Reset();
+            state.playerStatus.Reset();
+            state.spawns.Clear();
+            state.started = false;
+            state.turn = 0;
+            for(int i=0;i < itemsParent.transform.childCount;i++)
+            {
+                Destroy(itemsParent.GetChild(i).gameObject);
+            }
+            for (int j = 0; j < npcsParent.transform.childCount; j++)
+            {
+                Destroy(itemsParent.GetChild(j).gameObject);
+            }
+        }
+
         void InitializeLevel()
         {
+            Reset();
             state.level = levelGenerator.GenerateRandomLevel(state.difficulty.levelWidth, state.difficulty.levelHeight);
             state.level.DebugPrint();
             levelRenderer.Render(state.level, environment);
@@ -214,10 +239,12 @@ namespace HackedDesign
             SpawnCrabs();
 
             state.cutscene = 0;
+            
         }
 
         private void InitializeSpawns()
         {
+            state.spawns = new List<Spawn>();
             state.spawns = GameObject.FindGameObjectsWithTag("Respawn").Select(e => e.GetComponent<Spawn>()).ToList();
         }
 
@@ -584,6 +611,7 @@ namespace HackedDesign
 
         public void SetOver()
         {
+            Reset();
             // Reset stuff in here
             state.started = false;
             state.currentState = GameStateEnum.MENU;

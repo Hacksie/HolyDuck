@@ -18,6 +18,13 @@ namespace HackedDesign
             status = GetComponent<Status>();
         }
 
+        public void Reset()
+        {
+            inventory.Clear();
+            collection.Clear();
+            consumedCollection.Clear();
+        }
+
         public int ItemCount(string item)
         {
             if (inventory.ContainsKey(item))

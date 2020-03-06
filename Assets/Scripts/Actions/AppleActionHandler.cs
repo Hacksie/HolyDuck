@@ -17,6 +17,12 @@ namespace HackedDesign
 
         public void Handle(Action action)
         {
+            if(status.dead)
+            {
+                CoreGame.instance.AddActionMessage(status.character + " is dead");
+                return;
+            }
+
             if(inventory.ConsumeItem("Apple", 1))
             {
                 CoreGame.instance.AddActionMessage(status.character + " eats an apple");

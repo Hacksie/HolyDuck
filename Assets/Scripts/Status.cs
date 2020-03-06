@@ -13,9 +13,13 @@ namespace HackedDesign
         [SerializeField] public bool reqEnergy = false;
         [SerializeField] public int energy = 100;
         [SerializeField] public int maxEnergy = 100;
+        [SerializeField] public int startingMinAttack = 0;
         [SerializeField] public int minAttack = 0;
+        [SerializeField] public int startingMaxAttack = 5;
         [SerializeField] public int maxAttack = 5;
+        [SerializeField] public int startingDefense = 5;
         [SerializeField] public int defense = 1;
+        [SerializeField] public int startingInitiative = 5;
         [SerializeField] public int initiative = 10;
         [SerializeField] public int attackPrice = 10;
         [SerializeField] public int defensePrice = 10;
@@ -43,6 +47,21 @@ namespace HackedDesign
 
         [SerializeField] public UnityEvent dieEvent;
         [SerializeField] public UnityEvent starveEvent;
+
+        public void Reset()
+        {
+            health = maxHealth;
+            energy = maxEnergy;
+            minAttack = 0;
+            maxAttack = startingMaxAttack;
+            defense = startingDefense;
+            initiative = startingInitiative;
+            quacked = false;
+            quackedTurnCounter = 1;
+            stunned = false;
+            dead = false;
+            distractedByShinies = false;
+        }
 
         public void SaveChick()
         {

@@ -11,7 +11,6 @@ namespace HackedDesign
     {
         
         public GameStateEnum currentState;
-        public Vector2 player;
         public Level level;
         public bool started;
         public int turn;
@@ -21,27 +20,11 @@ namespace HackedDesign
         public int cutscene = 0;
         public int endcutscene = 0;
 
-        /*
-        public int health= 100;
-        public int maxHealth = 100;
-        public int energy = 100;
-        public int maxEnergy = 100;
-        public int chicksSaved = 0;
-        public int minAttack = 0;
-        public int maxAttack = 5;
-        public int defense = 1;*/
-
-        public int breadEaten = 0;
-        public int chipsEaten = 0;
-        public int applesEaten = 0;
-        public int mushroomsEaten = 0;
-        public int eggsCollected = 0;
-
         public Difficulty difficulty;
 
         public List<Spawn> spawns;
 
-        public List<Chick> chicks;
+        //public List<Chick> chicks;
 
         public List<string> actions = new List<string>(); // FIXME: Maybe don't use a list for this?
 

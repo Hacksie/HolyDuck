@@ -151,15 +151,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: Goose Lee
-  health: 100
-  maxHealth: 100
+  health: 40
+  maxHealth: 40
   reqEnergy: 0
   energy: 100
   maxEnergy: 100
-  minAttack: 0
-  maxAttack: 5
-  defense: 1
-  initiative: 10
+  startingMinAttack: 1
+  minAttack: 1
+  startingMaxAttack: 9
+  maxAttack: 9
+  startingDefense: 2
+  defense: 2
+  startingInitiative: 5
+  initiative: 5
   attackPrice: 10
   defensePrice: 10
   initiativePrice: 10
@@ -174,6 +178,7 @@ MonoBehaviour:
   quackedTurnCounter: 1
   stunned: 0
   stunnedCounter: 0
+  dead: 0
   distractedByShinies: 0
   dieEvent:
     m_PersistentCalls:

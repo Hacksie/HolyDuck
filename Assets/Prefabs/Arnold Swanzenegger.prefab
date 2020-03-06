@@ -70,9 +70,13 @@ MonoBehaviour:
   reqEnergy: 0
   energy: 100
   maxEnergy: 100
+  startingMinAttack: 1
   minAttack: 1
+  startingMaxAttack: 7
   maxAttack: 7
+  startingDefense: 1
   defense: 1
+  startingInitiative: 13
   initiative: 13
   attackPrice: 10
   defensePrice: 10
@@ -88,6 +92,7 @@ MonoBehaviour:
   quackedTurnCounter: 1
   stunned: 0
   stunnedCounter: 0
+  dead: 0
   distractedByShinies: 0
   dieEvent:
     m_PersistentCalls:

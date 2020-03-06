@@ -37,6 +37,7 @@ namespace HackedDesign
         {
             this.turnManager = turnManager;
             this.state = state;
+            status.Reset();
         }
 
         public void SetInWater(bool flag)
