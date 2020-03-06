@@ -17,6 +17,11 @@ namespace HackedDesign
 
         public void Handle(Action action)
         {
+            if (status.dead)
+            {
+                CoreGame.instance.AddActionMessage(status.character + " is dead");
+                return;
+            }
             CoreGame.instance.AddActionMessage(action.sourceName + " interacts with " + status.character);
             CoreGame.instance.SetShop();
             

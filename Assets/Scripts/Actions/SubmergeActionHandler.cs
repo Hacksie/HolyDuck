@@ -21,8 +21,13 @@ namespace HackedDesign
 
         public void Handle(Action action)
         {
+            if (status.dead)
+            {
+                CoreGame.instance.AddActionMessage(status.character + " is dead");
+                return;
+            }
 
-            if(action.action == ActionTypes.Submerge)
+            if (action.action == ActionTypes.Submerge)
             {
                 if (enemyController.IsVisible())
                 {

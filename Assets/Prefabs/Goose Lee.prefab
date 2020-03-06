@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 5808919297667831266}
   - component: {fileID: 5389724815700581806}
   - component: {fileID: 6461569615040063286}
+  - component: {fileID: 8372824165684479376}
+  - component: {fileID: 350219324470522429}
+  - component: {fileID: 3525285457696594932}
   m_Layer: 8
   m_Name: Goose Lee
   m_TagString: Enemy
@@ -48,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953598d2a8586ea4e9a6623a2757e7fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loaf: {fileID: 0}
 --- !u!50 &1457349499837981337
 Rigidbody2D:
   serializedVersion: 4
@@ -119,10 +123,21 @@ MonoBehaviour:
   direction: {x: 1, y: 0}
   facingDirection: {x: 1, y: 0}
   inWater: 1
-  health: 10
+  visible: 1
   behaviour:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7977478668628972407}
+        m_MethodName: Behaviour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6461569615040063286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,21 +153,101 @@ MonoBehaviour:
   character: Goose Lee
   health: 100
   maxHealth: 100
+  reqEnergy: 0
   energy: 100
   maxEnergy: 100
   minAttack: 0
   maxAttack: 5
   defense: 1
   initiative: 10
-  chicksSaved: 1
+  attackPrice: 10
+  defensePrice: 10
+  initiativePrice: 10
+  applePrice: 10
+  mushroomPrice: 10
+  breadPrice: 1
   breadEnergy: 30
   chipEnergy: 50
+  lettuceHealth: 20
+  quacked: 0
+  quackedTurnStart: 0
+  quackedTurnCounter: 1
+  stunned: 0
+  stunnedCounter: 0
+  distractedByShinies: 0
   dieEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7977478668628972407}
+        m_MethodName: Kill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5389724815700581806}
+        m_MethodName: Kill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   starveEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8372824165684479376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7977478668628972409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a9794e186afdb4f8888421e34a5b4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 1792
+  spawnLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  canWater: 0
+  canGround: 1
+  distance: 1
+--- !u!114 &350219324470522429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7977478668628972409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de333b6b4ba4354da64f4cf725ef813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3525285457696594932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7977478668628972409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697bb3da7aa349c47886c16174a69dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7977478669664602913
 GameObject:
   m_ObjectHideFlags: 0

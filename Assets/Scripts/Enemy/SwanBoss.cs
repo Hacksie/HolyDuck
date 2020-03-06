@@ -8,6 +8,7 @@ namespace HackedDesign
     {
         private Status status;
         private EnemyController enemyController;
+        [SerializeField] GameObject shiny;
         // Start is called before the first frame update
         void Start()
         {
@@ -25,6 +26,14 @@ namespace HackedDesign
             {
                 enemyController.MoveTowardPlayerEvent();
             }
+        }
+
+        public void Kill()
+        {
+            CoreGame.instance.AddActionMessage(status.character + " dropped " + shiny.name);
+            shiny.transform.position = transform.position;
+            shiny.SetActive(true);
+            Logger.Log(name, "Killed Swanzenegger");
         }
     }
 }

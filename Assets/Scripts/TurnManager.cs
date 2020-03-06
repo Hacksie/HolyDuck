@@ -131,6 +131,17 @@ namespace HackedDesign
                                 CoreGame.instance.AddActionMessage(action.sourceName + " can't quack that!");
                             }
                             break;
+                        case ActionTypes.Mushroom:
+                            var mushroom = action.target.GetComponent<MushroomActionHandler>();
+                            if (mushroom != null)
+                            {
+                                mushroom.Handle(action);
+                            }
+                            else
+                            {
+                                CoreGame.instance.AddActionMessage(action.sourceName + " can't mushroom!");
+                            }
+                            break;
                         case ActionTypes.Shinies:
                             var shiny = action.target.GetComponent<ShinyActionHandler>();
                             if (shiny != null)
@@ -139,7 +150,7 @@ namespace HackedDesign
                             }
                             else
                             {
-                                CoreGame.instance.AddActionMessage(action.sourceName + " can't quack that!");
+                                CoreGame.instance.AddActionMessage(action.sourceName + " can't shiny that!");
                             }
                             break;
 

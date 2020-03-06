@@ -21,6 +21,12 @@ namespace HackedDesign
 
         public void Handle(Action action)
         {
+            if (status.dead)
+            {
+                CoreGame.instance.AddActionMessage(status.character + " is dead");
+                return;
+            }
+
             status.SapEnergy(1);
             CoreGame.instance.AddActionMessage(action.sourceName + " quacks at " + status.character);
             if (npcController != null)

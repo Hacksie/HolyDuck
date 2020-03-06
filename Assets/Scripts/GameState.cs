@@ -19,6 +19,7 @@ namespace HackedDesign
         public Inventory playerInventory;
 
         public int cutscene = 0;
+        public int endcutscene = 0;
 
         /*
         public int health= 100;
@@ -62,6 +63,7 @@ namespace HackedDesign
         CREDITS,
         DIFFICULTY,
         STARTCUTSCENE,
+        ENDCUTSCENE,
         PLAYING,
         SHOP,
         GAMEOVERDEAD,

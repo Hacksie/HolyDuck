@@ -47,12 +47,19 @@ namespace HackedDesign
 
         private void RepaintText()
         {
-            var messages = state.actions.Take(10).ToList();
-            console.text = "";
-            for(int i=(messages.Count() - 1); i>=0;i--)
+            
+            var messages = state.actions.Take(10).ToArray();
+
+            StringBuilder sb = new StringBuilder();
+
+            //console.text = "";
+            for(int i=(messages.Length - 1); i>=0;i--)
             {
-                console.text += messages[i] + "\n";
+                sb.AppendLine(messages[i]);
+                    //console.text += messages[i] + "\n";
             }
+
+            console.text =sb.ToString();
         }
     }
 }

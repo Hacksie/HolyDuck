@@ -17,7 +17,13 @@ namespace HackedDesign
 
         public void Handle(Action action)
         {
-            if(inventory.ConsumeItem("Mushroom", 1))
+            if (status.dead)
+            {
+                CoreGame.instance.AddActionMessage(status.character + " is dead");
+                return;
+            }
+
+            if (inventory.ConsumeItem("Mushroom", 1))
             {
                 CoreGame.instance.AddActionMessage(status.character + " eats a magic mushroom");
                 status.AddHealth(100);

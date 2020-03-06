@@ -42,6 +42,7 @@ namespace HackedDesign
 
         public void Initialize(TurnManager turnManager, GameState state, Transform player)
         {
+            Logger.Log(name, "initialize");
             this.turnManager = turnManager;
             this.state = state;
             this.player = player;
@@ -67,7 +68,7 @@ namespace HackedDesign
         {
             var dir = DirectionToPlayer().normalized;
 
-            if((Mathf.Abs(dir.x) >= Mathf.Abs(dir.y)))
+            if ((Mathf.Abs(dir.x) >= Mathf.Abs(dir.y)))
             {
                 dir.x = Mathf.RoundToInt(dir.x);
                 dir.y = 0;
@@ -99,6 +100,7 @@ namespace HackedDesign
 
         public void UpdateTurn()
         {
+            Logger.Log(name, player.transform.position.ToString());
             if (transform.position.x < player.position.x)
             {
                 facingDirection = Vector2.right;
@@ -111,15 +113,15 @@ namespace HackedDesign
 
             if (status.stunned)
             {
-                CoreGame.instance.AddActionMessage(status.character + " is stunned!");
+                CoreGame.instance.AddActionMessage(status.character, " is stunned!");
                 status.stunnedCounter--;
 
                 if (status.stunnedCounter <= 0)
                 {
-                    CoreGame.instance.AddActionMessage(status.character + " will recover next turn!");
+                    CoreGame.instance.AddActionMessage(status.character, " will recover next turn!");
                     status.stunned = false;
                 }
-                
+
             }
             else
             {
@@ -158,6 +160,7 @@ namespace HackedDesign
         {
             CoreGame.instance.AddActionMessage(status.character + " died!");
             gameObject.SetActive(false);
+            status.dead = true;
         }
 
         public void BiteEvent()

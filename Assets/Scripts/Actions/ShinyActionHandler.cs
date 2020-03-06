@@ -15,6 +15,12 @@ namespace HackedDesign
 
         public void Handle(Action action)
         {
+            if (status.dead)
+            {
+                CoreGame.instance.AddActionMessage(status.character + " is dead");
+                return;
+            }
+
             status.distractedByShinies = true;
             Inventory inv = action.source.gameObject.GetComponent<Inventory>();
             inv.DropItem("Green Shiny", 1);

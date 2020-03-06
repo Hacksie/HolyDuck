@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.Text;
 
 namespace HackedDesign
 {
@@ -57,6 +58,7 @@ namespace HackedDesign
         [SerializeField] private DifficultyPresenter difficultyPresenter = null;
         [SerializeField] private ShopPresenter shopPresenter = null;
         [SerializeField] private CutscenePresenter cutscenePresenter = null;
+        [SerializeField] private EndCutscenePresenter endCutscenePresenter = null;
 
         [Header("Prefabs")]
         [SerializeField] private GameObject mummaPrefab = null;
@@ -126,6 +128,7 @@ namespace HackedDesign
             if (statusPresenter == null) Logger.LogError(name, "statusPresenter is null");
             if (turnPresenter == null) Logger.LogError(name, "turnPresenter is null");
             if (cutscenePresenter == null) Logger.LogError(name, "cutscenePresenter is null");
+            if (endCutscenePresenter == null) Logger.LogError(name, "endCutscenePresenter is null");
             if (chickPrefab == null) Logger.LogError(name, "chickPrefab is null");
             if (eggPrefab == null) Logger.LogError(name, "eggPrefab is null");
             if (applePrefab == null) Logger.LogError(name, "applePrefab is null");
@@ -171,6 +174,7 @@ namespace HackedDesign
             shopPresenter.Initialize(state);
             cutscenePresenter.Initialize(state);
             howtoPresenter.Initialize(state);
+            endCutscenePresenter.Initialize(state);
             SetMenu();
         }
 
@@ -242,7 +246,7 @@ namespace HackedDesign
         private void SpawnNamedEnemy(GameObject enemy, Spawn spawn)
         {
             SpawnCharacter(enemy, spawn);
-            var controller = crowBoss.GetComponent<EnemyController>();
+            var controller = enemy.GetComponent<EnemyController>();
             controller.Initialize(turnManager, state, player.transform);
             state.enemies.Add(controller);
         }
@@ -266,7 +270,7 @@ namespace HackedDesign
 
         private void SpawnMummaDucks()
         {
-            var mummaSpawns = state.spawns.ToList().PickRandomElements(state.difficulty.mummaDucks);
+            var mummaSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground || s.spawnType == SpawnType.Water).ToList().PickRandomElements(state.difficulty.mummaDucks);
 
             foreach (var s in mummaSpawns)
             {
@@ -430,7 +434,7 @@ namespace HackedDesign
 
         private void SpawnBreads()
         {
-            var breadSpawns = state.spawns.ToList().PickRandomElements(state.difficulty.breadCount);
+            var breadSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground || s.spawnType == SpawnType.Water).ToList().PickRandomElements(state.difficulty.breadCount);
             foreach (var s in breadSpawns)
             {
                 Instantiate(breadPrefab, s.transform.position, Quaternion.identity, itemsParent);
@@ -440,7 +444,7 @@ namespace HackedDesign
 
         private void SpawnChips()
         {
-            var chipSpawns = state.spawns.ToList().PickRandomElements(state.difficulty.chipCount);
+            var chipSpawns = state.spawns.Where(s => s.spawnType == SpawnType.Ground || s.spawnType == SpawnType.Water).ToList().PickRandomElements(state.difficulty.chipCount);
             foreach (var s in chipSpawns)
             {
                 Instantiate(chipPrefab, s.transform.position, Quaternion.identity, itemsParent);
@@ -458,9 +462,15 @@ namespace HackedDesign
             }
         }
 
-        public void AddActionMessage(string message)
+        public void AddActionMessage(params string[] messages)
         {
-            state.actions.Insert(0, message);
+            StringBuilder builder = new StringBuilder();
+            foreach (var s in messages)
+            {
+                builder.Append(s);
+            }
+
+            state.actions.Insert(0, builder.ToString());
         }
 
         private void SetPlatformInput()
@@ -538,6 +548,7 @@ namespace HackedDesign
             shopPresenter.Repaint();
             cutscenePresenter.Repaint();
             howtoPresenter.Repaint();
+            endCutscenePresenter.Repaint();
         }
 
         public void SetCurrentDifficulty(int difficulty)
@@ -563,6 +574,12 @@ namespace HackedDesign
         public void SetDifficulty()
         {
             state.currentState = GameStateEnum.DIFFICULTY;
+        }
+
+
+        public void SetEndCutscene()
+        {
+            state.currentState = GameStateEnum.ENDCUTSCENE;
         }
 
         public void SetOver()
@@ -592,6 +609,7 @@ namespace HackedDesign
             //state.playerInventory.PickupItem("Blue Shiny", 1);
             //state.playerInventory.PickupItem("Yellow Shiny", 1);
             //state.playerInventory.PickupItem("Green Shiny", 1);
+            //state.playerInventory.PickupItem("Apple", 10);
         }
 
 

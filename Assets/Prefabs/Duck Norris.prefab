@@ -144,21 +144,6 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5838830367263786391}
-        m_MethodName: BiteEvent
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: f6514716-3b29-420f-88de-760a4b01d254
-    m_ActionName: player/bite[/Keyboard/b]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5838830367263786391}
         m_MethodName: SplashEvent
         m_Mode: 0
         m_Arguments:
@@ -171,21 +156,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ba5c6e7a-c8c9-40fe-8f39-5e8d194c4778
     m_ActionName: player/shoot[/Keyboard/s]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5838830367263786391}
-        m_MethodName: CandyEvent
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 1fe25ff5-b768-4781-86cc-5ee707ad268d
-    m_ActionName: player/candy[/Keyboard/c]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5838830367263786391}
@@ -204,21 +174,6 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5838830367263786391}
-        m_MethodName: DuckEvent
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: c418bdc2-78b4-47ab-9a69-9801b15b7b63
-    m_ActionName: player/duck[/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5838830367263786391}
         m_MethodName: MenuEvent
         m_Mode: 0
         m_Arguments:
@@ -232,29 +187,20 @@ MonoBehaviour:
     m_ActionId: 629cff92-ccf2-47d7-9169-6538a381f0f7
     m_ActionName: player/menu[/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fa87287d-a842-4b5c-b539-fcde6a9d1fa9
-    m_ActionName: player/one[/Keyboard/1]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1ed6d77b-dc57-4ab6-8eb3-d082cda78070
-    m_ActionName: player/two[/Keyboard/2]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fe28bf97-eb32-4f92-a9b9-aee229e8aa17
-    m_ActionName: player/three[/Keyboard/3]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 05d0ae13-7f68-4a41-bb18-f8b710d5e0f0
-    m_ActionName: player/four[/Keyboard/4]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 981734ca-158b-4df5-b4c0-de81370a633f
-    m_ActionName: player/five[/Keyboard/5]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1f261bdc-3949-4672-9d50-37ed994bedea
-    m_ActionName: player/six[/Keyboard/6]
+      m_Calls:
+      - m_Target: {fileID: 5838830367263786391}
+        m_MethodName: MushroomEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c8b475ce-2cb6-43f6-8aec-85836bed463d
+    m_ActionName: player/mushroom[/Keyboard/m]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: player
@@ -369,9 +315,16 @@ MonoBehaviour:
   applePrice: 10
   mushroomPrice: 10
   breadPrice: 1
-  chicksSaved: 1
-  breadEnergy: 30
-  chipEnergy: 50
+  breadEnergy: 50
+  chipEnergy: 100
+  lettuceHealth: 20
+  quacked: 0
+  quackedTurnStart: 0
+  quackedTurnCounter: 1
+  stunned: 0
+  stunnedCounter: 0
+  dead: 0
+  distractedByShinies: 0
   dieEvent:
     m_PersistentCalls:
       m_Calls:

@@ -14,6 +14,12 @@ namespace HackedDesign
 
         public void Handle(Action action)
         {
+            if (status.dead)
+            {
+                CoreGame.instance.AddActionMessage(status.character + " is dead");
+                return;
+            }
+
             var damage = Mathf.Max(action.damage - status.defense, 0);
 
             CoreGame.instance.AddActionMessage(action.sourceName + " bites " + status.character + " for " + damage + "(" +action.damage + "-" + status.defense + ")!");

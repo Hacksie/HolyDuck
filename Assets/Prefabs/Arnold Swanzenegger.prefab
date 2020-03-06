@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 1208638313329616051}
   - component: {fileID: 633619085295196013}
   - component: {fileID: 6607603623811892288}
+  - component: {fileID: 4502181315964126094}
+  - component: {fileID: 5222734315404358428}
+  - component: {fileID: 7348363380989254083}
   m_Layer: 8
   m_Name: Arnold Swanzenegger
   m_TagString: Enemy
@@ -48,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca3257fb4afe644a8439702a7b19761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shiny: {fileID: 0}
 --- !u!114 &2927221508638558557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,9 +88,21 @@ MonoBehaviour:
   quackedTurnCounter: 1
   stunned: 0
   stunnedCounter: 0
+  distractedByShinies: 0
   dieEvent:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 7372800911944255891}
+        m_MethodName: Kill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1208638313329616051}
         m_MethodName: Kill
         m_Mode: 1
@@ -129,12 +145,12 @@ MonoBehaviour:
   behaviour:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7293991430429240520}
-        m_MethodName: 
+      - m_Target: {fileID: 7372800911944255891}
+        m_MethodName: Behaviour
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -187,6 +203,51 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4502181315964126094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7293991430429240520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de333b6b4ba4354da64f4cf725ef813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5222734315404358428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7293991430429240520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697bb3da7aa349c47886c16174a69dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7348363380989254083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7293991430429240520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a9794e186afdb4f8888421e34a5b4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 1792
+  spawnLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  canWater: 1
+  canGround: 0
+  distance: 1
 --- !u!1 &7293991431515728806
 GameObject:
   m_ObjectHideFlags: 0

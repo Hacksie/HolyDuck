@@ -22,7 +22,13 @@ namespace HackedDesign
 
         public void Handle(Action action)
         {
-            if(status.distractedByShinies)
+            if (status.dead)
+            {
+                CoreGame.instance.AddActionMessage(status.character + " is dead");
+                return;
+            }
+
+            if (status.distractedByShinies)
             {
                 CoreGame.instance.AddActionMessage(status.character + " is distracted by the shinies");
                 return;

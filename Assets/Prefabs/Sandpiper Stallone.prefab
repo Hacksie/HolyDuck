@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 7207586915175915727}
   - component: {fileID: 283838425837255162}
   - component: {fileID: 3892197821799994715}
+  - component: {fileID: 6215801640489263257}
   m_Layer: 8
   m_Name: Sandpiper Stallone
   m_TagString: Enemy
@@ -201,9 +202,21 @@ MonoBehaviour:
   quackedTurnCounter: 1
   stunned: 0
   stunnedCounter: 0
+  distractedByShinies: 0
   dieEvent:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 3892197821799994715}
+        m_MethodName: Kill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 283838425837255162}
         m_MethodName: Kill
         m_Mode: 1
@@ -230,14 +243,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e428ee7aefa6eb4db18185e75218563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 0}
-  leftWater: {fileID: 359042672018681830, guid: 5e5991713889af1409a0aab8642d617c,
+  renderer: {fileID: 8343358067669352808}
+  leftWater: {fileID: -1934345608146128651, guid: ec888e55676dc9c42963a5af2ba60598,
     type: 3}
-  leftGround: {fileID: 3387488067054627049, guid: 5e5991713889af1409a0aab8642d617c,
+  leftGround: {fileID: 719151855246989323, guid: ec888e55676dc9c42963a5af2ba60598,
     type: 3}
-  rightWater: {fileID: -3362095802737069125, guid: 5e5991713889af1409a0aab8642d617c,
+  rightWater: {fileID: -7588385472783605226, guid: ec888e55676dc9c42963a5af2ba60598,
     type: 3}
-  rightGround: {fileID: -2039758575632117308, guid: 5e5991713889af1409a0aab8642d617c,
+  rightGround: {fileID: 1713240398199416476, guid: ec888e55676dc9c42963a5af2ba60598,
     type: 3}
   direction: {x: 1, y: 0}
   facingDirection: {x: 1, y: 0}
@@ -269,3 +282,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7705349d36b35b24cb16539ae9cc3067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shiny: {fileID: 0}
+--- !u!114 &6215801640489263257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8343358068279463500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a9794e186afdb4f8888421e34a5b4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 1792
+  spawnLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  canWater: 1
+  canGround: 0
+  distance: 1

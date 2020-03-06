@@ -6,6 +6,7 @@ namespace HackedDesign
     [RequireComponent(typeof(Status))]
     public class SeagullBoss : MonoBehaviour
     {
+        [SerializeField] GameObject shiny;
         private Status status;
         private EnemyController enemyController;
         // Start is called before the first frame update
@@ -25,6 +26,14 @@ namespace HackedDesign
             {
                 enemyController.MoveTowardPlayerEvent();
             }
+        }
+
+        public void Kill()
+        {
+            CoreGame.instance.AddActionMessage(status.character + " dropped " + shiny.name);
+            shiny.transform.position = transform.position;
+            shiny.SetActive(true);
+            Logger.Log(name, "Killed Seagull");
         }
     }
 }
