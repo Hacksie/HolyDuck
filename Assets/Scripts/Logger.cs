@@ -8,15 +8,15 @@ namespace HackedDesign
         public static void Log(string gameObject, params string[] messages)
         {
 #if UNITY_EDITOR
-            
-            //StringBuilder builder = new StringBuilder(gameObject);
-            //builder.Append(": ");
-            //foreach (var s in messages)
-            //{
-            //    builder.Append(s);
-            //}
 
-            //Debug.Log(builder.ToString());
+            StringBuilder builder = new StringBuilder(gameObject);
+            builder.Append(": ");
+            foreach (var s in messages)
+            {
+                builder.Append(s);
+            }
+
+            Debug.Log(builder.ToString());
 #endif
         }
         public static void LogError(string gameObject, params string[] messages)

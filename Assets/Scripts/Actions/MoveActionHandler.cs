@@ -47,9 +47,20 @@ namespace HackedDesign
             {
                 var spawnHits = Physics2D.RaycastAll(transform.position, action.direction, distance, spawnLayerMask);
 
-                if(spawnHits.Any(s=>!CheckEnv(s.collider.GetComponent<Spawn>())))
+                Logger.Log(name, "spawnhits count", spawnHits.Length.ToString());
+                foreach(var spawnhit in spawnHits)
                 {
-                    CoreGame.instance.AddActionMessage(status.character + " can't move on " + ((int)transform.position.x).ToString() + "," + ((int)transform.position.y).ToString());
+                    Logger.Log(name, spawnhit.collider.name);
+                }
+
+                
+                if(spawnHits.Length == 1)
+                {
+                    CoreGame.instance.AddActionMessage(status.character + " can't move to " + ((int)transform.position.x).ToString() + "," + ((int)transform.position.y).ToString());
+                }
+                else if(spawnHits.Any(s=>!CheckEnv(s.collider.GetComponent<Spawn>())))
+                {
+                    CoreGame.instance.AddActionMessage(status.character + " can't move to " + ((int)transform.position.x).ToString() + "," + ((int)transform.position.y).ToString());
                 }
                 else
                 {

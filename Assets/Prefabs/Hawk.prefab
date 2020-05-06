@@ -124,9 +124,13 @@ MonoBehaviour:
   reqEnergy: 0
   energy: 100
   maxEnergy: 100
+  startingMinAttack: 0
   minAttack: 0
+  startingMaxAttack: 5
   maxAttack: 10
+  startingDefense: 3
   defense: 3
+  startingInitiative: 5
   initiative: 10
   attackPrice: 10
   defensePrice: 10
@@ -134,13 +138,21 @@ MonoBehaviour:
   applePrice: 10
   mushroomPrice: 10
   breadPrice: 1
-  chicksSaved: 1
   breadEnergy: 30
   chipEnergy: 50
+  lettuceHealth: 20
+  quacked: 0
+  quackedTurnStart: 0
+  quackedTurnCounter: 1
+  stunned: 0
+  stunnedCounter: 0
+  dead: 0
+  distractedByShinies: 0
   dieEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1156835176190037858}
+        m_TargetAssemblyTypeName: 
         m_MethodName: Kill
         m_Mode: 1
         m_Arguments:
@@ -183,6 +195,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 962960746666132154}
+        m_TargetAssemblyTypeName: 
         m_MethodName: Behaviour
         m_Mode: 1
         m_Arguments:
@@ -263,6 +276,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

@@ -126,9 +126,13 @@ MonoBehaviour:
   reqEnergy: 0
   energy: 100
   maxEnergy: 100
+  startingMinAttack: 0
   minAttack: 0
-  maxAttack: 10
+  startingMaxAttack: 5
+  maxAttack: 5
+  startingDefense: 2
   defense: 2
+  startingInitiative: 8
   initiative: 8
   attackPrice: 10
   defensePrice: 10
@@ -144,11 +148,13 @@ MonoBehaviour:
   quackedTurnCounter: 1
   stunned: 0
   stunnedCounter: 0
+  dead: 0
   distractedByShinies: 0
   dieEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5545209817379618823}
+        m_TargetAssemblyTypeName: 
         m_MethodName: Kill
         m_Mode: 1
         m_Arguments:
@@ -191,6 +197,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4146535570798829287}
+        m_TargetAssemblyTypeName: 
         m_MethodName: Behaviour
         m_Mode: 1
         m_Arguments:
@@ -296,6 +303,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

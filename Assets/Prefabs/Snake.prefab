@@ -56,8 +56,8 @@ MonoBehaviour:
     m_Bits: 1792
   spawnLayerMask:
     serializedVersion: 2
-    m_Bits: 0
-  canWater: 1
+    m_Bits: 2048
+  canWater: 0
   canGround: 1
   distance: 1
 --- !u!61 &3069113703823980569
@@ -104,9 +104,13 @@ MonoBehaviour:
   reqEnergy: 0
   energy: 0
   maxEnergy: 0
+  startingMinAttack: 0
   minAttack: 0
-  maxAttack: 5
-  defense: 0
+  startingMaxAttack: 5
+  maxAttack: 3
+  startingDefense: 2
+  defense: 2
+  startingInitiative: 5
   initiative: 5
   attackPrice: 10
   defensePrice: 10
@@ -116,15 +120,19 @@ MonoBehaviour:
   breadPrice: 1
   breadEnergy: 30
   chipEnergy: 50
+  lettuceHealth: 20
   quacked: 0
   quackedTurnStart: 0
   quackedTurnCounter: 1
   stunned: 0
   stunnedCounter: 0
+  dead: 0
+  distractedByShinies: 0
   dieEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 968702338638412559}
+        m_TargetAssemblyTypeName: 
         m_MethodName: Kill
         m_Mode: 1
         m_Arguments:
@@ -179,6 +187,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9131748405486765846}
+        m_TargetAssemblyTypeName: 
         m_MethodName: Behaviour
         m_Mode: 1
         m_Arguments:
@@ -280,6 +289,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
